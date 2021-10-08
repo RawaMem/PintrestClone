@@ -1,1 +1,1 @@
-# PinterestClone
+# PintrestClone
