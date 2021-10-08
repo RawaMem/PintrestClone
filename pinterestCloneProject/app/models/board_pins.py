@@ -17,6 +17,6 @@ class Board_Pins(db.Model):
              'board_id': self. board_id,
              'pin_id': self.pin_id,
              'notified': self.notified
-         }
+         },
     
     
