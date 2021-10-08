@@ -1,5 +1,7 @@
 from .db import db
+from flask_sqlalchemy import SQLAlchemy
 
+db = SQLAlchemy()
 
 class Pin_Likes(db.Model):
     __tablename__="pin_likes"

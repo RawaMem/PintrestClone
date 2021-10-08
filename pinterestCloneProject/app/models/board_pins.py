@@ -1,5 +1,7 @@
 from .db import db
+from flask_sqlalchemy import SQLAlchemy
 
+db = SQLAlchemy()
 
 class Board_Pins(db.Model):
     __tablename__ = 'board_pins'
