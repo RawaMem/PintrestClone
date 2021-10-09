@@ -12,7 +12,8 @@ class CommentLike(db.Model):
     created_at = db.Column(db.DateTime, server_default=text('now()'))
     updated_at = db.Column(db.DateTime, server_default=text('now()'))
 
-    comment_likes = db.relationship('Comment_like', back_populates='comment')
+    comment = db.relationship('Comment', back_populates='comment_likes')
+    user = db.relationship('User', back_populates='comment_likes')
 
 
     def to_dict(self):
