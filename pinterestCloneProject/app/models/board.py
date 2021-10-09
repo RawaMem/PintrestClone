@@ -3,16 +3,27 @@ from flask_sqlalchemy import SQLAlchemy
 db = SQLAlchemy()
 
 
-class CommentLike(db.Model):
-    __tablename__ = 'comment_likes'
+boards_pins = db.Table(
+    'boards_pins',
+    db.Column('board_id', db.Integer, db.ForeignKey("boards.id"), primary_key=True),
+    db.Column('pin_id', db.Integer, db.ForeignKey("pins.id"), primary_key=True),
+    db.Column('notified', db.Boolean, default=False)
+)
 
-    id = db.Column(db.Integer, primary_key=True)
-    user_id= db.Column(db.Integer, db.ForeignKey('users.id'))
-    title = db.Column(db.String(100))
-    description  = db.Column(db.String(1000))
-    private = db.Column(db.Boolean)
+class Board(db.Model):
+    __tablename__ = 'boards'
+
+    id = db.Column(db.Integer, primary_key=True, nullable=False)
+    user_id= db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    title = db.Column(db.String(100), nullable=False)
+    description  = db.Column(db.String(1000), nullable=False)
+    private = db.Column(db.Boolean, default=False)
     created_at = db.Column(db.DateTime, server_default=text('now()'))
     updated_at = db.Column(db.DateTime, server_default=text('now()'))
+
+    user = db.relationship("User", back_populates="boards")
+    pins = db.relationship("Pin", back_populates="boards", secondary=boards_pins)
+
 
 
 
