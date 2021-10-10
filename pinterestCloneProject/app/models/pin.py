@@ -17,9 +17,10 @@ class Pin(db.Model):
     updated_at = db.Column(db.DateTime, server_default=text('now()'))
 
     comments = db.relationship('Comment',back_populates='pin')
-    user = db.realationship('User', back_populates='pins')
+    pin_likes = db.relationship('PinLike', back_populates='pin')
+    user = db.relationship('User', back_populates='pins')
     boards = db.relationship("Board", back_populates="pins", secondary=boards_pins)
-    categories = db.relatioship('Category', back_populates='pins', secondary=pins_categories)
+    categories = db.relationship('Category', back_populates='pins', secondary=pins_categories)
 
 
 

@@ -19,6 +19,10 @@ class User(db.Model, UserMixin):
     comment_likes = db.relationship('CommentLike', back_populates='user')
     followers = db.relationship('Follower', back_populates='user')
     categories = db.relationship('Category', back_populates='user')
+    pin_likes=db.relationship('PinLike', back_populates='user')
+    liked_categories = db.relationship('LikedCategory', back_populates='user')
+
+
 
     @property
     def password(self):
