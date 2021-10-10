@@ -13,7 +13,7 @@ class Comment(db.Model):
     # one to many
     pin=db.relationship('Pin', back_populates='comments')
     # one to many
-    comment_likes=db.relationship('CommentLike', back_populates='comment')
+    comment_likes=db.relationship('CommentLike', back_populates='comment', cascade="all, delete-orphan")
 
 
     def to_dict(self):

@@ -15,11 +15,11 @@ class Pin(db.Model):
     # created_at = db.Column(db.DateTime, server_default=text('now()'))
     # updated_at = db.Column(db.DateTime, server_default=text('now()'))
 
-    comments = db.relationship('Comment',back_populates='pin')
-    pin_likes = db.relationship('PinLike', back_populates='pin')
+    comments = db.relationship('Comment',back_populates='pin', cascade="all, delete-orphan")
+    pin_likes = db.relationship('PinLike', back_populates='pin', cascade="all, delete-orphan")
     user = db.relationship('User', back_populates='pins')
     boards = db.relationship("Board", back_populates="pins", secondary=boards_pins)
-    categories = db.relationship('Category', back_populates='pins', secondary=pins_categories)
+    categories = db.relationship('Category', back_populates='pins', secondary=pins_categories, cascade="all, delete-orphan")
 
 
 
