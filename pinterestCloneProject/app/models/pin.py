@@ -19,7 +19,7 @@ class Pin(db.Model):
     pin_likes = db.relationship('PinLike', back_populates='pin', cascade="all, delete-orphan")
     user = db.relationship('User', back_populates='pins')
     boards = db.relationship("Board", back_populates="pins", secondary=boards_pins)
-    categories = db.relationship('Category', back_populates='pins', secondary=pins_categories, cascade="all, delete-orphan")
+    categories = db.relationship('Category', back_populates='pins', secondary=pins_categories)
 
 
 

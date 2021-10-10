@@ -20,7 +20,7 @@ class Board(db.Model):
     # updated_at = db.Column(db.DateTime, server_default=text('now()'))
 
     user = db.relationship("User", back_populates="boards")
-    pins = db.relationship("Pin", back_populates="boards", secondary=boards_pins, cascade="all, delete-orphan")
+    pins = db.relationship("Pin", back_populates="boards", secondary=boards_pins)
 
 
 
