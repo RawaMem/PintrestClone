@@ -1,6 +1,4 @@
-from flask_sqlalchemy import SQLAlchemy
-
-db = SQLAlchemy()
+from .db import db
 
 class LikedCategory(db.Model):
     __tablename__='liked_categories'
