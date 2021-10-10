@@ -13,7 +13,7 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
 
-    boards = db.relatioship('Board', back_populates='user')
+    boards = db.relationship('Board', back_populates='user')
     pins = db.relationship('Pin', back_populates='user')
     comments = db.relationship('Comment', back_populates='user')
     comment_likes = db.relationship('CommentLike', back_populates='user')
@@ -38,6 +38,8 @@ class User(db.Model, UserMixin):
     def to_dict(self):
         return {
             'id': self.id,
+            'first_name': self.first_name,
+            'last_name': self.last_name,
             'username': self.username,
             'email': self.email
         }
