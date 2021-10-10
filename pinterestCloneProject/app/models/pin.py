@@ -10,8 +10,8 @@ class Pin(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
-    image_url = db.Column(db.String, nullable=False)
-    title = db.Column(db.String)
+    title = db.Column(db.String, nullable=False)
+    media_url = db.Column(db.String, nullable=False)
     description = db.Column(db.String(400), nullable=False)
     created_at = db.Column(db.DateTime, server_default=text('now()'))
     updated_at = db.Column(db.DateTime, server_default=text('now()'))
@@ -29,8 +29,8 @@ class Pin(db.Model):
         return {
             'id': self.id,
             'user_id': self.user_id,
-            'image_url': self.image_url,
             'title': self.title,
+            'media_url': self.media_url,
             'description': self.description,
             'created_at': self.created_at,
             'updated_at': self.updated_at
