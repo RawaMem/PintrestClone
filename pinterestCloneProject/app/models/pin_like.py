@@ -2,20 +2,16 @@ from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
 
-class Comment(db.Model):
-    __tablename__='comments'
+class PinLike(db.Model):
+    __tablename__='pin_likes'
 
     id = db.Column(db.Integer, primary_key=True)
     user_id=db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     pin_id=db.Column(db.Integer, db.ForeignKey('pins.id'), nullable=False)
-    content=db.Column(db.String, nullable=False)
     notified=db.Column(db.Boolean, nullable=False)
-    # one to many
-    user=db.relationship('User', back_populates='comments')
-    # one to many
-    pin=db.relationship('Pin', back_populates='comments')
-    # one to many
-    comment_likes=db.relationship('CommentLike', back_populates='comment')
+
+    user=db.relationship('User', back_populates='pin_likes')
+    pin=db.relationship('Pin', back_populates='pin_likes')
 
 
     def to_dict(self):
@@ -23,6 +19,5 @@ class Comment(db.Model):
             'id':self.id,
             'user_id':self.user_id,
             'pin_id':self.pin_id,
-            'content':self.content,
-            'notified':self.notified,
+            'notified':self.notified
         }
