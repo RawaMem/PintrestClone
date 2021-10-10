@@ -1,10 +1,8 @@
 from app.models import db, Category
-from pinterestCloneProject.app.models import category
-
 
 def seed_categories():
     category1 = Category(
-        user_id=1, category
+        user_id=1, category='cat'
     )
 
 def undo_categories():
