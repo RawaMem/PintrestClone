@@ -1,6 +1,4 @@
-from flask_sqlalchemy import SQLAlchemy
-
-db = SQLAlchemy()
+from .db import db
 
 
 boards_pins = db.Table(
@@ -18,8 +16,8 @@ class Board(db.Model):
     title = db.Column(db.String(100), nullable=False)
     description  = db.Column(db.String(1000), nullable=False)
     private = db.Column(db.Boolean, default=False)
-    created_at = db.Column(db.DateTime, server_default=text('now()'))
-    updated_at = db.Column(db.DateTime, server_default=text('now()'))
+    # created_at = db.Column(db.DateTime, server_default=text('now()'))
+    # updated_at = db.Column(db.DateTime, server_default=text('now()'))
 
     user = db.relationship("User", back_populates="boards")
     pins = db.relationship("Pin", back_populates="boards", secondary=boards_pins)
@@ -34,6 +32,6 @@ class Board(db.Model):
             'title': self.title,
             'description': self.description,
             'private': self.private,
-            'created_at': self.created_at,
-            'updated_at': self.updated_at
+            # 'created_at': self.created_at,
+            # 'updated_at': self.updated_at
         }

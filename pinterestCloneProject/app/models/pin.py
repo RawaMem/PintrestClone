@@ -1,8 +1,7 @@
-from flask_sqlalchemy import SQLAlchemy
+from .db import db
 from app.models.board import boards_pins
 from app.models.category import pins_categories
 
-db = SQLAlchemy()
 
 
 class Pin(db.Model):
@@ -13,8 +12,8 @@ class Pin(db.Model):
     title = db.Column(db.String, nullable=False)
     media_url = db.Column(db.String, nullable=False)
     description = db.Column(db.String(400), nullable=False)
-    created_at = db.Column(db.DateTime, server_default=text('now()'))
-    updated_at = db.Column(db.DateTime, server_default=text('now()'))
+    # created_at = db.Column(db.DateTime, server_default=text('now()'))
+    # updated_at = db.Column(db.DateTime, server_default=text('now()'))
 
     comments = db.relationship('Comment',back_populates='pin')
     pin_likes = db.relationship('PinLike', back_populates='pin')
@@ -32,6 +31,6 @@ class Pin(db.Model):
             'title': self.title,
             'media_url': self.media_url,
             'description': self.description,
-            'created_at': self.created_at,
-            'updated_at': self.updated_at
+            # 'created_at': self.created_at,
+            # 'updated_at': self.updated_at
         }
