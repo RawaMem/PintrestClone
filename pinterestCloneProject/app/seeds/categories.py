@@ -1,12 +1,10 @@
 from app.models import db, Category
+from pinterestCloneProject.app.models import category
 
 
 def seed_categories():
-    op.bulk_insert(Category,
-        [
-            {'id':1, 'user_id':1, 'category':'cats'}
-        ],
-        multiinsert=False
+    category1 = Category(
+        user_id=1, category
     )
 
 def undo_categories():
