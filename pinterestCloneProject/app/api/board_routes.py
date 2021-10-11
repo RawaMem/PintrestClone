@@ -17,10 +17,11 @@ def get_boards():
 
 
 # delete a single board
-@app.route('/delete/<int:id>')
+@bp.route('/delete/<int:id>')
 def delete(id):
     # deleted_board = Board.query.filter(Board.id == id).first()
-    Board.query.filter(Board.id == id).delete()
+    delete_board =Board.query.filter(Board.id == id).first()
+    db.session.delete(delete_board)
     db.session.commit()
 
     boards = Board.query.all()
@@ -30,7 +31,7 @@ def delete(id):
 
 
 # create a new board
-@app.route('/new', methods=['POST'])
+@bp.route('/new', methods=['POST'])
 def add_new_board():
     form = NewBoardForm()
     form["csrf_token"].data = request.cookies["csrf_token"]
@@ -54,7 +55,7 @@ def add_new_board():
 
 
 # edit a single board
-@app.route('/edit/<int:id>', methods=['POST'])
+@bp.route('/edit/<int:id>', methods=['POST'])
 def edit_board(id):
     form = EditBoardForm()
     form["csrf_token"].data = request.cookies["csrf_token"]
