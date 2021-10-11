@@ -33,6 +33,11 @@ def create_new_pin():
         return form.errors
 
 
-# @bp.route('/pins/<int:pin_id>')
-# def delete_pin(pin_id):
-#     delete_pin = Pin.query.filter(Pin.id == )
+@bp.route('/pins/<int:pin_id>')
+def delete_pin(pin_id):
+    delete_pin = Pin.query.filter(Pin.id == pin_id).first()
+    Pin.query.filter(Pin.id == id).delete()
+    db.session.commit()
+    return {
+        'delete_pin': delete_pin.to_dict()
+    }
