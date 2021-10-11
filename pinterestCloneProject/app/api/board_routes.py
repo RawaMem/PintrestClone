@@ -2,6 +2,7 @@ from flask import Blueprint, render_template, redirect, request
 from app.models import db
 from app.models.board import Board
 from app.forms.new_board_form import NewBoardForm
+from app.forms.edit_board_form import EditBoardForm
 
 
 bp = Blueprint('boards', __name__, url_prefix='boards')
@@ -43,4 +44,23 @@ def add_new_board():
         return board.to_dict()
     else:
 
+        return form.errors
+
+
+# edit a single board
+@app.route('/edit/<int:id>', methods=['POST'])
+def edit_board(id):
+    form = EditBoardForm()
+    form["csrf_token"].data = request.cookies["csrf_token"]
+    if form.validate_on_submit():
+        board = Board.query.filter_by(id=id).first()
+
+        board.user_id=form.data['user_id']
+        board.title=form.data['title']
+        board.description=form.data['description']
+        board.private=form.data['private']
+
+        db.session.commit()
+
+    else:
         return form.errors
