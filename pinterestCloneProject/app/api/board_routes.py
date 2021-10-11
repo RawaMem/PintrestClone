@@ -19,11 +19,13 @@ def get_boards():
 # delete a single board
 @app.route('/delete/<int:id>')
 def delete(id):
-    deleted_board = Board.query.filter(Board.id == id).first()
+    # deleted_board = Board.query.filter(Board.id == id).first()
     Board.query.filter(Board.id == id).delete()
     db.session.commit()
-    return {
-        'deleted_board': deleted_board.to_dict()
+
+    boards = Board.query.all()
+    return{
+        'boards': {board.id:board.to_dict() for board in boards}
     }
 
 
@@ -61,6 +63,8 @@ def edit_board(id):
         board.private=form.data['private']
 
         db.session.commit()
+
+        return board.to_dict()
 
     else:
         return form.errors
