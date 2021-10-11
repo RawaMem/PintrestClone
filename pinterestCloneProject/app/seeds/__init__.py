@@ -22,11 +22,11 @@ def seed():
     seed_pins()
     seed_boards()
     seed_comments()
-    seed_followers()
     seed_categories()
     seed_comment_likes()
     seed_liked_categories()
     seed_pin_likes()
+    seed_followers()
 
 # Creates the `flask seed undo` command
 @seed_commands.command('undo')
@@ -36,8 +36,8 @@ def undo():
     undo_pins()
     undo_boards()
     undo_comments()
-    undo_followers()
     undo_categories()
     undo_comment_likes()
     undo_liked_categories()
     undo_pin_likes()
+    undo_followers()

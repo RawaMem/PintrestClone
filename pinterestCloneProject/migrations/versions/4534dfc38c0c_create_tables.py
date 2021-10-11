@@ -1,8 +1,8 @@
 """create tables
 
-Revision ID: 3a838e4752a9
+Revision ID: 4534dfc38c0c
 Revises: 
-Create Date: 2021-10-10 18:07:03.474737
+Create Date: 2021-10-11 09:16:20.048328
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '3a838e4752a9'
+revision = '4534dfc38c0c'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -45,15 +45,12 @@ def upgrade():
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
-    op.create_table('followers',
-    sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('user_id', sa.Integer(), nullable=False),
-    sa.Column('follower_username', sa.String(), nullable=False),
-    sa.Column('notified', sa.Boolean(), nullable=False),
-    sa.ForeignKeyConstraint(['follower_username'], ['users.username'], ),
-    sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
-    sa.PrimaryKeyConstraint('id'),
-    sa.UniqueConstraint('follower_username')
+    op.create_table('follows',
+    sa.Column('follower_id', sa.Integer(), nullable=True),
+    sa.Column('followed_id', sa.Integer(), nullable=True),
+    sa.Column('notified', sa.Boolean(), nullable=True),
+    sa.ForeignKeyConstraint(['followed_id'], ['users.id'], ),
+    sa.ForeignKeyConstraint(['follower_id'], ['users.id'], )
     )
     op.create_table('liked_categories',
     sa.Column('id', sa.Integer(), nullable=False),
@@ -126,7 +123,7 @@ def downgrade():
     op.drop_table('boards_pins')
     op.drop_table('pins')
     op.drop_table('liked_categories')
-    op.drop_table('followers')
+    op.drop_table('follows')
     op.drop_table('categories')
     op.drop_table('boards')
     op.drop_table('users')
