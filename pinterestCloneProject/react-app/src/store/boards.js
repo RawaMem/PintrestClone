@@ -87,7 +87,7 @@ export const deleteOneBoard = id => async (dispatch) => {
 
 const initialState = {}
 
-export const boardsReducer = (state = initialState, action) => {
+const boardsReducer = (state = initialState, action) => {
     let newState;
 
     switch (action.type) {
@@ -115,3 +115,5 @@ export const boardsReducer = (state = initialState, action) => {
         return state
     }
 }
+
+export default boardsReducer;
