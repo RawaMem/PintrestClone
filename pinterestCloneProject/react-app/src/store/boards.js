@@ -14,26 +14,26 @@ const getBoards = boardsObject => {
 }
 
 
-const addBoard = newBoard => {
+const addBoard = boardsObject => {
     return {
         type: ADD_BOARDS,
-        newBoard
+        boardsObject
     }
 }
 
 
-const editBoard = newBoard => {
+const editBoard = boardsObject => {
     return {
         type: EDIT_BOARDS,
-        newBoard
+        boardsObject
     }
 }
 
 
-const deleteBoard = id => {
+const deleteBoard = boardsObject => {
     return {
         type: DELETE_BOARDS,
-        id
+        boardsObject
     }
 }
 
@@ -44,6 +44,7 @@ export const getAllBoards = () => async (dispatch) => {
     if (response.ok) {
         const boardsObject = await response.json();
         dispatch(getBoards(boardsObject))
+        return boardsObject
     }
 }
 
@@ -54,9 +55,9 @@ export const createBoard = boardDetails => async (dispatch) => {
         body: JSON.stringify(boardDetails)
     })
     if (response.ok) {
-        const newBoard = await response.json();
-        dispatch(addBoard(newBoard))
-        return newBoard
+        const boardsObject = await response.json();
+        dispatch(addBoard(boardsObject))
+        return boardsObject
     }
 }
 
@@ -67,9 +68,9 @@ export const editBoardDetails = boardDetails => async (dispatch) => {
         body: JSON.stringify(boardDetails)
     })
     if (response.ok) {
-        const newBoard = await response.json()
-        dispatch(editBoard(newBoard))
-        return newBoard
+        const boardsObject = await response.json()
+        dispatch(editBoard(boardsObject))
+        return boardsObject
     }
 }
 
@@ -85,3 +86,32 @@ export const deleteOneBoard = id => async (dispatch) => {
 
 
 const initialState = {}
+
+export const boardsReducer = (state = initialState, action) => {
+    let newState;
+
+    switch (action.type) {
+        case GET_BOARDS: {
+            const boardsObject = action.boardsObject,
+            newState = boardsObject
+            return newState
+        }
+        case ADD_BOARDS: {
+            const boardsObject = action.boardsObject,
+            newState = boardsObject
+            return newState
+        }
+        case EDIT_BOARDS: {
+            const boardsObject = action.boardsObject,
+            newState = boardsObject
+            return newState
+        }
+        case DELETE_BOARDS: {
+            const boardsObject = action.boardsObject,
+            newState = boardsObject
+            return newState
+        }
+        default:
+        return state
+    }
+}

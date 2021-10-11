@@ -43,7 +43,11 @@ def add_new_board():
         )
         db.session.add(board)
         db.session.commit()
-        return board.to_dict()
+
+        boards = Board.query.all()
+        return{
+            'boards': {board.id:board.to_dict() for board in boards}
+        }
     else:
 
         return form.errors
@@ -64,7 +68,10 @@ def edit_board(id):
 
         db.session.commit()
 
-        return board.to_dict()
+        boards = Board.query.all()
+        return{
+            'boards': {board.id:board.to_dict() for board in boards}
+        }
 
     else:
         return form.errors
