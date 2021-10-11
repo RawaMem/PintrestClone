@@ -1,5 +1,3 @@
-import os
-import requests
 from flask import Blueprint, redirect, request
 from flask import Blueprint, redirect
 from app.models import db, Pin
@@ -35,6 +33,6 @@ def create_new_pin():
         return form.errors
 
 
-@bp.route('/pins/<int:pin_id>')
-def delete_pin(pin_id):
-    delete_pin = Pin.query.filter(Pin.id == )
+# @bp.route('/pins/<int:pin_id>')
+# def delete_pin(pin_id):
+#     delete_pin = Pin.query.filter(Pin.id == )
