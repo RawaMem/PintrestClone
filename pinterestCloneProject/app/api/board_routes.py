@@ -1,4 +1,3 @@
-from re import I
 from flask import Blueprint, render_template, redirect, request
 from app.models import db
 from app.models.board import Board
