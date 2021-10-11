@@ -5,36 +5,71 @@ from app.models import db, User
 def seed_users():
     demo = User(
         first_name='Demo', last_name='User', username='Demo', email='demo@aa.io', password='password')
-    lily = User(
+    user1 = User(
         first_name='Lily', last_name='Potter', username='Lily', email='lily@aa.io', password='password')
-    harry = User(
+    user2 = User(
         first_name='Harry', last_name='Potter', username='Harry', email='harrye@aa.io', password='password')
-    james = User(
+    user3 = User(
         first_name='James', last_name='Potter', username='James', email='james@aa.io', password='password')
-    sirius = User(
+    user4 = User(
         first_name='Sirius', last_name='Black', username='Sirius', email='sirius@aa.io', password='password')
-    ron = User(
+    user5 = User(
         first_name='Ron', last_name='Weasley', username='Ron', email='ron@aa.io', password='password')
-    hermoine = User(
+    user6 = User(
         first_name='Hermoine', last_name='Granger', username='Hermoine', email='hermoine@aa.io', password='password')
-    albus = User(
+    user7 = User(
         first_name='Albus', last_name='Dumbledore', username='Albus', email='albus@aa.io', password='password')
-    severus = User(
+    user8 = User(
         first_name='Severus', last_name='Snape', username='Severus', email='severus@aa.io', password='password')
-    tom = User(
+    user9 = User(
         first_name='Tom', last_name='Riddle', username='Tom', email='tom@aa.io', password='password')
 
 
     db.session.add(demo)
-    db.session.add(lily)
-    db.session.add(harry)
-    db.session.add(james)
-    db.session.add(sirius)
-    db.session.add(ron)
-    db.session.add(hermoine)
-    db.session.add(albus)
-    db.session.add(severus)
-    db.session.add(tom)
+    db.session.add(user1)
+    db.session.add(user2)
+    db.session.add(user3)
+    db.session.add(user4)
+    db.session.add(user5)
+    db.session.add(user6)
+    db.session.add(user7)
+    db.session.add(user8)
+    db.session.add(user9)
+
+    demo.following.append(user1)
+    demo.following.append(user2)
+    demo.following.append(user3)
+    demo.following.append(user4)
+    demo.following.append(user5)
+    demo.following.append(user6)
+    user1.following.append(user2)
+    user1.following.append(user3)
+    user1.following.append(user4)
+    user1.following.append(user5)
+    user1.following.append(user6)
+    user1.following.append(user7)
+    user1.following.append(user8)
+    user1.following.append(user9)
+    user2.following.append(user9)
+    user2.following.append(user1)
+    user2.following.append(user3)
+    user2.following.append(user4)
+    user2.following.append(user5)
+    user3.following.append(user1)
+    user3.following.append(user2)
+    user3.following.append(user4)
+    user3.following.append(user5)
+    user3.following.append(user6)
+    user3.following.append(user7)
+    user3.following.append(user8)
+    user4.following.append(user1)
+    user4.following.append(user2)
+    user4.following.append(user3)
+    user4.following.append(user5)
+    user4.following.append(user6)
+    user4.following.append(user7)
+    user4.following.append(user8)
+    user4.following.append(user9)
 
     db.session.commit()
 
