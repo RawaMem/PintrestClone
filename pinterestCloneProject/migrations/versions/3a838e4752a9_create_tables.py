@@ -1,8 +1,8 @@
 """create tables
 
-Revision ID: f829ccb15078
+Revision ID: 3a838e4752a9
 Revises: 
-Create Date: 2021-10-10 16:22:22.471836
+Create Date: 2021-10-10 18:07:03.474737
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'f829ccb15078'
+revision = '3a838e4752a9'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -48,11 +48,12 @@ def upgrade():
     op.create_table('followers',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=False),
-    sa.Column('follower_id', sa.Integer(), nullable=False),
+    sa.Column('follower_username', sa.String(), nullable=False),
     sa.Column('notified', sa.Boolean(), nullable=False),
-    sa.ForeignKeyConstraint(['follower_id'], ['users.id'], ),
+    sa.ForeignKeyConstraint(['follower_username'], ['users.username'], ),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
-    sa.PrimaryKeyConstraint('id')
+    sa.PrimaryKeyConstraint('id'),
+    sa.UniqueConstraint('follower_username')
     )
     op.create_table('liked_categories',
     sa.Column('id', sa.Integer(), nullable=False),

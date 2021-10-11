@@ -20,8 +20,8 @@ class User(db.Model, UserMixin):
     followers = db.relationship('Follower', back_populates='user')
     categories = db.relationship('Category', back_populates='user')
     pin_likes=db.relationship('PinLike', back_populates='user')
+    # user_liked_categories = db.relationship('Category', back_populates='user', secondary=liked_categories)
     liked_categories = db.relationship('LikedCategory', back_populates='user')
-
 
 
     @property

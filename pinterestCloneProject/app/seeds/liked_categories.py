@@ -1,5 +1,5 @@
 from app.models import db, LikedCategory
-from pinterestCloneProject.app.models import liked_category
+from app.models import liked_category
 
 def seed_liked_categories():
     liked_category1 = LikedCategory(
@@ -33,6 +33,6 @@ def seed_liked_categories():
     db.session.add(liked_category7)
     db.session.commit()
 
-def undo_categories():
+def undo_liked_categories():
     db.session.execute('TRUNCATE users RESTART IDENTITY CASCADE;')
     db.session.commit()

@@ -7,6 +7,14 @@ pins_categories = db.Table(
     db.Column('pin_id', db.Integer, db.ForeignKey('pins.id'), primary_key=True)
 )
 
+
+# liked_categories = db.Table(
+#     'liked_categories',
+#     db.Column('user_id', db.Integer, db.ForeignKey('users.id'), primary_key=True),
+#     db.Column('category_id', db.Integer, db.ForeignKey('categories.id'), primary_key=True)
+# )
+
+
 class Category(db.Model):
     __tablename__='categories'
 
@@ -16,6 +24,7 @@ class Category(db.Model):
 
     user = db.relationship('User', back_populates='categories')
     pins = db.relationship('Pin', back_populates='categories', secondary=pins_categories)
+    # users = db.relationship('User', back_populates='user_liked_categories', secondary=liked_categories)
 
 
 
