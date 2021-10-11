@@ -6,6 +6,8 @@ from .boards import seed_boards, undo_boards
 from .comments import seed_comments, undo_comments
 from .follower import seed_followers, undo_followers
 from .comment_likes import seed_comment_likes, undo_comment_likes
+from .liked_categories import seed_liked_categories, undo_liked_categories
+from .pin_likes import seed_pin_likes, undo_pin_likes
 
 # Creates a seed group to hold our commands
 # So we can type `flask seed --help`
@@ -23,6 +25,8 @@ def seed():
     seed_followers()
     seed_categories()
     seed_comment_likes()
+    seed_liked_categories()
+    seed_pin_likes()
 
 # Creates the `flask seed undo` command
 @seed_commands.command('undo')
@@ -35,3 +39,5 @@ def undo():
     undo_followers()
     undo_categories()
     undo_comment_likes()
+    undo_liked_categories()
+    undo_pin_likes()

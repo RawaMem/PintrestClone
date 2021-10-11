@@ -1,5 +1,5 @@
 from app.models import db, PinLike
-from pinterestCloneProject.app.models import PinLike
+from app.models import PinLike
 
 def seed_pin_likes():
     pin_like1 = PinLike(
