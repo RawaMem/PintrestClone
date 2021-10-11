@@ -29,4 +29,12 @@ def create_new_pin():
             description=data['description']
         )
         db.session.add(new_pin)
-        
+        db.session.commit()
+        return new_pin.to_dict()
+    else:
+        return form.errors
+
+
+@bp.route('/pins/<int:pin_id>')
+def delete_pin(pin_id):
+    delete_pin = Pin.query.filter(Pin.id == )
