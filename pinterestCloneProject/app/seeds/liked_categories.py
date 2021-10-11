@@ -34,5 +34,5 @@ def seed_liked_categories():
     db.session.commit()
 
 def undo_categories():
-db.session.execute('TRUNCATE users RESTART IDENTITY CASCADE;')
-db.session.commit()
+    db.session.execute('TRUNCATE users RESTART IDENTITY CASCADE;')
+    db.session.commit()
