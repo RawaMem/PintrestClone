@@ -1,4 +1,4 @@
-import { useEffect  } from 'react';
+import { useEffect, useState  } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { getAllBoards } from '../../store/boards';
@@ -11,19 +11,52 @@ export const Profile = () => {
     const allBoardsObj = useSelector(state => state.boards)
 
     const allBoardsList = Object.values(allBoardsObj)
-    console.log('=======>', allBoardsList)
+
 
     const user = useSelector(state => {
         return state.session?.user
     })
 
-
     useEffect(() => {
         dispatch(getAllBoards())
     }, [dispatch])
 
+
+    const [showMenu, setShowMenu] = useState(false);
+
+    const openMenu = () => {
+      if (showMenu) return;
+      setShowMenu(true);
+    };
+
+    useEffect(() => {
+      if (!showMenu) return;
+
+      const closeMenu = () => {
+        setShowMenu(false);
+      };
+
+      document.addEventListener('click', closeMenu);
+
+      return () => document.removeEventListener("click", closeMenu);
+    }, [showMenu]);
+
+
     return(
         <>
+            <div className="mid-button-container">
+            <button  className='big-profile-btn' onClick={openMenu}>Create</button>
+            {showMenu && (
+                <>
+                <p className="creation">Create</p>
+                <button className='profile-logout-btn'>Pin</button>
+                <button className='profile-logout-btn'>Board</button>
+                </>
+
+            )}
+
+            </div>
+
             <div className="user-info-container">
                 <button className="user-info-button">{user?.first_name[0]}</button>
                 <h1 className="full-name">{user?.first_name} {user?.last_name}</h1>

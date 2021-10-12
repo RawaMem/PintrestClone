@@ -17,7 +17,7 @@ def get_comments():
 
 # create a new comment
 
-@comment_routes.route('/', methods=['POST'])
+@comment_routes.route('/new', methods=['POST'])
 def create_new_comment():
     form= NewCommentForm()
     form["csrf_token"].data = request.cookies["csrf_token"]
@@ -38,7 +38,7 @@ def create_new_comment():
 
 #edit a comment
 
-@comment_routes.route('/<int:id>', methods=['PATCH'])
+@comment_routes.route('/edit/<int:id>', methods=['PATCH'])
 def edit_comment(id):
     form = EditCommentForm()
     form["csrf_token"].data = request.cookies["csrf_token"]
@@ -60,7 +60,7 @@ def edit_comment(id):
 
 # delete a comment
 
-@comment_routes.route('/<int:id>', methods=['DELETE'])
+@comment_routes.route('/delete/<int:id>', methods=['DELETE'])
 def delete_comment(id):
     deleted_comment = Comment.query.filter(Comment.id == id).first()
     db.session.delete(deleted_comment)
