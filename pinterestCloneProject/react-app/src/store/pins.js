@@ -76,8 +76,8 @@ export const addPin = pin => async(dispatch) => {
 
 export const editPin = pin => async(dispatch) => {
     const response = await fetch(`/pins/edit/${pin.id}`, {
-        method: 'POST',
-        body: JASON.stringify(pin)
+        method: 'PATCH',
+        body: JSON.stringify(pin)
     })
 
     if (response.ok) {
@@ -88,7 +88,10 @@ export const editPin = pin => async(dispatch) => {
 }
 
 export const deletePin = id => async(dispatch) => {
-    const response = await fetch(`/pins/delete/${id}`)
+    const response = await fetch(`/pins/delete/${id}`, {
+        method: 'DELETE',
+        body: JSON.stringify(id)
+    })
     if (response.ok) {
         dispatch(pinDetailAction(id))
     }

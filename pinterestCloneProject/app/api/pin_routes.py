@@ -36,7 +36,7 @@ def create_new_pin():
         return form.errors
 
 
-@bp.route('/edit/<int:id>', methods=['POST'])
+@bp.route('/edit/<int:id>', methods=['PATCH'])
 def edit_pins(id):
     form = EditPinForm()
     form["csrf_token"].data = request.cookies["csrf_token"]
@@ -63,7 +63,7 @@ def get_one_pin(id):
     }
 
 
-@bp.route('/delete/<int:id>')
+@bp.route('/delete/<int:id>', methods=['DELETE'])
 def delete_pin(id):
     delete_pin = Pin.query.filter(Pin.id == id).first()
     db.session.delete(delete_pin)
