@@ -3,6 +3,8 @@ from flask import Blueprint, redirect
 from app.models import db, Pin
 from flask_wtf.csrf import generate_csrf
 from app.forms.pin_form import PinForm
+from app.forms.edit_pin_form import EditPinForm
+from flask_login import current_user
 
 
 bp = Blueprint("pins", __name__, url_prefix="")
@@ -13,27 +15,6 @@ def home():
     return{
         'pins': {pin.id:pin.to_dict() for pin in pins}
     }
-
-
-@bp.route('/pins', methods=['POST'])
-def create_new_pin():
-    form = PinForm()
-    form["csrf_token"].data = request.cookies["csrf_token"]
-    data = form.data
-    if form.validate_on_submit():
-        new_pin = Pin(
-            title=data['title'],
-            media_url=data['media_url'],
-            description=data['description']
-        )
-        db.session.add(new_pin)
-        db.session.commit()
-        return new_pin.to_dict()
-    else:
-        return form.errors
-
-
-# @bp.route('/edit/<int:id>')
 
 
 @bp.route('/pins/<int:id>')
@@ -53,3 +34,54 @@ def delete_pin(id):
     return {
         'delete_pin': delete_pin.to_dict()
     }
+
+
+#Get all pins from a specific user
+@bp.route('/users/<int:user_id>/pins')
+def user_pins(user_id):
+    user_pins = Pin.query.filter(Pin.user_id == user_id)
+    return {
+        'pins': {pin.id:pin.to_dict() for pin in user_pins}
+    }
+
+
+@bp.route('/pins', methods=['POST'])
+def create_new_pin():
+    form = PinForm()
+    form["csrf_token"].data = request.cookies["csrf_token"]
+    data = form.data
+    if form.validate_on_submit():
+        new_pin = Pin(
+            user_id=current_user.id,
+            title=data['title'],
+            media_url=data['media_url'],
+            description=data['description']
+        )
+        db.session.add(new_pin)
+        db.session.commit()
+        return new_pin.to_dict()
+    else:
+        return form.errors
+
+
+@bp.route('/edit/<int:id>', methods=['POST'])
+def edit_pin(id):
+    form = EditPinForm()
+    form["csrf_token"].data = request.cookies["csrf_token"]
+    data=form.data
+    if form.validate_on_submit():
+        pin_for_edit = Pin.query.filter(Pin.id == id).first()
+
+        pin_for_edit.user_id=current_user.id,
+        pin_for_edit.title=data['title']
+        pin_for_edit.media_url=data['media_url'],
+        pin_for_edit.description=data['description']
+
+        db.session.commit()
+
+        pins = Pin.query.all()
+        return {
+            'pins': {pin.id:pin.to_dict() for pin in pins}
+        }
+    else:
+        return form.error
