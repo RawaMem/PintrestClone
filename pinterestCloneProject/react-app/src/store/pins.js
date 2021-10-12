@@ -71,6 +71,7 @@ export const addPin = pin => async(dispatch) => {
     if (response.ok) {
         let newPin = await response.json()
         dispatch(addPinAction(newPin))
+        return newPin
     }
 }
 
