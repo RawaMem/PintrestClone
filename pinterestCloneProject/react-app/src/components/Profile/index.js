@@ -16,5 +16,17 @@ export const Profile = () => {
         dispatch(getAllBoards())
     }, [dispatch])
 
-    return null
+    return(
+        <>
+            <div className="user-info">
+                <button className="user-info-button"></button>
+                <h1 className="user-name"></h1>
+                <p className="at-username"></p>
+                <p className="followers"></p>
+            </div>
+
+
+        </>
+
+    )
 }

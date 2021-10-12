@@ -3,6 +3,7 @@ from app.models import db
 from app.models.board import Board
 from app.forms.new_board_form import NewBoardForm
 from app.forms.edit_board_form import EditBoardForm
+from flask_login import current_user
 
 
 bp = Blueprint('boards', __name__, url_prefix='boards')
@@ -37,7 +38,7 @@ def add_new_board():
     form["csrf_token"].data = request.cookies["csrf_token"]
     if form.validate_on_submit():
         board = Board(
-            user_id=form.data['user_id'],
+            user_id=current_user.id,
             title=form.data['title'],
             description=form.data['description'],
             private=form.data['private'],
@@ -62,7 +63,7 @@ def edit_board(id):
     if form.validate_on_submit():
         board = Board.query.filter_by(id=id).first()
 
-        board.user_id=form.data['user_id']
+        board.user_id=current_user.id
         board.title=form.data['title']
         board.description=form.data['description']
         board.private=form.data['private']
