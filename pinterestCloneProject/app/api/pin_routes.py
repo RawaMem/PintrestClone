@@ -12,9 +12,8 @@ pin_routes = Blueprint("pins", __name__, url_prefix="")
 @pin_routes.route('/pins')
 def home():
     pins = Pin.query.all()
-    return{
-        'pins': {pin.id:pin.to_dict() for pin in pins}
-    }
+    return {pin.id:pin.to_dict() for pin in pins}
+
 
 
 @pin_routes.route('/pins/add', methods=['POST'])
@@ -50,9 +49,8 @@ def edit_pins(id):
         pin.description = data['description']
 
         db.session.commit()
-        return {
-            'pin': pin.to_dict()
-        }
+        return pin.to_dict()
+
 
 
 @pin_routes.route('/pins/<int:id>')

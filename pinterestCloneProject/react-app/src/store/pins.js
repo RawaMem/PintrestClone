@@ -42,16 +42,16 @@ const editPinAction = editPinObj => {
 
 // Thunks
 export const getAllPins = () => async(dispatch) => {
-    const response = await fetch('/')
-    let pinsObj = await response.json()
-    let pinsArr = pinsObj.pins
+    const response = await fetch('/api/pins')
     if (response.ok) {
-        dispatch(getPinsAction(pinsArr))
+        let pinsObj = await response.json()
+        dispatch(getPinsAction(pinsObj))
+        return pinsObj
     }
 }
 
 export const pinDetail = (id) => async(dispatch) => {
-    const response = await fetch(`/pins/${id}`)
+    const response = await fetch(`/api/pins/${id}`)
     let pinObj = await response.json()
     let pin_detail = pinObj.pin
     if (response.ok) {
@@ -60,7 +60,7 @@ export const pinDetail = (id) => async(dispatch) => {
 }
 
 export const addPin = pin => async(dispatch) => {
-    const response = await fetch('/pins/add', {
+    const response = await fetch('/api/pins/add', {
         method: 'POST',
         headers: {
             'Content-Type':'application/json'
@@ -75,7 +75,7 @@ export const addPin = pin => async(dispatch) => {
 }
 
 export const editPin = pin => async(dispatch) => {
-    const response = await fetch(`/pins/edit/${pin.id}`, {
+    const response = await fetch(`/api/pins/edit/${pin.id}`, {
         method: 'PATCH',
         body: JSON.stringify(pin)
     })
@@ -88,7 +88,7 @@ export const editPin = pin => async(dispatch) => {
 }
 
 export const deletePin = id => async(dispatch) => {
-    const response = await fetch(`/pins/delete/${id}`, {
+    const response = await fetch(`/api/pins/delete/${id}`, {
         method: 'DELETE',
         body: JSON.stringify(id)
     })
@@ -114,7 +114,7 @@ export default function pinsReducer(state = initialState, action){
         case EDIT_PIN:
             newState[action.payload.id] = action.payload
         case DELETE_PIN:
-            delete newState[action.payload]
+            delete newState[action.payload.id]
             return newState
         default:
             return state
