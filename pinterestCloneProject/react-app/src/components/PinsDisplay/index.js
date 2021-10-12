@@ -16,7 +16,7 @@ const PinsDisplay = () => {
                 <img className="pin-image" src={pin.media_url} alt={pin.description} />
             </Link>
             <Link to="#" className="pin-owner">
-                {/* <div>{pin.to_dict()}</div> */}
+                <div>{pin.user.username}</div>
             </Link>
         </div>
     ))
