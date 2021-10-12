@@ -12,9 +12,11 @@ bp = Blueprint('boards', __name__, url_prefix='boards')
 @bp.route('/')
 def get_boards():
     boards = Board.query.all()
-    return{
-        'boards': {board.id:board.to_dict() for board in boards}
-    }
+    return [board.to_dict() for board in boards]
+
+    # return{
+    #     'boards': {board.id:board.to_dict() for board in boards}
+    # }
 
 
 # delete a single board
@@ -26,9 +28,10 @@ def delete(id):
     db.session.commit()
 
     boards = Board.query.all()
-    return{
-        'boards': {board.id:board.to_dict() for board in boards}
-    }
+    return [board.to_dict() for board in boards]
+    # return{
+    #     'boards': {board.id:board.to_dict() for board in boards}
+    # }
 
 
 # create a new board
@@ -47,9 +50,11 @@ def add_new_board():
         db.session.commit()
 
         boards = Board.query.all()
-        return{
-            'boards': {board.id:board.to_dict() for board in boards}
-        }
+        return [board.to_dict() for board in boards]
+
+        # return{
+        #     'boards': {board.id:board.to_dict() for board in boards}
+        # }
     else:
 
         return form.errors
@@ -71,9 +76,11 @@ def edit_board(id):
         db.session.commit()
 
         boards = Board.query.all()
-        return{
-            'boards': {board.id:board.to_dict() for board in boards}
-        }
+        return [board.to_dict() for board in boards]
+
+        # return{
+        #     'boards': {board.id:board.to_dict() for board in boards}
+        # }
 
     else:
         return form.errors
