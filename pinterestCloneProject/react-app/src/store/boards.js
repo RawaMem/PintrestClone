@@ -35,15 +35,6 @@ const deleteBoard = deletedBoardObj => {
     }
 }
 
-// all thunks will return a list of all boards, the api routes will edit
-// the database and then query for the new complete list of boards
-// if this works, we only need the get boards action in the reducer
-// changed the thunks to use only get boards and changed the routes
-// to return lists of boards, see yelp project as a reference
-// test it, if it works, then delete et newState, all the other cases in the
-//reducer, and return {list: action.boardsList} to make code minimal
-//if it works, use this method for other slices of state also
-
 export const getAllBoards = () => async (dispatch) => {
     const response = await fetch('/boards')
 
@@ -86,7 +77,7 @@ export const deleteOneBoard = id => async (dispatch) => {
 
     if (response.ok) {
         const deletedBoardObj = await response.json();
-        dispatch(getBoards(deletedBoardObj))
+        dispatch(deleteBoard(deletedBoardObj))
         return deletedBoardObj
     }
 }

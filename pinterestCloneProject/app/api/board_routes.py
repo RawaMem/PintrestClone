@@ -6,10 +6,10 @@ from app.forms.edit_board_form import EditBoardForm
 from flask_login import current_user
 
 
-bp = Blueprint('boards', __name__, url_prefix='boards')
+board_routes = Blueprint('boards', __name__, url_prefix='/boards')
 
 # get all boards for a user
-@bp.route('/')
+@board_routes.route('/')
 def get_boards():
     boards = Board.query.all()
     # return [board.to_dict() for board in boards]
@@ -18,7 +18,7 @@ def get_boards():
 
 
 # delete a single board
-@bp.route('/delete/<int:id>')
+@board_routes.route('/delete/<int:id>')
 def delete(id):
     deleted_board = Board.query.filter(Board.id == id).first()
     db.session.delete(deleted_board)
@@ -30,7 +30,7 @@ def delete(id):
 
 
 # create a new board
-@bp.route('/new', methods=['POST'])
+@board_routes.route('/new', methods=['POST'])
 def add_new_board():
     form = NewBoardForm()
     form["csrf_token"].data = request.cookies["csrf_token"]
@@ -54,7 +54,7 @@ def add_new_board():
 
 
 # edit a single board
-@bp.route('/edit/<int:id>', methods=['POST'])
+@board_routes.route('/edit/<int:id>', methods=['POST'])
 def edit_board(id):
     form = EditBoardForm()
     form["csrf_token"].data = request.cookies["csrf_token"]
