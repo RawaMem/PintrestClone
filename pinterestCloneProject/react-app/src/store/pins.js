@@ -114,7 +114,7 @@ export default function pinsReducer(state = initialState, action){
         case EDIT_PIN:
             newState[action.payload.id] = action.payload
         case DELETE_PIN:
-            delete newState[action.payload]
+            delete newState[action.payload.id]
             return newState
         default:
             return state
