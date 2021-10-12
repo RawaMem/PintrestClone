@@ -9,9 +9,8 @@ from .models import db, User, Board, boards_pins, Category, CommentLike, LikedCa
 from .api.user_routes import user_routes
 from .api.auth_routes import auth_routes
 from .api.pin_routes import bp
-from .api.board_routes import board_routes
 from.api.comment_routes import comment_routes
-
+from .api.board_routes import board_routes
 
 from .seeds import seed_commands
 
