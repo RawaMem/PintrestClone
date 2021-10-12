@@ -6,15 +6,40 @@ from flask_sqlalchemy import SQLAlchemy
 db = SQLAlchemy()
 
 
+follows = db.Table(
+    "follows",
+    db.Column("follower_id", db.Integer, db.ForeignKey("users.id")),
+    db.Column("followed_id", db.Integer, db.ForeignKey("users.id")),
+    db.Column('notified', db.Boolean, default=False)
+)
+
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
 
     id = db.Column(db.Integer, primary_key=True)
-    first_name = db.Column(db.String(50), nullable=False)
-    last_name = db.Column(db.String(50), nullable=False)
+    first_name = db.Column(db.String(100), nullable=False)
+    last_name = db.Column(db.String(100), nullable=False)
     username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
+
+    followers = db.relationship(
+            "User",
+            secondary=follows,
+            primaryjoin=(follows.c.follower_id == id),
+            secondaryjoin=(follows.c.followed_id == id),
+            backref=db.backref("following", lazy="dynamic"),
+            lazy="dynamic"
+    )
+    boards = db.relationship('Board', back_populates='user')
+    pins = db.relationship('Pin', back_populates='user')
+    comments = db.relationship('Comment', back_populates='user')
+    comment_likes = db.relationship('CommentLike', back_populates='user')
+    categories = db.relationship('Category', back_populates='user')
+    pin_likes=db.relationship('PinLike', back_populates='user')
+    # user_liked_categories = db.relationship('Category', back_populates='user', secondary=liked_categories)
+    liked_categories = db.relationship('LikedCategory', back_populates='user')
+
 
     @property
     def password(self):
