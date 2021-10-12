@@ -36,7 +36,7 @@ const deleteBoard = deletedBoardObj => {
 }
 
 export const getAllBoards = () => async (dispatch) => {
-    const response = await fetch('/boards')
+    const response = await fetch('/api/boards')
 
     if (response.ok) {
         const boardsObj = await response.json();
@@ -47,7 +47,7 @@ export const getAllBoards = () => async (dispatch) => {
 
 
 export const createBoard = boardDetails => async (dispatch) => {
-    const response = await fetch('/boards/new', {
+    const response = await fetch('/api/boards/new', {
         method: 'POST',
         body: JSON.stringify(boardDetails)
     })
@@ -60,7 +60,7 @@ export const createBoard = boardDetails => async (dispatch) => {
 
 
 export const editBoardDetails = boardDetails => async (dispatch) => {
-    const response = await fetch(`/boards/edit/${boardDetails.id}`, {
+    const response = await fetch(`/api/boards/edit/${boardDetails.id}`, {
         method: 'POST',
         body: JSON.stringify(boardDetails)
     })
@@ -73,7 +73,7 @@ export const editBoardDetails = boardDetails => async (dispatch) => {
 
 
 export const deleteOneBoard = id => async (dispatch) => {
-    const response = await fetch(`/boards/delete/${id}`)
+    const response = await fetch(`/api/boards/delete/${id}`)
 
     if (response.ok) {
         const deletedBoardObj = await response.json();
