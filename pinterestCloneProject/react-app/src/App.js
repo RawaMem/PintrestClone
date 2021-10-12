@@ -10,9 +10,11 @@ import User from './components/User';
 import { authenticate } from './store/session';
 import PinsDisplay from './components/PinsDisplay';
 import { Profile } from './components/Profile';
+import PinDetail from './components/PinDetail';
 
 
 function App() {
+
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
 
@@ -52,6 +54,9 @@ function App() {
         </ProtectedRoute>
         <Route exact path='/home'>
           <PinsDisplay />
+        </Route>
+        <Route exact path='/pins/:pinId'>
+          <PinDetail />
         </Route>
       </Switch>
     </BrowserRouter>

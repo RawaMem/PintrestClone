@@ -52,10 +52,10 @@ export const getAllPins = () => async(dispatch) => {
 
 export const pinDetail = (id) => async(dispatch) => {
     const response = await fetch(`/api/pins/${id}`)
-    let pinObj = await response.json()
-    let pin_detail = pinObj.pin
     if (response.ok) {
-        dispatch(pinDetailAction(pin_detail))
+        let pinObj = await response.json()
+        dispatch(pinDetailAction(pinObj))
+        return pinObj
     }
 }
 
