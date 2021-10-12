@@ -36,7 +36,6 @@ def create_new_comment():
 
 
 #edit a comment
-
 @bp.route('/<int:id>', methods=['PATCH'])
 def edit_comment(id):
     form = EditCommentForm()
@@ -50,3 +49,11 @@ def edit_comment(id):
         comment.notified = form.data['notified']
 
         db.session.commit()
+        #return all comments
+        comments = Comment.query.all()
+        return [comment.to_dict() for comment in comments]
+
+    else:
+        return form.errors
+
+@bp.route('/<int:id>', method=['DELETE'])
