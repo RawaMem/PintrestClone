@@ -75,7 +75,16 @@ export const addPin = pin => async(dispatch) => {
 }
 
 export const editPin = pin => async(dispatch) => {
-    
+    const response = await fetch(`/pins/edit/${pin.id}`, {
+        method: 'POST',
+        body: JASON.stringify(pin)
+    })
+
+    if (response.ok) {
+        let editedPin = await response.json()
+        dispatch(editPinAction(editedPin))
+        return editedPin
+    }
 }
 
 export const deletePin = id => async(dispatch) => {
@@ -99,6 +108,8 @@ export default function pinsReducer(state = initialState, action){
         case ADD_PIN:
             newState[action.payload.id] = action.payload
             return newState
+        case EDIT_PIN:
+            newState[action.payload.id] = action.payload
         case DELETE_PIN:
             delete newState[action.payload]
             return newState
