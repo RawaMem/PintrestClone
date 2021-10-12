@@ -56,4 +56,11 @@ def edit_comment(id):
     else:
         return form.errors
 
+# delete a comment
 @bp.route('/<int:id>', method=['DELETE'])
+def delete_comment(id):
+    deleted_comment = Comment.query.filter(Comment.id = id).first()
+    db.session.delete(deleted_comment)
+    db.session.commit()
+
+    return delete_comment.to_dict()
