@@ -8,35 +8,35 @@ const EDIT_PIN = 'pins/EDIT_PIN'
 const getPinsAction = pinsObj => {
     return {
         type: GET_PINS,
-        pinsObj
+        payload: pinsObj
     }
 }
 
 const pinDetailAction = pinDetailObj => {
     return {
         type: PIN_DETAIL,
-        pinDetailObj
+        payload: pinDetailObj
     }
 }
 
 const addPinAction = pinObj => {
     return {
         type: ADD_PIN,
-        pinObj
+        payload: pinObj
     }
 }
 
 const deletePinAction = deletePinObj => {
     return {
         type: DELETE_PIN,
-        deletePinObj
+        payload: deletePinObj
     }
 }
 
 const editPinAction = editPinObj => {
     return {
         type: EDIT_PIN,
-        editPinObj
+        payload: editPinObj
     }
 }
 
@@ -60,7 +60,7 @@ export const pinDetail = (id) => async(dispatch) => {
 }
 
 export const addPin = pin => async(dispatch) => {
-    const response = await fetch('/pins', {
+    const response = await fetch('/pins/add', {
         method: 'POST',
         headers: {
             'Content-Type':'application/json'
@@ -72,6 +72,10 @@ export const addPin = pin => async(dispatch) => {
         let newPin = await response.json()
         dispatch(addPinAction(newPin))
     }
+}
+
+export const editPin = pin => async(dispatch) => {
+    
 }
 
 export const deletePin = id => async(dispatch) => {
