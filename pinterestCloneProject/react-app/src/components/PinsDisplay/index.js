@@ -25,7 +25,7 @@ const PinsDisplay = () => {
                 <img className="pin-image" src={pin.media_url} alt={pin.description} />
             </Link>
             <Link to="#" className="pin-owner">
-                <div>{pin.}</div>
+                <div>{pin.user}</div>
             </Link>
         </div>
     ))
@@ -33,16 +33,7 @@ const PinsDisplay = () => {
     return (
         <>
             <div className="pins-container">
-                {/* {pins.map(pin => {
-                    let image_url = pin.media_url;
-                    return (
-                        <div className="pin-container" key={pin.id}>
-                            <Link to={`/pins/${pin.id}`}>
-
-                            </Link>
-                        </div>
-                    )
-                })} */}
+                
 
             </div>
         </>
