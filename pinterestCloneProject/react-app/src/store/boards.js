@@ -1,4 +1,5 @@
 const GET_BOARDS = 'boards/LOAD'
+const BOARD_DETAILS = 'boards/DETAILS'
 const ADD_BOARD = 'boards/ADD'
 const EDIT_BOARD = 'boards/EDIT'
 const DELETE_BOARD = 'boards/DELETE'
@@ -8,6 +9,13 @@ const getBoards = boardsObj => {
     return {
         type: GET_BOARDS,
         boardsObj
+    }
+}
+
+const boardDetails = boardDetailsObj => {
+    return {
+        type: BOARD_DETAILS,
+        boardDetailsObj
     }
 }
 
@@ -37,11 +45,19 @@ const deleteBoard = deletedBoardObj => {
 
 export const getAllBoards = () => async (dispatch) => {
     const response = await fetch('/api/boards')
-
     if (response.ok) {
         const boardsObj = await response.json();
         dispatch(getBoards(boardsObj))
         return boardsObj
+    }
+}
+
+export const getBoardDetails = (id) => async(dispatch) => {
+    const response = await fetch(`/api/boards/${id}`)
+    if (response.ok) {
+        let boardDetailsObj = await response.json()
+        dispatch(boardDetails(boardDetailsObj))
+        return boardDetailsObj
     }
 }
 
@@ -74,7 +90,6 @@ export const editBoardDetails = boardDetails => async (dispatch) => {
 
 export const deleteOneBoard = id => async (dispatch) => {
     const response = await fetch(`/api/boards/delete/${id}`)
-
     if (response.ok) {
         const deletedBoardObj = await response.json();
         dispatch(deleteBoard(deletedBoardObj))
@@ -91,6 +106,9 @@ const boardsReducer = (state = initialState, action) => {
     switch (action.type) {
         case GET_BOARDS:
             return action.boardsObj
+
+        case BOARD_DETAILS:
+            return action.boardDetailsObj
 
         case ADD_BOARD:
             newState[action.newBoardObj.id] = action.newBoardObj
