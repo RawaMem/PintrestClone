@@ -17,13 +17,13 @@ const PinDetail = () => {
         <>
             <h1>PinDetail</h1>
             <div className="image-container">
-                <img className="pin-detail-image" src={pins.pin.media_url} alt={pins.pin.description} />
+                <img className="pin-detail-image" src={pins?.pin?.media_url} alt={pins?.pin?.description} />
             </div>
             <div className="title-container">
-                <h3>{pins.pin.title}</h3>
+                <h3>{pins?.pin?.title}</h3>
             </div>
             <div className="description-container">
-                <p>{pins.pin.description}</p>
+                <p>{pins?.pin?.description}</p>
             </div>
         </>
     )
