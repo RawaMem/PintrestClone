@@ -1,13 +1,14 @@
 import { useEffect, useState  } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
+import { getBoardDetails } from '../../store/boards';
 
 
-export BoardDetails = () => {
+export const BoardDetails = () => {
 
     const dispatch = useDispatch();
 
-    const {boardId} = useParams
+    const {boardId} = useParams()
 
     const currentBoard = useSelector(state => state.boards)
 

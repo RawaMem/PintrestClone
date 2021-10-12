@@ -11,6 +11,7 @@ import { authenticate } from './store/session';
 import PinsDisplay from './components/PinsDisplay';
 import { Profile } from './components/Profile';
 import PinDetail from './components/PinDetail';
+import { BoardDetails } from './components/BoardDetails';
 
 
 function App() {
@@ -48,6 +49,9 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path='/profile' exact={true} >
           <Profile />
+        </ProtectedRoute>
+        <ProtectedRoute path='/boards/:boardId' exact={true} >
+          <BoardDetails />
         </ProtectedRoute>
         <ProtectedRoute path='/' exact={true} >
           <h1>My Home Page</h1>
