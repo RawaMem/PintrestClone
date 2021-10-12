@@ -60,7 +60,7 @@ def edit_comment(id):
 
 # delete a comment
 
-@comment_routes.route('/<int:id>', methods=['DELETE'])
+@comment_routes.route('/delete/<int:id>', methods=['DELETE'])
 def delete_comment(id):
     deleted_comment = Comment.query.filter(Comment.id == id).first()
     db.session.delete(deleted_comment)

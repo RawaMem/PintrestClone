@@ -1,4 +1,4 @@
-import { getAllBoards } from "./boards"
+
 
 const GET_COMMENTS= 'comments/LOAD'
 const ADD_COMMENT = 'comments/ADD'
@@ -65,9 +65,26 @@ export const thunkAddComments = commentDetails => async (dispatch) => {
 }
 // edit comment thunk
 export const thunkEditCommentDetails = commentDetails => async(dispatch) => {
-    const response = await fetch ('/api/comments/edit/${commentDetails.id}')
+    const response = await fetch (`/api/comments/edit/${commentDetails.id}`,{
+        method: 'PATCH',
+        body: JSON.stringify(commentDetails)
+    })
+    if (response.ok) {
+        const edittedCommentsObj = await response.json()
+        dispatch(editComment(edittedCommentsObj))
+        return edittedCommentsObj
+    }
 }
 // delete comment thunk
+export const thunkDeleteComment = id => async (dispatch) => {
+    const response = await fetch(`/comments/delete/${id}`)
+
+    if(response.ok) {
+        const deletedCommentObj = await response.json();
+        dispatch(deleteComments(deletedCommentObj))
+        return deletedCommentObj
+    }
+}
 
 
 //reducer
@@ -83,5 +100,17 @@ export default function comentsReducer(state = initialState, action) {
         case ADD_COMMENT:
             newState[action.newCommentObj.id] = action.newCommentObj
             return newState
+        
+        case EDIT_COMMENT:
+            newState[action.edittedCommentsObj.id] = action.edittedCommentsObj
+            return newState
+        
+        case DELETE_COMMENT:
+            delete newState[action.deletedCommentObj.id]
+            return newState
+        
+        default:
+            return state
+
     }
 }
