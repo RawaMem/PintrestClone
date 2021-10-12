@@ -3,9 +3,11 @@ from flask import Blueprint, redirect
 from app.models import db, Pin
 from flask_wtf.csrf import generate_csrf
 from app.forms.pin_form import PinForm
+from app.forms.edit_pin_form import EditPinForm
+from flask_login import current_user
 
 
-bp = Blueprint("pins", __name__, url_prefix="")
+bp = Blueprint("pins", __name__, url_prefix="/pins")
 
 @bp.route('/')
 def home():
@@ -15,13 +17,14 @@ def home():
     }
 
 
-@bp.route('/pins', methods=['POST'])
+@bp.route('/add', methods=['POST'])
 def create_new_pin():
     form = PinForm()
     form["csrf_token"].data = request.cookies["csrf_token"]
     data = form.data
     if form.validate_on_submit():
         new_pin = Pin(
+            user_id=current_user.id,
             title=data['title'],
             media_url=data['media_url'],
             description=data['description']
@@ -33,10 +36,26 @@ def create_new_pin():
         return form.errors
 
 
-# @bp.route('/edit/<int:id>')
+@bp.route('/edit/<int:id>', methods=['PATCH'])
+def edit_pins(id):
+    form = EditPinForm()
+    form["csrf_token"].data = request.cookies["csrf_token"]
+    data = form.data
+    if form.validate_on_submit():
+        pin = Pin.query.filter(Pin.id == id).first()
+
+        pin.user_id = current_user.id
+        pin.title = data['title']
+        pin.media_url = data['media_url']
+        pin.description = data['description']
+
+        db.session.commit()
+        return {
+            'pin': pin.to_dict()
+        }
 
 
-@bp.route('/pins/<int:id>')
+@bp.route('/<int:id>')
 def get_one_pin(id):
     pin = Pin.query.filter(Pin.id == id).first()
     return{
@@ -44,7 +63,7 @@ def get_one_pin(id):
     }
 
 
-@bp.route('/pins/delete/<int:id>')
+@bp.route('/delete/<int:id>', methods=['DELETE'])
 def delete_pin(id):
     delete_pin = Pin.query.filter(Pin.id == id).first()
     db.session.delete(delete_pin)

@@ -8,35 +8,35 @@ const EDIT_PIN = 'pins/EDIT_PIN'
 const getPinsAction = pinsObj => {
     return {
         type: GET_PINS,
-        pinsObj
+        payload: pinsObj
     }
 }
 
 const pinDetailAction = pinDetailObj => {
     return {
         type: PIN_DETAIL,
-        pinDetailObj
+        payload: pinDetailObj
     }
 }
 
 const addPinAction = pinObj => {
     return {
         type: ADD_PIN,
-        pinObj
+        payload: pinObj
     }
 }
 
 const deletePinAction = deletePinObj => {
     return {
         type: DELETE_PIN,
-        deletePinObj
+        payload: deletePinObj
     }
 }
 
 const editPinAction = editPinObj => {
     return {
         type: EDIT_PIN,
-        editPinObj
+        payload: editPinObj
     }
 }
 
@@ -60,7 +60,7 @@ export const pinDetail = (id) => async(dispatch) => {
 }
 
 export const addPin = pin => async(dispatch) => {
-    const response = await fetch('/pins', {
+    const response = await fetch('/pins/add', {
         method: 'POST',
         headers: {
             'Content-Type':'application/json'
@@ -74,8 +74,24 @@ export const addPin = pin => async(dispatch) => {
     }
 }
 
+export const editPin = pin => async(dispatch) => {
+    const response = await fetch(`/pins/edit/${pin.id}`, {
+        method: 'PATCH',
+        body: JSON.stringify(pin)
+    })
+
+    if (response.ok) {
+        let editedPin = await response.json()
+        dispatch(editPinAction(editedPin))
+        return editedPin
+    }
+}
+
 export const deletePin = id => async(dispatch) => {
-    const response = await fetch(`/pins/delete/${id}`)
+    const response = await fetch(`/pins/delete/${id}`, {
+        method: 'DELETE',
+        body: JSON.stringify(id)
+    })
     if (response.ok) {
         dispatch(pinDetailAction(id))
     }
@@ -95,6 +111,8 @@ export default function pinsReducer(state = initialState, action){
         case ADD_PIN:
             newState[action.payload.id] = action.payload
             return newState
+        case EDIT_PIN:
+            newState[action.payload.id] = action.payload
         case DELETE_PIN:
             delete newState[action.payload]
             return newState
