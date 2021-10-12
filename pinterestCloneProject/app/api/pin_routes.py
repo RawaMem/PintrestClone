@@ -7,9 +7,9 @@ from app.forms.edit_pin_form import EditPinForm
 from flask_login import current_user
 
 
-pin_routes = Blueprint("pins", __name__, url_prefix="/pins")
+pin_routes = Blueprint("pins", __name__, url_prefix="/")
 
-@pin_routes.route('/')
+@pin_routes.route('/pins')
 def home():
     pins = Pin.query.all()
     return{
@@ -17,7 +17,7 @@ def home():
     }
 
 
-@pin_routes.route('/add', methods=['POST'])
+@pin_routes.route('/pins/add', methods=['POST'])
 def create_new_pin():
     form = PinForm()
     form["csrf_token"].data = request.cookies["csrf_token"]
@@ -36,7 +36,7 @@ def create_new_pin():
         return form.errors
 
 
-@pin_routes.route('/edit/<int:id>', methods=['PATCH'])
+@pin_routes.route('/pins/edit/<int:id>', methods=['PATCH'])
 def edit_pins(id):
     form = EditPinForm()
     form["csrf_token"].data = request.cookies["csrf_token"]
@@ -55,7 +55,7 @@ def edit_pins(id):
         }
 
 
-@pin_routes.route('/<int:id>')
+@pin_routes.route('/pins/<int:id>')
 def get_one_pin(id):
     pin = Pin.query.filter(Pin.id == id).first()
     return{
@@ -63,7 +63,7 @@ def get_one_pin(id):
     }
 
 
-@pin_routes.route('/delete/<int:id>', methods=['DELETE'])
+@pin_routes.route('/pins/delete/<int:id>', methods=['DELETE'])
 def delete_pin(id):
     delete_pin = Pin.query.filter(Pin.id == id).first()
     db.session.delete(delete_pin)
