@@ -16,7 +16,7 @@ const getComments = commentsObj => {
 // POJO action: create new comments
 const addComment = newCommentObj => {
     return {
-        type: ADD_COMMENTS,
+        type: ADD_COMMENT,
         newCommentObj
     }
 }
@@ -24,7 +24,7 @@ const addComment = newCommentObj => {
 // POJO action: edit comment
 const editComment = edittedCommentsObj => {
     return {
-        type: EDIT_COMMENTS,
+        type: EDIT_COMMENT,
         edittedCommentsObj
     }
 }
@@ -100,15 +100,15 @@ export default function comentsReducer(state = initialState, action) {
         case ADD_COMMENT:
             newState[action.newCommentObj.id] = action.newCommentObj
             return newState
-        
+
         case EDIT_COMMENT:
             newState[action.edittedCommentsObj.id] = action.edittedCommentsObj
             return newState
-        
+
         case DELETE_COMMENT:
             delete newState[action.deletedCommentObj.id]
             return newState
-        
+
         default:
             return state
 
