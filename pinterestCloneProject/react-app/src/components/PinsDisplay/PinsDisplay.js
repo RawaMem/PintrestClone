@@ -7,10 +7,23 @@ import { getAllPins } from '../../store/pins'
 const PinsDisplay = () => {
 
     const dispatch = useDispatch();
-    
+    const pins = useSelector(state => {
+        return state.pins
+    })
+
+    useEffect(() => {
+        dispatch(getAllPins())
+    }, [dispatch])
+
+    if (!pins) {
+        return null;
+    }
+
     return (
         <>
-            <h1>Pins page</h1>
+            <div className="pins-container">
+
+            </div>
         </>
     )
 }
