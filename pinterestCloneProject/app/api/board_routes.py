@@ -16,6 +16,12 @@ def get_boards():
 
     return {board.id:board.to_dict() for board in boards}
 
+# get single board
+@board_routes.route('/<int:id>')
+def get_one_board(id):
+    board = Board.query.filter(Board.id == id).first()
+    return board.to_dict()
+
 
 # delete a single board
 @board_routes.route('/delete/<int:id>')
@@ -54,7 +60,7 @@ def add_new_board():
 
 
 # edit a single board
-@board_routes.route('/edit/<int:id>', methods=['POST'])
+@board_routes.route('/edit/<int:id>', methods=['PATCH'])
 def edit_board(id):
     form = EditBoardForm()
     form["csrf_token"].data = request.cookies["csrf_token"]
