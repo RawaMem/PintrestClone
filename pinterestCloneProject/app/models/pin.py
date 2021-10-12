@@ -22,8 +22,6 @@ class Pin(db.Model):
     categories = db.relationship('Category', back_populates='pins', secondary=pins_categories)
 
 
-
-
     def to_dict(self):
         return {
             'id': self.id,
@@ -31,6 +29,7 @@ class Pin(db.Model):
             'title': self.title,
             'media_url': self.media_url,
             'description': self.description,
+            'user' : self.user.to_dict(),
             # 'created_at': self.created_at,
             # 'updated_at': self.updated_at
         }
