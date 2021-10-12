@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, IntegerField
+from wtforms import StringField, IntegerField, SubmitField
 from wtforms.validators import DataRequired
 
 class EditPinForm(FlaskForm):
@@ -7,3 +7,4 @@ class EditPinForm(FlaskForm):
     title = StringField('pin_title', validators=[DataRequired()])
     media_url = StringField('pin_url', validators=[DataRequired()])
     description = StringField('pin_description', validators=[DataRequired()])
+    submit = SubmitField('Submit')

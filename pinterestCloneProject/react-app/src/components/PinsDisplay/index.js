@@ -25,7 +25,7 @@ const PinsDisplay = () => {
                 <img className="pin-image" src={pin.media_url} alt={pin.description} />
             </Link>
             <Link to="#" className="pin-owner">
-                {/* <div>{pin.user}</div> */}
+                <div>{pin.user}</div>
             </Link>
         </div>
     ))
@@ -33,8 +33,9 @@ const PinsDisplay = () => {
     return (
         <>
             <div className="pins-container">
-              <h1>Pin display</h1>
-
+              <div className="pin-container">
+                  {allPins}
+              </div>
             </div>
         </>
     )
