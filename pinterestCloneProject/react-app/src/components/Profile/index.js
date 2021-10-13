@@ -52,7 +52,7 @@ export const Profile = () => {
             {showMenu && (
                 <>
                 <p className="creation">Create</p>
-                <Link className='pop-up-button' to={`/pins/new`}>
+                <Link className='pop-up-button' to={`/pin-builder`}>
                     <button className='create-pin-btn'>Pin</button>
                 </Link>
                 <Link className='pop-up-button' to={`/board-builder`}>

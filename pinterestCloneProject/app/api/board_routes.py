@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, redirect, request
 from app.models import db
 from app.models.board import Board
+from app.models.pin import Pin
 from app.forms.new_board_form import NewBoardForm
 from app.forms.edit_board_form import EditBoardForm
 from flask_login import current_user
@@ -12,7 +13,6 @@ board_routes = Blueprint('boards', __name__, url_prefix='/boards')
 @board_routes.route('/')
 def get_boards():
     boards = Board.query.all()
-    # return [board.to_dict() for board in boards]
 
     return {board.id:board.to_dict() for board in boards}
 
@@ -29,9 +29,6 @@ def delete(id):
     deleted_board = Board.query.filter(Board.id == id).first()
     db.session.delete(deleted_board)
     db.session.commit()
-
-    # boards = Board.query.all()
-    # return [board.to_dict() for board in boards]
     return deleted_board.to_dict()
 
 
@@ -49,8 +46,6 @@ def add_new_board():
         )
         db.session.add(new_board)
         db.session.commit()
-        # boards = Board.query.all()
-        # return [board.to_dict() for board in boards]
 
         return new_board.to_dict()
     else:
@@ -72,11 +67,27 @@ def edit_board(id):
         board.private=False
 
         db.session.commit()
-
-        # boards = Board.query.all()
-        # return [board.to_dict() for board in boards]
-
         return board.to_dict()
 
     else:
         return form.errors
+
+
+
+@board_routes.route('/add-pin-board/<int:boardid>/<int:pinid>', methods=['POST'])
+def add_pin_to_board(boardid, pinid):
+    board = Board.query.filter(Board.id == boardid).first()
+    pin = Pin.query.filter(Pin.id == pinid).first()
+    board.pins.append(pin)
+    db.session.commit()
+    return board.to_dict()
+
+
+@board_routes.route('/remove-pin-board/<int:boardid>/<int:pinid>', methods=['POST'])
+def remove_pin_to_board(boardid, pinid):
+    board = Board.query.filter(Board.id == boardid).first()
+    # pin = Pin.query.filter(Pin.id == pinid).first()
+    new_pin_list = [pin for pin in board.pins if pin.id != pinid]
+    board.pins = new_pin_list
+    db.session.commit()
+    return board.to_dict()
