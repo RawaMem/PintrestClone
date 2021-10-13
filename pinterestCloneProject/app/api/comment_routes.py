@@ -3,6 +3,7 @@ from app.models import db
 from app.models.comment import Comment
 from flask_wtf.csrf import generate_csrf
 from app.forms.new_comment_form import NewCommentForm
+from flask_login import current_user
 
 
 comment_routes = Blueprint('comments', __name__, url_prefix='/comments')
@@ -23,7 +24,7 @@ def create_new_comment():
     if form.validate_on_submit():
         new_comment = Comment(
             user_id = current_user.id,
-            pin_id = current_pin.id,
+            pin_id = form.data['pin_id'],
             content =form.data['content'],
             notified = form.data['notified']
         )
