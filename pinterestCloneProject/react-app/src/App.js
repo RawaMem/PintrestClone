@@ -12,6 +12,7 @@ import PinsDisplay from './components/PinsDisplay';
 import { Profile } from './components/Profile';
 import PinDetail from './components/PinDetail';
 import { BoardDetails } from './components/BoardDetails';
+import CreatePinForm from './components/CreatePin';
 
 
 function App() {
@@ -61,6 +62,9 @@ function App() {
         </Route>
         <Route exact path='/pins/:pinId'>
           <PinDetail />
+        </Route>
+        <Route exact path='/pin-builder'>
+          <CreatePinForm />
         </Route>
       </Switch>
     </BrowserRouter>
