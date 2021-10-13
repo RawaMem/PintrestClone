@@ -10,8 +10,9 @@ function PinEditForm() {
 
     const dispatch = useDispatch();
     const history = useHistory();
-    const boardsObj = useSelector(state => state.boards)
-    const pinObj = useSelector(state => state.pins)
+    const currentUser = useSelector( state => state.session.user);
+    const boardsObj = useSelector(state => state?.boards)
+    const pinObj = useSelector(state => state?.pins)
     const [title, setTitle] = useState("")
     const { pinId } = useParams()
 
@@ -82,7 +83,12 @@ function PinEditForm() {
                         </button>
                     </div>
                     <div className="cancel-button-container">
-                        <button className="cancel-edit-button">
+                        <button
+                         onClick={() =>{
+                            let modal = document.getElementById('modal-background')
+                            modal.click()
+                          }}
+                         className="cancel-edit-button">
                             Cancel
                         </button>
                     </div>

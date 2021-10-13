@@ -2,19 +2,26 @@ import React, { useState } from 'react';
 import { Modal } from '../../context/Modal';
 import PinEditForm from './PinEditForm';
 
-function PinEditFormModal() {
+function EditPinModal() {
     const [showModal, setShowModal] = useState(false);
-
     return (
-      <>
-        <button onClick={() => setShowModal(true)}>Edit Pin</button>
-        {showModal && (
-          <Modal onClose={() => setShowModal(false)}>
-            <PinEditForm />
-          </Modal>
-        )}
-      </>
-    );
+        <>
+        <div>
+            <button
+            className='edit-pin-form'
+            onClick={() => setShowModal(true)}
+            >
+                Edit Pin
+            </button>
+        </div>
+         {showModal && (
+            <Modal onClose={() => setShowModal(false)}>
+              <PinEditForm />
+            </Modal>
+          )}
+        </>
+    )
+
 }
 
-export default PinEditFormModal
+export default EditPinModal

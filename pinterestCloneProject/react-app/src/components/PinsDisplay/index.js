@@ -2,7 +2,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { getAllPins } from '../../store/pins';
-import PinEditFormModal from '../PinEditForm';
+
 
 
 
@@ -11,8 +11,6 @@ const PinsDisplay = () => {
 
     const dispatch = useDispatch();
     const pins = useSelector(store => store.pins)
-    const [showModal, setShowModal] = useState(false);
-
 
     // console.log("this is pins",pins)
     const allPins = Object.values(pins)?.map(pin => (
@@ -43,7 +41,6 @@ const PinsDisplay = () => {
                 <Link to={`/pin-builder`}>
                     Create a Pin
                 </Link>
-                <PinEditFormModal />
             </div>
         </>
     )
