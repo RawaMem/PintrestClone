@@ -2,7 +2,9 @@ import { useEffect, useState  } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { getAllBoards } from '../../store/boards';
+import EditPinModal from '../PinEditForm';
 // import Modal from '@mui/material/Modal';
+
 
 
 export const Profile = () => {
@@ -85,6 +87,9 @@ export const Profile = () => {
 
                     )
                 })}
+            </div>
+            <div className="pin-edit">
+                <EditPinModal />
             </div>
 
         </>
