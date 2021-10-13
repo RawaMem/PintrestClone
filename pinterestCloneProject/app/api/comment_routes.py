@@ -11,7 +11,6 @@ comment_routes = Blueprint('comments', __name__, url_prefix='/comments')
 @comment_routes.route('/')
 def get_comments():
     comments = Comment.query.all()
-    print("-------------",comments)
     return{ comment.id:comment.to_dict() for comment in comments}
     
 
@@ -27,7 +26,6 @@ def create_new_comment():
             pin_id = current_pin.id,
             content =form.data['content'],
             notified = form.data['notified']
-            #ASK ABOOUT NOTIFIED
         )
         db.session.add(new_comment)
         db.session.commit()
@@ -43,7 +41,7 @@ def edit_comment(id):
     form = EditCommentForm()
     form["csrf_token"].data = request.cookies["csrf_token"]
     if form.validate_on_submit():
-        comment = Comment.query.filter(id=id).first()
+        comment = Comment.query.filter(Comment.id==id).first()
         
         comment.user_id=current_user.id,
         comment.pin_id = current_pin.id,
