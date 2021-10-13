@@ -2,17 +2,39 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { pinDetail } from '../../store/pins';
+import { thunkGetAllComments, thunkDeleteComment } from '../../store/comments';
+import thunk from 'redux-thunk';
 
 const PinDetail = () => {
 
     const dispatch = useDispatch()
     const  pins = useSelector(state => state.pins)
+    const comments = useSelector(state => state.comments)
+    const [commentContext, setCommentContext] = useState('')
     const { pinId } = useParams()
+
+    const handleDelete = (id) => {
+        dispatch(thunkDeleteComment(id))
+      }
+
+      const postComment = (e) => {
+        e.preventDefault()
+        let comment = {
+          'user_name': '',
+          'body': commentText,
+        }
+        dispatch(createNewCommentThunk(comment))
+      }
 
     useEffect(() => {
         dispatch(pinDetail(pinId))
+        dispatch(thunkGetAllComments())
     }, [dispatch])
 
+    // useEffect(() => {
+    //     dispatch(thunkGetAllComments())
+    // }, [dispatch])
+    console.log("------------",pins?.pin?.comment.user.username)
     return (
         <>
             <h1>PinDetail</h1>
@@ -24,6 +46,16 @@ const PinDetail = () => {
             </div>
             <div className="description-container">
                 <p>{pins?.pin?.description}</p>
+            </div>
+            <div className= "pin-comment">
+                <p>{pins.pin.comment.map(comment=>(
+                    <div key={comment.id} className="single-comment">
+                    <div>{comment.user.userName}</div>
+                    <div>{comment.content}</div>
+                    <button className='delete-Button' onClick={() => handleDelete(comment.id)}>Delete Me</button>
+
+                    </div>
+                ))}</p>
             </div>
         </>
     )

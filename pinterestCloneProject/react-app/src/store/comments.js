@@ -95,7 +95,7 @@ export default function comentsReducer(state = initialState, action) {
     const newState = {...state}
     switch(action.type) {
         case GET_COMMENTS:
-            return action.payload
+            return action.commentsObj
 
         case ADD_COMMENT:
             newState[action.newCommentObj.id] = action.newCommentObj
