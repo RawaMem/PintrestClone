@@ -69,7 +69,7 @@ def edit_board(id):
         board.user_id=current_user.id
         board.title=form.data['title']
         board.description=form.data['description']
-        board.private=form.data['private']
+        board.private=False
 
         db.session.commit()
 

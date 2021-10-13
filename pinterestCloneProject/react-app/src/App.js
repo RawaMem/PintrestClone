@@ -14,6 +14,7 @@ import PinDetail from './components/PinDetail';
 import { BoardDetails } from './components/BoardDetails';
 import CreatePinForm from './components/CreatePin';
 import { CreateBoard } from './components/CreateBoard';
+import { EditBoard } from './components/EditBoard';
 
 
 function App() {
@@ -69,6 +70,9 @@ function App() {
         </Route>
         <ProtectedRoute path='/board-builder' exact={true} >
           <CreateBoard />
+        </ProtectedRoute>
+        <ProtectedRoute path='/board-edit/:boardId' exact={true} >
+          <EditBoard />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>
