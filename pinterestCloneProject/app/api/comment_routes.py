@@ -11,9 +11,9 @@ comment_routes = Blueprint('comments', __name__, url_prefix='/comments')
 @comment_routes.route('/')
 def get_comments():
     comments = Comment.query.all()
-    return{
-        'comments':{comment.id:comment.to_dict() for comment in comments}
-    }
+    print("-------------",comments)
+    return{ comment.id:comment.to_dict() for comment in comments}
+    
 
 # create a new comment
 
