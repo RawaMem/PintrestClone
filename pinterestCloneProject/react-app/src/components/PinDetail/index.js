@@ -2,29 +2,29 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { pinDetail } from '../../store/pins';
-// import { thunkGetAllComments, thunkDeleteComment, thunkAddComments } from '../../store/comments';
-// import thunk from 'redux-thunk';
+import { thunkGetAllComments, thunkDeleteComment, thunkAddComments } from '../../store/comments';
+
 
 const PinDetail = () => {
 
     const dispatch = useDispatch()
     const  pins = useSelector(state => state.pins)
     const comments = useSelector(state => state.comments)
-    const [commentContext, setCommentContext] = useState('')
+    const [commentContent, setCommentContent] = useState('')
     const { pinId } = useParams()
 
     // const handleDelete = (id) => {
     //     dispatch(thunkDeleteComment(id))
     //   }
 
-    // const postComment = (e) => {
-    // e.preventDefault()
-    // let comment = {
-    //     'user_name': '',
-    //     'body': commentText,
-    // }
-    // dispatch(thunkAddComments(comment))
-    // }
+    const postComment = async(e) => {
+    e.preventDefault()
+    let comment = {
+        'user_name': '',
+        'body': commentContent,
+    };
+    const newComment = await dispatch(thunkAddComments(comment))
+    }
 
     useEffect(() => {
         dispatch(pinDetail(pinId))
