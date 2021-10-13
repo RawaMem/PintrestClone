@@ -65,6 +65,9 @@ export const getBoardDetails = (id) => async(dispatch) => {
 export const createBoard = boardDetails => async (dispatch) => {
     const response = await fetch('/api/boards/new', {
         method: 'POST',
+        headers: {
+            'Content-Type':'application/json'
+        },
         body: JSON.stringify(boardDetails)
     })
     if (response.ok) {
@@ -77,7 +80,10 @@ export const createBoard = boardDetails => async (dispatch) => {
 
 export const editBoardDetails = boardDetails => async (dispatch) => {
     const response = await fetch(`/api/boards/edit/${boardDetails.id}`, {
-        method: 'POST',
+        method: 'PATCH',
+        headers: {
+            'Content-Type':'application/json'
+        },
         body: JSON.stringify(boardDetails)
     })
     if (response.ok) {

@@ -26,6 +26,24 @@ def seed_boards():
     db.session.add(board4)
     db.session.add(board5)
     db.session.add(board6)
+
+    # pin_boards_list = [
+    #     {'board_id':1, 'pin_id':1, 'notified':False},
+    #     {'board_id':1, 'pin_id':2, 'notified':False},
+    #     {'board_id':1, 'pin_id':3, 'notified':False},
+    #     {'board_id':1, 'pin_id':4, 'notified':False},
+    #     {'board_id':1, 'pin_id':5, 'notified':False},
+    #     {'board_id':1, 'pin_id':6, 'notified':False},
+    #     {'board_id':2, 'pin_id':7, 'notified':False},
+    #     {'board_id':2, 'pin_id':8, 'notified':False},
+    #     {'board_id':2, 'pin_id':9, 'notified':False},
+    #     {'board_id':3, 'pin_id':1, 'notified':False},
+    #     {'board_id':3, 'pin_id':2, 'notified':False},
+    #     {'board_id':3, 'pin_id':3, 'notified':False}
+    # ]
+
+
+
     db.session.commit()
 
 
