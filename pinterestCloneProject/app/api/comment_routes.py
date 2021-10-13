@@ -19,20 +19,22 @@ def get_comments():
 
 @comment_routes.route('/new', methods=['POST'])
 def create_new_comment():
+    print("we're here")
     form= NewCommentForm()
     form["csrf_token"].data = request.cookies["csrf_token"]
-    if form.validate_on_submit():
-        new_comment = Comment(
-            user_id = current_user.id,
-            pin_id = form.data['pin_id'],
-            content =form.data['content'],
-            notified = form.data['notified']
-        )
-        db.session.add(new_comment)
-        db.session.commit()
-        return new_comment.to_dict()
-    else:
-        return form.errors
+    # if form.validate_on_submit():
+    new_comment = Comment(
+        user_id = current_user.id,
+        pin_id = form.data['pin_id'],
+        content =form.data['content'],
+        notified = form.data['notified']
+    )
+    print(">>>>>>----",new_comment)
+    db.session.add(new_comment)
+    db.session.commit()
+    return new_comment.to_dict()
+    # else:
+    #     return form.errors
 
 
 #edit a comment

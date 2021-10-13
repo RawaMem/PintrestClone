@@ -32,7 +32,7 @@ const editComment = edittedCommentsObj => {
 // POJO action: delete comment
 const deleteComments = deletedCommentObj => {
     return {
-        type: GET_COMMENTS,
+        type: DELETE_COMMENT,
         deletedCommentObj
     }
 }

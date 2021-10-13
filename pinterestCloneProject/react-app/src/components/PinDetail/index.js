@@ -8,34 +8,38 @@ import { thunkGetAllComments, thunkDeleteComment, thunkAddComments } from '../..
 const PinDetail = () => {
 
     const dispatch = useDispatch()
-    const  pins = useSelector(state => state.pins)
+    const pins = useSelector(state => state.pins)
     const comments = useSelector(state => state.comments)
     const sessionUser = useSelector(state => state.session.user)
     const [commentContent, setCommentContent] = useState('')
     const { pinId } = useParams()
 
-    const reset = () => {
-        setCommentContent("")
-    }
+    // const reset = () => {
+    //     setCommentContent("")
+    // }
 
-    const handleDelete = (id) => {
+    const handleDelete = (id, e) => {
+        e.preventDefault();
         dispatch(thunkDeleteComment(id))
       }
 
     const postComment = async(e) => {
     e.preventDefault()
+
     let newComment = {
         'user_id': sessionUser?.id,
         'pin_id': pinId ,
         'content': commentContent,
         'notified': 'false'
     };
-    let newComment = await dispatch(thunkAddComments(newComment))
+    console.log(">>>>>>",newComment)
+    let createdComment =await dispatch(thunkAddComments(newComment))
 
-    if(newComment) {
-        reset()
-    }
-    };
+//     if (createdComment) {
+//        return history.push(`/pins/${createdComment.id}`);
+//     }
+//     reset()
+};
 
     useEffect(() => {
         dispatch(pinDetail(pinId))
@@ -45,6 +49,7 @@ const PinDetail = () => {
     useEffect(() => {
         dispatch(thunkGetAllComments())
     }, [dispatch])
+
     //// const commentsSection = allComments.filter(item => item.pin_id == pins?.pin.id)
 
     // const commentsSection = pins && pins.pin && allComments?allComments.filter(item => item.pin_id == pins?.pin.id):allComments
@@ -77,17 +82,18 @@ const PinDetail = () => {
             <div>
             <label>Comment</label>
             <textArea 
-                style={{ 'minHeight': '100px' }} value={commentContent}
+                style={{ 'minHeight': '100px' }} 
+                placeholder="Add a comment"
+                value={commentContent}
                 onChange={(e) => setCommentContent(e.target.value)} />
-              <button className="submit-form" style={{ 'marginTop': '20px', 'height': '40px' }}>Add Comment</button>
-              <div className="App">
+              <button className="submit-comment-button" type="submit" style={{ 'marginTop': '20px', 'height': '40px' }}>Done</button>
+              <div className="app">
                 {pinComments.map(comment => {
                     return(
                 <div key={comment.id} className='single-comment'>
                 <div>{comment.user.username}</div>
-                <div>{comment.id}</div>
-                <button className='delete-Button' onClick={() => handleDelete(comment.id)}>Delete Me</button>
                 <div>{comment.content}</div>
+                <button className='delete-Button' onClick={handleDelete(comment.id)}>Delete</button>
                 </div>
                 )})}
               </div>
