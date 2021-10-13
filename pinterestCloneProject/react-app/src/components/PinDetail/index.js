@@ -14,6 +14,10 @@ const PinDetail = () => {
     const [commentContent, setCommentContent] = useState('')
     const { pinId } = useParams()
 
+    const reset = () => {
+        setCommentContent("")
+    }
+
     const handleDelete = (id) => {
         dispatch(thunkDeleteComment(id))
       }
@@ -26,8 +30,12 @@ const PinDetail = () => {
         'content': commentContent,
         'notified': 'false'
     };
-    await dispatch(thunkAddComments(newComment))
+    let newComment = await dispatch(thunkAddComments(newComment))
+
+    if(newComment) {
+        reset()
     }
+    };
 
     useEffect(() => {
         dispatch(pinDetail(pinId))
