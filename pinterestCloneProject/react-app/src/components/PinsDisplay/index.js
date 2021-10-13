@@ -34,6 +34,11 @@ const PinsDisplay = () => {
                 <h1>Pin Display</h1>
                 {allPins}
             </div>
+            <div className="button-container">
+                <Link to={`/pin-builder`}>
+                    Create a Pin
+                </Link>
+            </div>
         </>
     )
 }
