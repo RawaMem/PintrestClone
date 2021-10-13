@@ -63,8 +63,12 @@ export const getBoardDetails = (id) => async(dispatch) => {
 
 
 export const createBoard = boardDetails => async (dispatch) => {
+    console.log('========> this is board details', boardDetails)
     const response = await fetch('/api/boards/new', {
         method: 'POST',
+        headers: {
+            'Content-Type':'application/json'
+        },
         body: JSON.stringify(boardDetails)
     })
     if (response.ok) {

@@ -42,14 +42,13 @@ def add_new_board():
     form["csrf_token"].data = request.cookies["csrf_token"]
     if form.validate_on_submit():
         new_board = Board(
-            user_id=current_user.id,
+            user_id=form.data['user_id'],
             title=form.data['title'],
             description=form.data['description'],
-            private=form.data['private'],
+            private=False
         )
         db.session.add(new_board)
         db.session.commit()
-
         # boards = Board.query.all()
         # return [board.to_dict() for board in boards]
 
