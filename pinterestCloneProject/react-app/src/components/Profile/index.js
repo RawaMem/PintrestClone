@@ -2,6 +2,7 @@ import { useEffect, useState  } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { getAllBoards } from '../../store/boards';
+// import Modal from '@mui/material/Modal';
 
 
 export const Profile = () => {
@@ -49,8 +50,14 @@ export const Profile = () => {
             {showMenu && (
                 <>
                 <p className="creation">Create</p>
-                <button className='profile-logout-btn'>Pin</button>
-                <button className='profile-logout-btn'>Board</button>
+                <Link className='pop-up-button' to={`/pins/new`}>
+                    <button className='create-pin-btn'>Pin</button>
+                </Link>
+                <Link className='pop-up-button' to={`/board-builder`}>
+                    <button className='create-board-btn'>Board</button>
+                </Link>
+
+
                 </>
 
             )}

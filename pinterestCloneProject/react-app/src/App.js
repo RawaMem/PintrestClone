@@ -13,6 +13,7 @@ import { Profile } from './components/Profile';
 import PinDetail from './components/PinDetail';
 import { BoardDetails } from './components/BoardDetails';
 import CreatePinForm from './components/CreatePin';
+import { CreateBoard } from './components/CreateBoard';
 
 
 function App() {
@@ -66,6 +67,9 @@ function App() {
         <Route exact path='/pin-builder'>
           <CreatePinForm />
         </Route>
+        <ProtectedRoute path='/board-builder' exact={true} >
+          <CreateBoard />
+        </ProtectedRoute>
       </Switch>
     </BrowserRouter>
   );
