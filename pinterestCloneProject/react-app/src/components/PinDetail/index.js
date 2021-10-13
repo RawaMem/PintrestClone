@@ -10,20 +10,23 @@ const PinDetail = () => {
     const dispatch = useDispatch()
     const  pins = useSelector(state => state.pins)
     const comments = useSelector(state => state.comments)
+    const sessionUser = useSelector(state => state.session.user)
     const [commentContent, setCommentContent] = useState('')
     const { pinId } = useParams()
 
-    // const handleDelete = (id) => {
-    //     dispatch(thunkDeleteComment(id))
-    //   }
+    const handleDelete = (id) => {
+        dispatch(thunkDeleteComment(id))
+      }
 
     const postComment = async(e) => {
     e.preventDefault()
-    let comment = {
-        'user_name': '',
-        'body': commentContent,
+    let newComment = {
+        'user_id': sessionUser?.id,
+        'pin_id': pinId ,
+        'content': commentContent,
+        'notified': 'false'
     };
-    const newComment = await dispatch(thunkAddComments(comment))
+    await dispatch(thunkAddComments(newComment))
     }
 
     useEffect(() => {
@@ -31,10 +34,25 @@ const PinDetail = () => {
         // dispatch(thunkGetAllComments())
     }, [dispatch])
 
-    // useEffect(() => {
-    //     dispatch(thunkGetAllComments())
-    // }, [dispatch])
-    // console.log("------------",pins?.pin?.comment.user.username)
+    useEffect(() => {
+        dispatch(thunkGetAllComments())
+    }, [dispatch])
+    //// const commentsSection = allComments.filter(item => item.pin_id == pins?.pin.id)
+
+    // const commentsSection = pins && pins.pin && allComments?allComments.filter(item => item.pin_id == pins?.pin.id):allComments
+
+    const commentsSection = Object.values(comments)
+    const pinComments = commentsSection.filter(comment => comment.pin_id === pins?.pin?.id)
+    // .map(comment => (
+    //     {comment.user_id === sessionUser.id? && (
+    //     <div key={comment.id} className='single-comment'>
+    //       <div>{comment.user.username}</div>
+    //       <div>{comment.id}</div>
+    //       <button className='delete-Button' onClick={() => handleDelete(comment.id)}>Delete Me</button>
+    //       <div>{comment.content}</div>
+    //     </div>
+    //     )}))
+
     return (
         <>
             <h1>PinDetail</h1>
@@ -46,17 +64,28 @@ const PinDetail = () => {
             </div>
             <div className="description-container">
                 <p>{pins?.pin?.description}</p>
-            {/* </div> */}
-            {/* <div className= "pin-comment">
-                <p>{pins.pin.comment.map(comment=>(
-                    <div key={comment.id} className="single-comment">
-                    <div>{comment.user.userName}</div>
-                    <div>{comment.content}</div> */}
-                    {/* <button className='delete-Button' onClick={() => handleDelete(comment.id)}>Delete Me</button> */}
-
-                    {/* </div> */}
-                {/* ))}</p> */}
             // </div>
+            <form onSubmit={postComment}>
+            <div>
+            <label>Comment</label>
+            <textArea 
+                style={{ 'minHeight': '100px' }} value={commentContent}
+                onChange={(e) => setCommentContent(e.target.value)} />
+              <button className="submit-form" style={{ 'marginTop': '20px', 'height': '40px' }}>Add Comment</button>
+              <div className="App">
+                {pinComments.map(comment => {
+                    return(
+                <div key={comment.id} className='single-comment'>
+                <div>{comment.user.username}</div>
+                <div>{comment.id}</div>
+                <button className='delete-Button' onClick={() => handleDelete(comment.id)}>Delete Me</button>
+                <div>{comment.content}</div>
+                </div>
+                )})}
+              </div>
+            </div>
+            </form>
+
         </>
     )
 }
