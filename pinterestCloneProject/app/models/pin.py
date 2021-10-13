@@ -30,6 +30,7 @@ class Pin(db.Model):
             'media_url': self.media_url,
             'description': self.description,
             'user' : self.user.to_dict(),
+            'comment': [comment.to_dict() for comment in self.comments]
             # 'created_at': self.created_at,
             # 'updated_at': self.updated_at
         }

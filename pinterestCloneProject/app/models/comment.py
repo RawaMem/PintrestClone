@@ -23,5 +23,5 @@ class Comment(db.Model):
             'pin_id':self.pin_id,
             'content':self.content,
             'notified':self.notified,
-            'user':self.user
+            'user':self.user.to_dict()
         }
