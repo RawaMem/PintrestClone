@@ -101,7 +101,7 @@ export const Profile = () => {
                         +pin?.user_id === +user?.id ? (
                             <>
                                 <div className="pin-edit">
-                                    <EditPinModal />
+                                    <EditPinModal pin={pin}/>
                                 </div>
                                 <div className="image-user-container">
                                     <Link to={`/pins/${pin.id}`} className="user-pins-container">

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Modal } from '../../context/Modal';
 import PinEditForm from './PinEditForm';
 
-function EditPinModal() {
+function EditPinModal({ pin }) {
     const [showModal, setShowModal] = useState(false);
     return (
         <>
@@ -16,7 +16,7 @@ function EditPinModal() {
         </div>
          {showModal && (
             <Modal onClose={() => setShowModal(false)}>
-              <PinEditForm />
+              <PinEditForm pin={pin}/>
             </Modal>
           )}
         </>

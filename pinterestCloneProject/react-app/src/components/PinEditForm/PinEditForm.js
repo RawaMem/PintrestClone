@@ -6,26 +6,22 @@ import { pinDetail, deletePin } from "../../store/pins"
 import "./PinEditForm.css";
 
 
-function PinEditForm() {
+function PinEditForm({ pin }) {
 
     const dispatch = useDispatch();
     const history = useHistory();
-    const currentUser = useSelector( state => state.session.user);
+    const currentUser = useSelector( state => state.session?.user);
     const boardsObj = useSelector(state => state?.boards)
     const pinObj = useSelector(state => state?.pins)
+    const boardsArray = Object.values(boardsObj);
     const [title, setTitle] = useState("")
     const { pinId } = useParams()
 
 
     useEffect(() => {
         dispatch(getAllBoards())
-    }, [dispatch]);
-
-
-    useEffect(() => {
         dispatch(pinDetail(pinId))
-    }, [dispatch])
-
+    }, [dispatch]);
 
     const deletePin = e => {
         e.preventDefault();
@@ -55,10 +51,18 @@ function PinEditForm() {
                         <label>
                             Board
                             <select
-                            value={title}
-                            onChange={e => setTitle(e.target.value)}
+                                value={title}
+                                onChange={e => setTitle(e.target.value)}
                             >
-                                <option selected value="1">boards names here</option>
+                                {boardsArray?.map(board => {
+                                    return (
+                                        +board?.user_id === +currentUser?.id? (
+                                            <>
+                                                <option value={board.id}>{board.title}</option>
+                                            </>
+                                        ) : false
+                                    )
+                                })}
                             </select>
                         </label>
                         <label>
@@ -78,7 +82,7 @@ function PinEditForm() {
                         <img className="pin-image" src={pinObj?.pin?.media_url} alt={pinObj?.pin?.description} />
                     </div>
                     <div className="delete-button-container">
-                        <button value={ pinId } className="delete-button" onClick={deletePin}>
+                        <button value={ pin.id } className="delete-button" onClick={deletePin}>
                             Delete
                         </button>
                     </div>
