@@ -21,7 +21,7 @@ export const Profile = () => {
     const allPinsObj = useSelector(state => state.pins)
 
     const allPinsArray = Object.values(allPinsObj)
-    console.log("========================>pinsArray",allPinsArray)
+
     const user = useSelector(state => {
         return state.session?.user
     })

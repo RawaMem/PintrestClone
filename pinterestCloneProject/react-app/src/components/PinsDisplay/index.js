@@ -11,7 +11,6 @@ const PinsDisplay = () => {
     const dispatch = useDispatch();
     const pins = useSelector(store => store.pins)
 
-    // console.log("this is pins",pins)
     const allPins = Object.values(pins)?.map(pin => (
         <div key={pin.id} className="picture-card-display">
             <div className="pins-display-container">
