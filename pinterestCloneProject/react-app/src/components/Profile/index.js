@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { getAllBoards } from '../../store/boards';
 import EditPinModal from '../PinEditForm';
+import { getAllPins } from '../../store/pins';
 // import Modal from '@mui/material/Modal';
 
 
@@ -15,6 +16,9 @@ export const Profile = () => {
 
     const allBoardsList = Object.values(allBoardsObj)
 
+    const allPinsObj = useSelector(state => state.pins)
+
+    const allPinsArray = Object.values(allPinsObj)
 
     const user = useSelector(state => {
         return state.session?.user
@@ -22,6 +26,10 @@ export const Profile = () => {
 
     useEffect(() => {
         dispatch(getAllBoards())
+    }, [dispatch])
+
+    useEffect(() => {
+        dispatch(getAllPins())
     }, [dispatch])
 
 
