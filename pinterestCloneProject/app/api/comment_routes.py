@@ -13,7 +13,14 @@ comment_routes = Blueprint('comments', __name__, url_prefix='/comments')
 def get_comments():
     comments = Comment.query.all()
     return{ comment.id:comment.to_dict() for comment in comments}
-    
+
+# edit single comment
+@comment_routes.route('/comment/edit/<int:pinId>/<int:commentId>', methods=['PATCH'])
+def edit_one_comment(pinId,commentId):
+    comment =Comment.query.filter(Comment.pinId == pinId & comment.id == commentId)\
+    .update({comment.content: form.data['content'], comment.user_id: current_user.id})
+
+    return comment.to_dict()
 
 # create a new comment
 
@@ -29,7 +36,6 @@ def create_new_comment():
         content =form.data['content'],
         notified = form.data['notified']
     )
-    print(">>>>>>----",new_comment)
     db.session.add(new_comment)
     db.session.commit()
     return new_comment.to_dict()
@@ -47,7 +53,7 @@ def edit_comment(id):
         comment = Comment.query.filter(Comment.id==id).first()
         
         comment.user_id=current_user.id,
-        comment.pin_id = current_pin.id,
+        comment.pin_id = form.data['pin_id']
         comment.content=form.data['content']
         comment.notified = form.data['notified']
 

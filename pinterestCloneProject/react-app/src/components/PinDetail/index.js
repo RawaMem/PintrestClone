@@ -1,26 +1,29 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams,useHistory } from 'react-router-dom';
 import { pinDetail } from '../../store/pins';
-import { thunkGetAllComments, thunkDeleteComment, thunkAddComments } from '../../store/comments';
+import { thunkGetAllComments, thunkDeleteComment, thunkAddComments, thunkEditCommentDetails } from '../../store/comments';
 
 
 const PinDetail = () => {
 
     const dispatch = useDispatch()
+    const history = useHistory();
     const pins = useSelector(state => state.pins)
     const comments = useSelector(state => state.comments)
     const sessionUser = useSelector(state => state.session.user)
     const [commentContent, setCommentContent] = useState('')
+    const [commentId, setCommentId] = useState(0)
     const { pinId } = useParams()
+
 
     // const reset = () => {
     //     setCommentContent("")
     // }
-
-    const handleDelete = (id, e) => {
+    
+    const handleDelete = (e) => {
         e.preventDefault();
-        dispatch(thunkDeleteComment(id))
+        dispatch(thunkDeleteComment(e.target.value))
       }
 
     const postComment = async(e) => {
@@ -32,7 +35,8 @@ const PinDetail = () => {
         'content': commentContent,
         'notified': 'false'
     };
-    console.log(">>>>>>",newComment)
+
+   
     let createdComment =await dispatch(thunkAddComments(newComment))
 
 //     if (createdComment) {
@@ -40,6 +44,26 @@ const PinDetail = () => {
 //     }
 //     reset()
 };
+    const updateContent = (e) => 
+        {setCommentContent(e.target.value)
+        setCommentId(parseInt(e.target.name))
+        //update pin comment list
+        let comment = pinComments.filter(item => item.id.toString() === e.target.name);
+        comment[0].content = e.target.value
+    };
+
+    const updateComment = async (e) => {
+        // e.preventDefault();
+        let updatedContent = {
+        'id': commentId,
+        'user_id': sessionUser?.id,
+        'pin_id': pinId ,
+        'content': commentContent,
+        'notified': 'false'
+        };
+        dispatch(thunkEditCommentDetails(updatedContent))
+        dispatch(thunkGetAllComments());
+    }
 
     useEffect(() => {
         dispatch(pinDetail(pinId))
@@ -56,6 +80,8 @@ const PinDetail = () => {
 
     const commentsSection = Object.values(comments)
     const pinComments = commentsSection.filter(comment => comment.pin_id === pins?.pin?.id)
+    console.log("PIN",pinComments)
+    
     // .map(comment => (
     //     {comment.user_id === sessionUser.id? && (
     //     <div key={comment.id} className='single-comment'>
@@ -93,9 +119,16 @@ const PinDetail = () => {
                 <div key={comment.id} className='single-comment'>
                 <div>{comment.user.username}</div>
                 <div>{comment.content}</div>
-                <button className='delete-Button' onClick={handleDelete(comment.id)}>Delete</button>
+                <input name={comment.id}
+                    type="text"
+                    placeholder="type now"
+                    value={comment.content}
+                    onChange={updateContent}
+                    required/> 
+                <button value={comment.id} className='delete-Button' onClick={handleDelete}>Delete</button> <button onClick={(e) => updateComment(e.target.name,comment.id)} type="submit">Edit</button>
                 </div>
                 )})}
+                
               </div>
             </div>
             </form>
