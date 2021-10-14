@@ -21,7 +21,7 @@ const PinsDisplay = () => {
                     alt={pin?.description}
                     />
                 </Link>
-                <Link to="#" className="pin-owner">
+                <Link to={`/profile/${pin?.user?.id}`} className="pin-owner">
                     <div>{pin?.user?.username}</div>
                 </Link>
             </div>

@@ -3,8 +3,9 @@ import { createBoard } from "./boards";
 // constants
 const SET_USER = 'session/SET_USER';
 const REMOVE_USER = 'session/REMOVE_USER';
-const FOLLOW = 'session/FOLLOW;'
-const UNFOLLOW = 'session/FOLLOW;'
+const PROFILE_OF_USER = 'session/PROFILE_OF_USER'
+const FOLLOW = 'session/FOLLOW;';
+const UNFOLLOW = 'session/FOLLOW;';
 
 const setUser = (user) => ({
   type: SET_USER,
@@ -14,6 +15,11 @@ const setUser = (user) => ({
 const removeUser = () => ({
   type: REMOVE_USER,
 })
+
+const userProfile = (userObj) => ({
+  type: PROFILE_OF_USER,
+  userObj
+});
 
 const follow = (userObj) => ({
   type: FOLLOW,
@@ -25,7 +31,18 @@ const unfollow = (userObj) => ({
   userObj
 });
 
-const initialState = { user: null };
+const initialState = { user: null, profileOfUser: null };
+
+
+export const getUserprofile = (id) => async(dispatch) => {
+  const response = await fetch(`/api/auth//user-profile/${id}`)
+  if (response.ok) {
+      let userObj = await response.json()
+      dispatch(userProfile(userObj))
+      return userObj
+  }
+}
+
 
 export const authenticate = () => async (dispatch) => {
   const response = await fetch('/api/auth/', {
@@ -155,9 +172,13 @@ export const unfollowUser = userIds => async (dispatch) => {
 
 
 export default function reducer(state = initialState, action) {
+  let newState = {...state}
   switch (action.type) {
     case SET_USER:
       return { user: action.payload }
+    case PROFILE_OF_USER:
+      newState.profileOfUser = action.userObj
+      return newState
     case REMOVE_USER:
       return { user: null }
     case FOLLOW:
