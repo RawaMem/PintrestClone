@@ -1,32 +1,68 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams,useHistory } from 'react-router-dom';
 import { pinDetail } from '../../store/pins';
-import { thunkGetAllComments, thunkDeleteComment, thunkAddComments } from '../../store/comments';
+import { thunkGetAllComments, thunkDeleteComment, thunkAddComments, thunkEditCommentDetails } from '../../store/comments';
 
 
 const PinDetail = () => {
 
     const dispatch = useDispatch()
-    const  pins = useSelector(state => state.pins)
+    const history = useHistory();
+    const pins = useSelector(state => state.pins)
     const comments = useSelector(state => state.comments)
     const sessionUser = useSelector(state => state.session.user)
     const [commentContent, setCommentContent] = useState('')
+    const [commentId, setCommentId] = useState(0)
     const { pinId } = useParams()
 
-    const handleDelete = (id) => {
-        dispatch(thunkDeleteComment(id))
+
+    // const reset = () => {
+    //     setCommentContent("")
+    // }
+    
+    const handleDelete = (e) => {
+        e.preventDefault();
+        dispatch(thunkDeleteComment(e.target.value))
       }
 
     const postComment = async(e) => {
     e.preventDefault()
+
     let newComment = {
         'user_id': sessionUser?.id,
         'pin_id': pinId ,
         'content': commentContent,
         'notified': 'false'
     };
-    await dispatch(thunkAddComments(newComment))
+
+   
+    let createdComment =await dispatch(thunkAddComments(newComment))
+
+//     if (createdComment) {
+//        return history.push(`/pins/${createdComment.id}`);
+//     }
+//     reset()
+};
+    const updateContent = (e) => 
+        {setCommentContent(e.target.value)
+        setCommentId(parseInt(e.target.name))
+        //update pin comment list
+        let comment = pinComments.filter(item => item.id.toString() === e.target.name);
+        comment[0].content = e.target.value
+    };
+
+    const updateComment = async (e) => {
+        // e.preventDefault();
+        let updatedContent = {
+        'id': commentId,
+        'user_id': sessionUser?.id,
+        'pin_id': pinId ,
+        'content': commentContent,
+        'notified': 'false'
+        };
+        dispatch(thunkEditCommentDetails(updatedContent))
+        dispatch(thunkGetAllComments());
     }
 
     useEffect(() => {
@@ -37,12 +73,15 @@ const PinDetail = () => {
     useEffect(() => {
         dispatch(thunkGetAllComments())
     }, [dispatch])
+
     //// const commentsSection = allComments.filter(item => item.pin_id == pins?.pin.id)
 
     // const commentsSection = pins && pins.pin && allComments?allComments.filter(item => item.pin_id == pins?.pin.id):allComments
 
     const commentsSection = Object.values(comments)
     const pinComments = commentsSection.filter(comment => comment.pin_id === pins?.pin?.id)
+    console.log("PIN",pinComments)
+    
     // .map(comment => (
     //     {comment.user_id === sessionUser.id? && (
     //     <div key={comment.id} className='single-comment'>
@@ -69,19 +108,27 @@ const PinDetail = () => {
             <div>
             <label>Comment</label>
             <textArea 
-                style={{ 'minHeight': '100px' }} value={commentContent}
+                style={{ 'minHeight': '100px' }} 
+                placeholder="Add a comment"
+                value={commentContent}
                 onChange={(e) => setCommentContent(e.target.value)} />
-              <button className="submit-form" style={{ 'marginTop': '20px', 'height': '40px' }}>Add Comment</button>
-              <div className="App">
+              <button className="submit-comment-button" type="submit" style={{ 'marginTop': '20px', 'height': '40px' }}>Done</button>
+              <div className="app">
                 {pinComments.map(comment => {
                     return(
                 <div key={comment.id} className='single-comment'>
                 <div>{comment.user.username}</div>
-                <div>{comment.id}</div>
-                <button className='delete-Button' onClick={() => handleDelete(comment.id)}>Delete Me</button>
                 <div>{comment.content}</div>
+                <input name={comment.id}
+                    type="text"
+                    placeholder="type now"
+                    value={comment.content}
+                    onChange={updateContent}
+                    required/> 
+                <button value={comment.id} className='delete-Button' onClick={handleDelete}>Delete</button> <button onClick={(e) => updateComment(e.target.name,comment.id)} type="submit">Edit</button>
                 </div>
                 )})}
+                
               </div>
             </div>
             </form>
