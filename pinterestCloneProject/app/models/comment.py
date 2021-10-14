@@ -9,7 +9,7 @@ class Comment(db.Model):
     content=db.Column(db.String, nullable=False)
     notified=db.Column(db.Boolean, nullable=False)
     # one to many
-    user=db.relationship('User', back_populates='comments')
+    user=db.relationship('User', back_populates='comments',lazy='subquery')
     # one to many
     pin=db.relationship('Pin', back_populates='comments')
     # one to many

@@ -32,7 +32,7 @@ const editComment = edittedCommentsObj => {
 // POJO action: delete comment
 const deleteComments = deletedCommentObj => {
     return {
-        type: GET_COMMENTS,
+        type: DELETE_COMMENT,
         deletedCommentObj
     }
 }
@@ -65,7 +65,7 @@ export const thunkAddComments = commentDetails => async (dispatch) => {
 }
 // edit comment thunk
 export const thunkEditCommentDetails = commentDetails => async(dispatch) => {
-    const response = await fetch (`/api/comments/edit/${commentDetails.id}`,{
+    const response = await fetch (`/api/comments/edit/${commentDetails.pinId}/${commentDetails.id}`,{
         method: 'PATCH',
         body: JSON.stringify(commentDetails)
     })
@@ -77,11 +77,14 @@ export const thunkEditCommentDetails = commentDetails => async(dispatch) => {
 }
 // delete comment thunk
 export const thunkDeleteComment = id => async (dispatch) => {
-    const response = await fetch(`/comments/delete/${id}`)
-
+    const response = await fetch(`/api/comments/delete/${id}`,{
+        method:'DELETE',
+        body: JSON.stringify(id)
+    })
     if(response.ok) {
         const deletedCommentObj = await response.json();
         dispatch(deleteComments(deletedCommentObj))
+        console.log("-------",deletedCommentObj)
         return deletedCommentObj
     }
 }

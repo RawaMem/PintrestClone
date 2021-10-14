@@ -3,6 +3,8 @@ import { createBoard } from "./boards";
 // constants
 const SET_USER = 'session/SET_USER';
 const REMOVE_USER = 'session/REMOVE_USER';
+const FOLLOW = 'session/FOLLOW;'
+const UNFOLLOW = 'session/FOLLOW;'
 
 const setUser = (user) => ({
   type: SET_USER,
@@ -12,6 +14,16 @@ const setUser = (user) => ({
 const removeUser = () => ({
   type: REMOVE_USER,
 })
+
+const follow = (userObj) => ({
+  type: FOLLOW,
+  userObj
+});
+
+const unfollow = (userObj) => ({
+  type: UNFOLLOW,
+  userObj
+});
 
 const initialState = { user: null };
 
@@ -42,7 +54,6 @@ export const login = (email, password) => async (dispatch) => {
       password
     })
   });
-
 
   if (response.ok) {
     const data = await response.json();
@@ -107,6 +118,41 @@ export const signUp = (first_name, last_name, username, email, password) => asyn
     return ['An error occurred. Please try again.']
   }
 }
+
+
+export const followUser = userIds => async (dispatch) => {
+  const response = await fetch(`/api/follow-user/${userIds.userid}/${userIds.followingid}`, {
+      method: 'POST',
+      headers: {
+          'Content-Type':'application/json'
+      },
+      body: JSON.stringify(userIds)
+  })
+  if (response.ok) {
+      const userObj = await response.json();
+      dispatch(follow(userObj))
+      return userObj
+  }
+}
+
+
+export const unfollowUser = userIds => async (dispatch) => {
+  const response = await fetch(`/api/follow-user/${userIds.userid}/${userIds.followingid}`, {
+      method: 'POST',
+      headers: {
+          'Content-Type':'application/json'
+      },
+      body: JSON.stringify(userIds)
+  })
+  if (response.ok) {
+      const userObj = await response.json();
+      dispatch(unfollow(userObj))
+      return userObj
+  }
+}
+
+
+
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
