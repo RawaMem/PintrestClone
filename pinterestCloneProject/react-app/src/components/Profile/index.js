@@ -103,16 +103,17 @@ export const Profile = () => {
                                 <div className="pin-edit">
                                     <EditPinModal />
                                 </div>
-                                <div className="user-pins-container">
-                                    <Card
-                                    src={pin?.media_url}
-                                    alt={pin?.description}
-                                    />
+                                <div className="image-user-container">
+                                    <Link to={`/pins/${pin.id}`} className="user-pins-container">
+                                        <Card
+                                        src={pin?.media_url}
+                                        alt={pin?.description}
+                                        />
+                                    </Link>
                                     <Link to="#" className="pin-owner">
                                         <div>{pin?.user?.username}</div>
                                     </Link>
                                 </div>
-
                             </>
                         ):false
                     )

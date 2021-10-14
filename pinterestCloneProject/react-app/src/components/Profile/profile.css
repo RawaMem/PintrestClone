@@ -15,10 +15,14 @@
     margin-top: 10px;
 }
 
-.pin-owner {
+/* .pin-owner {
     margin-left: 30px;
     margin-top: -6px;
     text-decoration: none;
+} */
+
+.image-user-container {
+    box-sizing: border-box
 }
 
 .pin-edit {
