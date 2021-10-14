@@ -1,0 +1,30 @@
+* {
+    box-sizing: border-box;
+}
+
+.unorganized-pins-container {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.user-pins-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-left:10px;
+    margin-top: 10px;
+}
+
+/* .pin-owner {
+    margin-left: 30px;
+    margin-top: -6px;
+    text-decoration: none;
+} */
+
+.image-user-container {
+    box-sizing: border-box
+}
+
+.pin-edit {
+    margin-right: -80px;
+}

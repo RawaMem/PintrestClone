@@ -1,1 +1,32 @@
+*{
+    box-sizing: border-box;
+}
 
+.edit-pinform-container {
+    margin:0;
+    height: 50vh;
+    width: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+}
+
+.edit-pinform {
+    width: 100%;
+    max-width: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 1rem;
+    padding: 4rem;
+    border-radius: 10px;
+}
+
+.form-body-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
