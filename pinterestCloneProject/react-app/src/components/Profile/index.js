@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import { getAllBoards } from '../../store/boards';
 import EditPinModal from '../PinEditForm';
 import { getAllPins } from '../../store/pins';
+import Card from '../PictureCard';
+import './profile.css';
 // import Modal from '@mui/material/Modal';
 
 
@@ -98,15 +100,19 @@ export const Profile = () => {
                     return (
                         +pin?.user_id === +user?.id ? (
                             <>
+                                <div className="pin-edit">
+                                    <EditPinModal />
+                                </div>
                                 <div className="user-pins-container">
-                                    <img className="pins-img" src={pin?.media_url} alt={pin?.description} />
-                                    <div className="pin-edit">
-                                        <EditPinModal />
-                                    </div>
+                                    <Card
+                                    src={pin?.media_url}
+                                    alt={pin?.description}
+                                    />
                                     <Link to="#" className="pin-owner">
                                         <div>{pin?.user?.username}</div>
                                     </Link>
                                 </div>
+
                             </>
                         ):false
                     )

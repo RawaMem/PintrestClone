@@ -17,12 +17,12 @@ const PinsDisplay = () => {
             <div className="pins-display-container">
                 <Link to={`/pins/${pin.id}`}>
                     <Card
-                    src={pin.media_url}
-                    alt={pin.description}
+                    src={pin?.media_url}
+                    alt={pin?.description}
                     />
                 </Link>
                 <Link to="#" className="pin-owner">
-                    <div>{pin.user.username}</div>
+                    <div>{pin?.user?.username}</div>
                 </Link>
             </div>
         </div>
