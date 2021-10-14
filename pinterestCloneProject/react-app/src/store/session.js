@@ -160,6 +160,10 @@ export default function reducer(state = initialState, action) {
       return { user: action.payload }
     case REMOVE_USER:
       return { user: null }
+    case FOLLOW:
+      return { user: action.userObj }
+    case UNFOLLOW:
+      return { user: action.userObj }
     default:
       return state;
   }
