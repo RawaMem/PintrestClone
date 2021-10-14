@@ -19,16 +19,13 @@ export const Profile = () => {
     const allPinsObj = useSelector(state => state.pins)
 
     const allPinsArray = Object.values(allPinsObj)
-
+    console.log("========================>pinsArray",allPinsArray)
     const user = useSelector(state => {
         return state.session?.user
     })
 
     useEffect(() => {
         dispatch(getAllBoards())
-    }, [dispatch])
-
-    useEffect(() => {
         dispatch(getAllPins())
     }, [dispatch])
 
@@ -96,9 +93,26 @@ export const Profile = () => {
                     )
                 })}
             </div>
-            <div className="pin-edit">
-                <EditPinModal />
+            <div className="unorganized-pins-container">
+                {allPinsArray?.map(pin => {
+                    return (
+                        +pin?.user_id === +user?.id ? (
+                            <>
+                                <div className="user-pins-container">
+                                    <img className="pins-img" src={pin?.media_url} alt={pin?.description} />
+                                    <div className="pin-edit">
+                                        <EditPinModal />
+                                    </div>
+                                    <Link to="#" className="pin-owner">
+                                        <div>{pin?.user?.username}</div>
+                                    </Link>
+                                </div>
+                            </>
+                        ):false
+                    )
+                })}
             </div>
+
 
         </>
 
