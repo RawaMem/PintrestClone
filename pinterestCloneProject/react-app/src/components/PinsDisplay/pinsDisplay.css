@@ -1,0 +1,20 @@
+* {
+  box-sizing: border-box;
+}
+
+.pins-container {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.pins-display-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.pin-owner {
+    margin-left: 30px;
+    margin-top: -6px;
+    text-decoration: none;
+}

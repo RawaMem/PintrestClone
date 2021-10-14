@@ -3,6 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { getAllBoards } from '../../store/boards';
 import EditPinModal from '../PinEditForm';
+import { getAllPins } from '../../store/pins';
+import Card from '../PictureCard';
+import './profile.css';
 // import Modal from '@mui/material/Modal';
 
 
@@ -15,13 +18,17 @@ export const Profile = () => {
 
     const allBoardsList = Object.values(allBoardsObj)
 
+    const allPinsObj = useSelector(state => state.pins)
 
+    const allPinsArray = Object.values(allPinsObj)
+    console.log("========================>pinsArray",allPinsArray)
     const user = useSelector(state => {
         return state.session?.user
     })
 
     useEffect(() => {
         dispatch(getAllBoards())
+        dispatch(getAllPins())
     }, [dispatch])
 
 
@@ -88,9 +95,30 @@ export const Profile = () => {
                     )
                 })}
             </div>
-            <div className="pin-edit">
-                <EditPinModal />
+            <div className="unorganized-pins-container">
+                {allPinsArray?.map(pin => {
+                    return (
+                        +pin?.user_id === +user?.id ? (
+                            <>
+                                <div className="pin-edit">
+                                    <EditPinModal />
+                                </div>
+                                <div className="user-pins-container">
+                                    <Card
+                                    src={pin?.media_url}
+                                    alt={pin?.description}
+                                    />
+                                    <Link to="#" className="pin-owner">
+                                        <div>{pin?.user?.username}</div>
+                                    </Link>
+                                </div>
+
+                            </>
+                        ):false
+                    )
+                })}
             </div>
+
 
         </>
 
