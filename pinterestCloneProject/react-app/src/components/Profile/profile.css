@@ -18,6 +18,7 @@
 .pin-owner {
     margin-left: 30px;
     margin-top: -6px;
+    text-decoration: none;
 }
 
 .pin-edit {
