@@ -38,4 +38,5 @@ def remove_follow(userid, followingid):
     new_follower_list = [following for following in followed_user.follows if following.follower_id != userid]
     followed_user.follows = new_follower_list
     db.session.commit()
+    user = User.query.filter(User.id == userid).first()
     return user.to_dict()
