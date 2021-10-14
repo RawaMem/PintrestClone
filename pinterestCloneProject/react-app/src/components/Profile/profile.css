@@ -22,9 +22,10 @@
 } */
 
 .image-user-container {
-    box-sizing: border-box
+    box-sizing: border-box;
+    margin-left: 20px;
 }
 
 .pin-edit {
-    margin-right: -80px;
+    margin-right: -50px;
 }

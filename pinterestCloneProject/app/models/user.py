@@ -29,7 +29,7 @@ class User(db.Model, UserMixin):
             lazy="dynamic"
     )
     boards = db.relationship('Board', back_populates='user')
-    pins = db.relationship('Pin', back_populates='user')
+    pins = db.relationship('Pin', back_populates='user', lazy='subquery')
     comments = db.relationship('Comment', back_populates='user',lazy='subquery')
     comment_likes = db.relationship('CommentLike', back_populates='user')
     categories = db.relationship('Category', back_populates='user')

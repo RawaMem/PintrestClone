@@ -63,10 +63,10 @@ def get_one_pin(id):
 
 @pin_routes.route('/pins/delete/<int:id>', methods=['DELETE'])
 def delete_pin(id):
-    delete_pin = Pin.query.filter(Pin.id == id).first()
-    db.session.delete(delete_pin)
+    deleted_pin = Pin.query.filter(Pin.id == id).first()
+    print("deleted pin=======>", deleted_pin)
+    db.session.delete(deleted_pin)
+
     db.session.commit()
 
-    return {
-        'delete_pin': delete_pin.to_dict()
-    }
+    return deleted_pin.to_dict()
