@@ -29,7 +29,7 @@ class User(db.Model, UserMixin):
             lazy="dynamic"
     )
     boards = db.relationship('Board', back_populates='user')
-    pins = db.relationship('Pin', back_populates='user')
+    pins = db.relationship('Pin', back_populates='user', lazy='subquery')
     comments = db.relationship('Comment', back_populates='user',lazy='subquery')
     comment_likes = db.relationship('CommentLike', back_populates='user')
     categories = db.relationship('Category', back_populates='user')
@@ -55,5 +55,6 @@ class User(db.Model, UserMixin):
             'first_name': self.first_name,
             'last_name': self.last_name,
             'username': self.username,
-            'email': self.email
+            'email': self.email,
+            'followers': [user.id for user in self.followers]
         }

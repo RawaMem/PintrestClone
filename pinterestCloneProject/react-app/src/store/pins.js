@@ -94,7 +94,10 @@ export const deletePin = id => async(dispatch) => {
         body: JSON.stringify(id)
     })
     if (response.ok) {
-        dispatch(pinDetailAction(id))
+        const deletePinObj = await response.json();
+        dispatch(deletePinAction(deletePinObj))
+        console.log("=========>dekejdjfkdsj", deletePinObj);
+        return deletePinObj
     }
 }
 

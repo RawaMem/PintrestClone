@@ -6,29 +6,25 @@ import { pinDetail, deletePin } from "../../store/pins"
 import "./PinEditForm.css";
 
 
-function PinEditForm() {
+function PinEditForm({ pin }) {
 
     const dispatch = useDispatch();
     const history = useHistory();
-    const currentUser = useSelector( state => state.session.user);
+    const currentUser = useSelector( state => state.session?.user);
     const boardsObj = useSelector(state => state?.boards)
     const pinObj = useSelector(state => state?.pins)
+    const boardsArray = Object.values(boardsObj);
     const [title, setTitle] = useState("")
     const { pinId } = useParams()
 
 
     useEffect(() => {
         dispatch(getAllBoards())
+        dispatch(pinDetail(pinId))
     }, [dispatch]);
 
-
-    useEffect(() => {
-        dispatch(pinDetail(pinId))
-    }, [dispatch])
-
-
-    const deletePin = e => {
-        e.preventDefault();
+    const handleDelete = e => {
+        // e.preventDefault();
         dispatch(deletePin(e.target.value));
         history.push("/profile")
     }
@@ -51,34 +47,50 @@ function PinEditForm() {
                             Edit this Pin
                         </h1>
                     </div>
-                    <div className="form-body-container">
-                        <label>
-                            Board
-                            <select
-                            value={title}
-                            onChange={e => setTitle(e.target.value)}
-                            >
-                                <option selected value="1">boards names here</option>
-                            </select>
-                        </label>
-                        <label>
-                            Section
-                            <select
-                            value="section"
-                            >
-                                <option selected value="1">No section</option>
-                            </select>
-                        </label>
-                        <label>
-                            Note to self
-                            <textarea value="notes" />
-                        </label>
-                    </div>
-                    <div className="pin-image-container">
-                        <img className="pin-image" src={pinObj?.pin?.media_url} alt={pinObj?.pin?.description} />
+                    <div className="main-container">
+
+                        <div className="container">
+                            <div className="form-contents-container">
+                                <label className="form-contents">
+                                    Board
+                                    <select
+                                        value={title}
+                                        onChange={e => setTitle(e.target.value)}
+                                    >
+                                        {boardsArray?.map(board => {
+                                            return (
+                                                +board?.user_id === +currentUser?.id? (
+                                                    <>
+                                                        <option value={board.id}>{board.title}</option>
+                                                    </>
+                                                ) : false
+                                            )
+                                        })}
+                                    </select>
+                                </label>
+                                <label  className="form-contents">
+                                    Section
+                                    <select
+                                    value="section"
+                                    >
+                                        <option selected value="1">No section</option>
+                                    </select>
+                                </label>
+                                <label  className="form-contents">
+                                    Note to self
+                                    <textarea value="notes" />
+                                </label>
+                            </div>
+                        </div>
+
+                        <div className="container">
+                            <div className="pin-image-container">
+                                <img className="pin-image" src={pin?.media_url} alt={pin?.description} />
+                            </div>
+                        </div>
                     </div>
                     <div className="delete-button-container">
-                        <button value={ pinId } className="delete-button" onClick={deletePin}>
+                        <button value={ pin.id } className="delete-button" onClick={handleDelete}>
                             Delete
                         </button>
                     </div>
