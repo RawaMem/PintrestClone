@@ -20,8 +20,6 @@ def user(id):
     return user.to_dict()
 
 
-
-
 @user_routes.route('/follow-user/<int:userid>/<int:followingid>', methods=['POST'])
 def add_follow(userid, followingid):
     user = User.query.filter(User.id == userid).first()

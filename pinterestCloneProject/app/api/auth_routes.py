@@ -18,6 +18,11 @@ def validation_errors_to_error_messages(validation_errors):
     return errorMessages
 
 
+@auth_routes.route('/user-profile/<int:id>')
+def get_one_user(id):
+    user = User.query.filter(User.id == id).first()
+    return user.to_dict()
+
 @auth_routes.route('/')
 def authenticate():
     """
