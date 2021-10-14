@@ -24,7 +24,7 @@ export const Profile = () => {
     const allPinsObj = useSelector(state => state.pins)
 
     const allPinsArray = Object.values(allPinsObj)
-    console.log("========================>pinsArray",allPinsArray)
+    // console.log("========================>pinsArray",allPinsArray)
 
     const user = useSelector(state => {
         return state.session?.user
@@ -34,12 +34,32 @@ export const Profile = () => {
         return state.session?.profileOfUser
     })
 
+    const [allUsers, setUsers] = useState([]);
+
+    useEffect(() => {
+        async function fetchData() {
+        const response = await fetch('/api/users/');
+        const responseData = await response.json();
+        setUsers(responseData.users);
+        }
+        fetchData();
+    }, []);
+
+    const allFollowersOfCurrentProfile = allUsers?.filter(user => profileUser?.followers?.includes(user?.id))
+    console.log('========> all followers', allFollowersOfCurrentProfile)
+
+    const listOfUserObjsWeAreFollowing = allUsers?.filter(user => user?.followers?.includes(profileUser?.id))
+    console.log('========> all users that we are following', listOfUserObjsWeAreFollowing)
+
+
+
+
 
     useEffect(() => {
         dispatch(getAllBoards())
         dispatch(getAllPins())
         dispatch(getUserprofile(currentProfileId))
-    }, [dispatch])
+    }, [dispatch, currentProfileId])
 
 
     const [showMenu, setShowMenu] = useState(false);
@@ -88,7 +108,7 @@ export const Profile = () => {
                 <button className="user-info-button">{profileUser?.first_name[0]}</button>
                 <h1 className="full-name">{profileUser?.first_name} {profileUser?.last_name}</h1>
                 <p className="at-username">@{profileUser?.username}</p>
-                <p className="followers">{profileUser?.followers}</p>
+                <p className="followers">Followers: {profileUser?.followers.length}</p>
             </div>
             <div className="boards-container">
                 {allBoardsList.map(board => {
