@@ -108,7 +108,8 @@ export const Profile = () => {
                 <button className="user-info-button">{profileUser?.first_name[0]}</button>
                 <h1 className="full-name">{profileUser?.first_name} {profileUser?.last_name}</h1>
                 <p className="at-username">@{profileUser?.username}</p>
-                <p className="followers">Followers: {profileUser?.followers.length}</p>
+                <p className="followers">{profileUser?.followers.length} Followers</p>
+                <p className="followers">{profileUser?.followers.length} Following</p>
             </div>
             <div className="boards-container">
                 {allBoardsList.map(board => {
