@@ -52,6 +52,8 @@ export const Profile = () => {
     }, [showMenu]);
 
 
+
+
     return(
         <>
             <div className="mid-button-container">
@@ -77,7 +79,7 @@ export const Profile = () => {
                 <button className="user-info-button">{user?.first_name[0]}</button>
                 <h1 className="full-name">{user?.first_name} {user?.last_name}</h1>
                 <p className="at-username">@{user?.username}</p>
-                <p className="followers"></p>
+                <p className="followers">{user?.followers}</p>
             </div>
             <div className="boards-container">
                 {allBoardsList.map(board => {

@@ -41,9 +41,11 @@ def login():
         # Add the user to the session, we are logged in!
         user = User.query.filter(User.email == form.data['email']).first()
         login_user(user)
+        # print('=====> current user id', current_user.id)
+        # for person in current_user.followers:
+        #     print('=======> follower names', person.username)
         return user.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
-
 
 @auth_routes.route('/logout')
 def logout():
