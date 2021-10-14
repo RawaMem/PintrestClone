@@ -16,10 +16,6 @@ const PinDetail = () => {
     const [commentId, setCommentId] = useState(0)
     const { pinId } = useParams()
 
-
-    // const reset = () => {
-    //     setCommentContent("")
-    // }
     
     const handleDelete = (e) => {
         e.preventDefault();
@@ -39,10 +35,10 @@ const PinDetail = () => {
    
     let createdComment =await dispatch(thunkAddComments(newComment))
 
-//     if (createdComment) {
-//        return history.push(`/pins/${createdComment.id}`);
-//     }
-//     reset()
+    // if (createdComment) {
+      
+    // }
+   
 };
     const updateContent = (e) => 
         {setCommentContent(e.target.value)

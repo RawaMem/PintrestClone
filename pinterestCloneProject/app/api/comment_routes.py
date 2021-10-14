@@ -18,9 +18,18 @@ def get_comments():
 @comment_routes.route('/comment/edit/<int:pinId>/<int:commentId>', methods=['PATCH'])
 def edit_one_comment(pinId,commentId):
     comment =Comment.query.filter(Comment.pinId == pinId & comment.id == commentId)\
-    .update({comment.content: form.data['content'], comment.user_id: current_user.id})
+    # .update({comment.content: form.data['content'], comment.user_id: current_user.id})
+    form["csrf_token"].data = request.cookies["csrf_token"]
+    if form.validate_on_submit():
+        comment.content = form.data['content']
+        comment.user_id = current_user.id
 
-    return comment.to_dict()
+        db.session.commit()
+        return comment.to_dict()
+
+    else:
+        return form.errors
+
 
 # create a new comment
 
