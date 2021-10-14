@@ -23,9 +23,10 @@ function PinEditForm({ pin }) {
         dispatch(pinDetail(pinId))
     }, [dispatch]);
 
-    const deletePin = e => {
-        e.preventDefault();
+    const handleDelete = e => {
+        // e.preventDefault();
         dispatch(deletePin(e.target.value));
+        console.log("@@@@@@@@@@@",e.target.value)
         history.push("/profile")
     }
 
@@ -45,6 +46,7 @@ function PinEditForm({ pin }) {
                     <div className="container1">
                         <h1 className="edit-pinform-title">
                             Edit this Pin
+                            <p>cat image id: {pin.id} </p>
                         </h1>
                     </div>
                     <div className="form-body-container">
@@ -82,7 +84,7 @@ function PinEditForm({ pin }) {
                         <img className="pin-image" src={pinObj?.pin?.media_url} alt={pinObj?.pin?.description} />
                     </div>
                     <div className="delete-button-container">
-                        <button value={ pin.id } className="delete-button" onClick={deletePin}>
+                        <button value={ pin.id } className="delete-button" onClick={handleDelete}>
                             Delete
                         </button>
                     </div>

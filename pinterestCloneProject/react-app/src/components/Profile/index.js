@@ -100,10 +100,10 @@ export const Profile = () => {
                     return (
                         +pin?.user_id === +user?.id ? (
                             <>
-                                <div className="pin-edit">
-                                    <EditPinModal pin={pin}/>
-                                </div>
                                 <div className="image-user-container">
+                                    <div className="pin-edit">
+                                        <EditPinModal pin={pin}/>
+                                    </div>
                                     <Link to={`/pins/${pin.id}`} className="user-pins-container">
                                         <Card
                                         src={pin?.media_url}

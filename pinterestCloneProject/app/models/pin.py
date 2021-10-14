@@ -17,7 +17,7 @@ class Pin(db.Model):
 
     comments = db.relationship('Comment',back_populates='pin', cascade="all, delete-orphan")
     pin_likes = db.relationship('PinLike', back_populates='pin', cascade="all, delete-orphan")
-    user = db.relationship('User', back_populates='pins')
+    user = db.relationship('User', back_populates='pins', lazy='subquery')
     boards = db.relationship("Board", back_populates="pins", secondary=boards_pins)
     categories = db.relationship('Category', back_populates='pins', secondary=pins_categories)
 
