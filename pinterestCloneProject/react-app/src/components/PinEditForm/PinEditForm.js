@@ -26,7 +26,6 @@ function PinEditForm({ pin }) {
     const handleDelete = e => {
         // e.preventDefault();
         dispatch(deletePin(e.target.value));
-        console.log("@@@@@@@@@@@",e.target.value)
         history.push("/profile")
     }
 
@@ -46,42 +45,49 @@ function PinEditForm({ pin }) {
                     <div className="container1">
                         <h1 className="edit-pinform-title">
                             Edit this Pin
-                            <p>cat image id: {pin.id} </p>
                         </h1>
                     </div>
-                    <div className="form-body-container">
-                        <label>
-                            Board
-                            <select
-                                value={title}
-                                onChange={e => setTitle(e.target.value)}
-                            >
-                                {boardsArray?.map(board => {
-                                    return (
-                                        +board?.user_id === +currentUser?.id? (
-                                            <>
-                                                <option value={board.id}>{board.title}</option>
-                                            </>
-                                        ) : false
-                                    )
-                                })}
-                            </select>
-                        </label>
-                        <label>
-                            Section
-                            <select
-                            value="section"
-                            >
-                                <option selected value="1">No section</option>
-                            </select>
-                        </label>
-                        <label>
-                            Note to self
-                            <textarea value="notes" />
-                        </label>
-                    </div>
-                    <div className="pin-image-container">
-                        <img className="pin-image" src={pinObj?.pin?.media_url} alt={pinObj?.pin?.description} />
+                    <div className="main-container">
+
+                        <div className="container">
+                            <div className="form-contents-container">
+                                <label className="form-contents">
+                                    Board
+                                    <select
+                                        value={title}
+                                        onChange={e => setTitle(e.target.value)}
+                                    >
+                                        {boardsArray?.map(board => {
+                                            return (
+                                                +board?.user_id === +currentUser?.id? (
+                                                    <>
+                                                        <option value={board.id}>{board.title}</option>
+                                                    </>
+                                                ) : false
+                                            )
+                                        })}
+                                    </select>
+                                </label>
+                                <label  className="form-contents">
+                                    Section
+                                    <select
+                                    value="section"
+                                    >
+                                        <option selected value="1">No section</option>
+                                    </select>
+                                </label>
+                                <label  className="form-contents">
+                                    Note to self
+                                    <textarea value="notes" />
+                                </label>
+                            </div>
+                        </div>
+
+                        <div className="container">
+                            <div className="pin-image-container">
+                                <img className="pin-image" src={pin?.media_url} alt={pin?.description} />
+                            </div>
+                        </div>
                     </div>
                     <div className="delete-button-container">
                         <button value={ pin.id } className="delete-button" onClick={handleDelete}>
