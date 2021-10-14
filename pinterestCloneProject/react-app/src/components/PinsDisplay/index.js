@@ -2,9 +2,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { getAllPins } from '../../store/pins';
-
-
-
+import Card from '../PictureCard';
+import './pinsDisplay.css'
 
 
 const PinsDisplay = () => {
@@ -14,13 +13,18 @@ const PinsDisplay = () => {
 
     // console.log("this is pins",pins)
     const allPins = Object.values(pins)?.map(pin => (
-        <div key={pin.id} className="each-pin">
-            <Link to={`/pins/${pin.id}`}>
-                <img className="pin-image" src={pin.media_url} alt={pin.description} />
-            </Link>
-            <Link to="#" className="pin-owner">
-                <div>{pin.user.username}</div>
-            </Link>
+        <div key={pin.id} className="picture-card-display">
+            <div className="pins-display-container">
+                <Link to={`/pins/${pin.id}`}>
+                    <Card
+                    src={pin.media_url}
+                    alt={pin.description}
+                    />
+                </Link>
+                <Link to="#" className="pin-owner">
+                    <div>{pin.user.username}</div>
+                </Link>
+            </div>
         </div>
     ))
 
@@ -34,7 +38,6 @@ const PinsDisplay = () => {
     return (
         <>
             <div className="pins-container">
-                <h1>Pin Display</h1>
                 {allPins}
             </div>
             <div className="button-container">
