@@ -4,7 +4,7 @@ const ADD_BOARD = 'boards/ADD'
 const EDIT_BOARD = 'boards/EDIT'
 const DELETE_BOARD = 'boards/DELETE'
 const PIN_TO_BOARD = 'pins-to-boards/ADD'
-const REMOVE_PIN_FROM_BOARD = 'pins-to-boards/ADD'
+const REMOVE_PIN_FROM_BOARD = 'pins-to-boards/REMOVE'
 
 
 const getBoards = boardsObj => {
@@ -171,7 +171,7 @@ const boardsReducer = (state = initialState, action) => {
             newState[action.edittedBoardObj.id] = action.edittedBoardObj
             return newState
         case REMOVE_PIN_FROM_BOARD:
-            newState[action.edittedBoardObj.id] = action.edittedBoardObj
+            newState = action.edittedBoardObj
             return newState
         default:
         return state
