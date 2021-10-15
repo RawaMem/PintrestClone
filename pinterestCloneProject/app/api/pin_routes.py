@@ -5,7 +5,7 @@ from flask_wtf.csrf import generate_csrf
 from app.forms.pin_form import PinForm
 from app.forms.edit_pin_form import EditPinForm
 from flask_login import current_user, login_required
-
+from app.models.comment import Comment
 
 pin_routes = Blueprint("pins", __name__, url_prefix="")
 
@@ -87,3 +87,11 @@ def like_a_pin(pin_id):
 def unlike_a_pin(pin_id):
     pin = Pin.query.filter(Pin.id == pin_id).first()
     current_user.unlike(pin)
+
+# @pin_routes.route('/remove-comment-pin/<int:pinid>/<int:commentid>', methods=['PATCH]'])
+# def edit_comment_to_pin(pinid,commentid):
+#     pin = Pin.query.filter(Pin.id == pinid).first()
+#     comment = Comment.query.filter(Comment.id == commentid).first()
+#     pin.comments.append(comment)
+#     db.session.commit()
+#     return pin.to_dict()

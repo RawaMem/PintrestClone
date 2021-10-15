@@ -1,0 +1,46 @@
+element.style{
+    font-size: 40px;
+}
+.wrapper {
+    display:flex;
+    position:fixed;
+    align-items: center;
+    top: 0;
+    left: 0;
+    width: 100%;
+    justify-content: flex-start;
+    height: 76px;
+    padding: 0px 4px 0px 16px;
+    background-color: pink;
+    color: black
+}
+
+.logo_wrapper {
+    display: flex;
+    justify-self: flex-end;
+    color: black;
+    height: 1em;
+    width: 1em;
+    align-items: center;
+}
+.logo_script {
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+    font-weight: 700;
+    color: #e60023;
+    left: 5px;
+}
+/* .icon_button {
+    height: 5px;
+    width: 5px;
+} */
+
+
+.MuiSvgIcon-root {
+        color: #e60023;
+        font-size: 5.5rem;
+        cursor: pointer;
+        width: 1em;
+        height: 1em;
+        }
