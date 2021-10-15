@@ -1,7 +1,7 @@
 import React from 'react'
 import PinterestIcon from '@material-ui/icons/Pinterest'
-import IconButton from '@material-ui/core/IconButton'
-import styled from 'styled-components'
+// import IconButton from '@material-ui/core/IconButton'
+// import styled from 'styled-components'
 import './Header.css'
 
 
@@ -28,7 +28,7 @@ export default function Header() {
         //     <IconsWrapper>
 
         //     </IconsWrapper>*/}
-        // </Wrapper> 
+        // </Wrapper>
         <div className="wrapper">
             <div className ="logo_wrapper">
                 <div className="icon_button">
@@ -59,17 +59,17 @@ export default function Header() {
     )
 }
 
-const Wrapper = styled.div`
-    display:flex;
-    align-items: center;
-    height: 50px;
-    padding: 12px 4px 4px 16px; 
-    background-color: white;
-    color: black`
+// const Wrapper = styled.div`
+//     display:flex;
+//     align-items: center;
+//     height: 50px;
+//     padding: 12px 4px 4px 16px;
+//     background-color: white;
+//     color: black`
 
-const LogoWrapper = styled.div`
-    .MuiSvgIcon-root {
-        color: #e60023;
-        font-size: 66px;
-        cursor: pointer;
-    }`
+// const LogoWrapper = styled.div`
+//     .MuiSvgIcon-root {
+//         color: #e60023;
+//         font-size: 66px;
+//         cursor: pointer;
+//     }`
