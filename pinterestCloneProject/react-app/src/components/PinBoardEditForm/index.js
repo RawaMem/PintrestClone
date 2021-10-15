@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Modal } from '../../context/Modal';
-import PinEditForm from './PinBoardEditForm';
+import PinEditForm from './PinEditForm';
 
 function EditPinModal({ pin }) {
     const [showModal, setShowModal] = useState(false);
