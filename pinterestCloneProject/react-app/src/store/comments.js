@@ -65,10 +65,12 @@ export const thunkAddComments = commentDetails => async (dispatch) => {
 }
 // edit comment thunk
 export const thunkEditCommentDetails = commentDetails => async(dispatch) => {
-    const response = await fetch (`/api/comments/edit/${commentDetails.pinId}/${commentDetails.id}`,{
+    console.log("@@@@@@",commentDetails)
+    const response = await fetch (`/api/comments/edit/${commentDetails.pin_id}/${commentDetails.id}`,{
         method: 'PATCH',
         body: JSON.stringify(commentDetails)
     })
+    console.log("@@@@@@",commentDetails)
     if (response.ok) {
         const edittedCommentsObj = await response.json()
         dispatch(editComment(edittedCommentsObj))

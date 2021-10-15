@@ -5,6 +5,7 @@ import { pinDetail } from '../../store/pins';
 import { thunkGetAllComments, thunkDeleteComment, thunkAddComments, thunkEditCommentDetails } from '../../store/comments';
 
 
+
 const PinDetail = () => {
 
     const dispatch = useDispatch()
@@ -49,7 +50,7 @@ const PinDetail = () => {
     };
 
     const updateComment = async (e) => {
-        // e.preventDefault();
+        e.preventDefault();
         let updatedContent = {
         'id': commentId,
         'user_id': sessionUser?.id,
@@ -57,8 +58,9 @@ const PinDetail = () => {
         'content': commentContent,
         'notified': 'false'
         };
+        console.log("------",pinId)
         dispatch(thunkEditCommentDetails(updatedContent))
-        dispatch(thunkGetAllComments());
+        // dispatch(thunkGetAllComments());
     }
 
     useEffect(() => {
@@ -100,15 +102,16 @@ const PinDetail = () => {
             <div className="description-container">
                 <p>{pins?.pin?.description}</p>
             // </div>
-            <form onSubmit={postComment}>
+            <form >
             <div>
             <label>Comment</label>
             <textArea 
-                style={{ 'minHeight': '100px' }} 
+                className='comment-text'
+                style={{ 'minHeight': '100px' ,'padding':'12px'}} 
                 placeholder="Add a comment"
                 value={commentContent}
                 onChange={(e) => setCommentContent(e.target.value)} />
-              <button className="submit-comment-button" type="submit" style={{ 'marginTop': '20px', 'height': '40px' }}>Done</button>
+              <button onClick={postComment} className="submit-comment-button" type="submit" style={{ 'marginTop': '20px', 'height': '40px' }}>Done</button>
               <div className="app">
                 {pinComments.map(comment => {
                     return(
@@ -121,14 +124,13 @@ const PinDetail = () => {
                     value={comment.content}
                     onChange={updateContent}
                     required/> 
-                <button value={comment.id} className='delete-Button' onClick={handleDelete}>Delete</button> <button onClick={(e) => updateComment(e.target.name,comment.id)} type="submit">Edit</button>
+                <button value={comment.id} className='delete-Button' onClick={handleDelete}>Delete</button> <button onClick={updateComment} >Edit</button>
                 </div>
                 )})}
                 
               </div>
             </div>
             </form>
-
         </>
     )
 }
