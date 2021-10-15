@@ -86,8 +86,10 @@ def add_pin_to_board(boardid, pinid):
 @board_routes.route('/remove-pin-board/<int:boardid>/<int:pinid>', methods=['POST'])
 def remove_pin_to_board(boardid, pinid):
     board = Board.query.filter(Board.id == boardid).first()
+    pin = Pin.query.filter(Pin.id == pinid).first()
     # pin = Pin.query.filter(Pin.id == pinid).first()
-    new_pin_list = [pin for pin in board.pins if pin.id != pinid]
-    board.pins = new_pin_list
+    # new_pin_list = [pin for pin in board.pins if pin.id != pinid]
+    # board.pins = new_pin_list
+    board.pins.remove(pin)
     db.session.commit()
     return board.to_dict()

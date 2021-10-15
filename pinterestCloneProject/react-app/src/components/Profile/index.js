@@ -192,9 +192,11 @@ export const Profile = () => {
                     return (
                         +board?.user_id === +profileUser?.id ? (
                             <>
+                                <Link className='board-card-link' to={`/boards/${board?.id}`}>
                                 <div className="board-card">
                                     <p className="board-title">{board?.title}</p>
                                 </div>
+                                </Link>
 
 
                             </>
