@@ -80,15 +80,6 @@ const PinDetail = () => {
     const pinComments = commentsSection.filter(comment => comment.pin_id === pins?.pin?.id)
     console.log("PIN",pinComments)
     
-    // .map(comment => (
-    //     {comment.user_id === sessionUser.id? && (
-    //     <div key={comment.id} className='single-comment'>
-    //       <div>{comment.user.username}</div>
-    //       <div>{comment.id}</div>
-    //       <button className='delete-Button' onClick={() => handleDelete(comment.id)}>Delete Me</button>
-    //       <div>{comment.content}</div>
-    //     </div>
-    //     )}))
 
     return (
         <>
@@ -124,7 +115,11 @@ const PinDetail = () => {
                     value={comment.content}
                     onChange={updateContent}
                     required/> 
+<<<<<<< Updated upstream
                 <button value={comment.id} className='delete-Button' onClick={handleDelete}>Delete</button> <button onClick={updateComment} >Edit</button>
+=======
+                <button value={comment.id} className='delete-Button' onClick={handleDelete}>Delete</button> <div type="button" onClick={(e) => updateComment(e.target.name,comment.id)} >Edit</div>
+>>>>>>> Stashed changes
                 </div>
                 )})}
                 
@@ -134,6 +129,15 @@ const PinDetail = () => {
         </>
     )
 }
+ // .map(comment => (
+    //     {comment.user_id === sessionUser.id? && (
+    //     <div key={comment.id} className='single-comment'>
+    //       <div>{comment.user.username}</div>
+    //       <div>{comment.id}</div>
+    //       <button className='delete-Button' onClick={() => handleDelete(comment.id)}>Delete Me</button>
+    //       <div>{comment.content}</div>
+    //     </div>
+    //     )}))
 
 
 export default PinDetail
