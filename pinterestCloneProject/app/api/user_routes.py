@@ -24,7 +24,8 @@ def user(id):
 def add_follow(userid, followingid):
     user = User.query.filter(User.id == userid).first()
     followed_user = User.query.filter(User.id == followingid).first()
-    followed_user.following.append(user)
+    print('============>@@@@@@@@this is user', user.id, 'this is followed_user', followed_user.id)
+    user.following.append(followed_user)
     db.session.commit()
     return user.to_dict()
 
@@ -33,8 +34,8 @@ def add_follow(userid, followingid):
 def remove_follow(userid, followingid):
     followed_user = User.query.filter(User.id == followingid).first()
     # following = User.query.filter(User.id == followingid).first()
-    new_follower_list = [following for following in followed_user.follows if following.follower_id != userid]
-    followed_user.follows = new_follower_list
+    new_follower_list = [following for following in followed_user.followers if following != userid]
+    followed_user.followers = new_follower_list
     db.session.commit()
     user = User.query.filter(User.id == userid).first()
     return user.to_dict()

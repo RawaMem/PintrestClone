@@ -138,7 +138,7 @@ export const signUp = (first_name, last_name, username, email, password) => asyn
 
 
 export const followUser = userIds => async (dispatch) => {
-  const response = await fetch(`/api/follow-user/${userIds.userid}/${userIds.followingid}`, {
+  const response = await fetch(`/api/users/follow-user/${userIds.userid}/${userIds.followingid}`, {
       method: 'POST',
       headers: {
           'Content-Type':'application/json'
@@ -154,7 +154,7 @@ export const followUser = userIds => async (dispatch) => {
 
 
 export const unfollowUser = userIds => async (dispatch) => {
-  const response = await fetch(`/api/follow-user/${userIds.userid}/${userIds.followingid}`, {
+  const response = await fetch(`/api/users/unfollow-user/${userIds.userid}/${userIds.followingid}`, {
       method: 'POST',
       headers: {
           'Content-Type':'application/json'

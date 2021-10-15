@@ -6,23 +6,17 @@ import EditPinModal from '../PinEditForm';
 import { getAllPins } from '../../store/pins';
 import Card from '../PictureCard';
 import './profile.css';
-import { getUserprofile } from '../../store/session';
+import { followUser, getUserprofile, unfollowUser } from '../../store/session';
 // import Modal from '@mui/material/Modal';
 
 
 
 export const Profile = () => {
-
     const dispatch = useDispatch();
-
     const { currentProfileId } = useParams()
-
     const allBoardsObj = useSelector(state => state.boards)
-
     const allBoardsList = Object.values(allBoardsObj)
-
     const allPinsObj = useSelector(state => state.pins)
-
     const allPinsArray = Object.values(allPinsObj)
     // console.log("========================>pinsArray",allPinsArray)
 
@@ -48,48 +42,91 @@ export const Profile = () => {
     const allFollowersOfCurrentProfile = allUsers?.filter(user => profileUser?.followers?.includes(user?.id))
     console.log('========> all followers', allFollowersOfCurrentProfile)
 
-    const listOfUserObjsWeAreFollowing = allUsers?.filter(user => user?.followers?.includes(profileUser?.id))
-    console.log('========> all users that we are following', listOfUserObjsWeAreFollowing)
-
-
-
+    const listOfUserObjsProfileIsFollowing = allUsers?.filter(user => user?.followers?.includes(profileUser?.id))
+    console.log('========> all users profile is following', listOfUserObjsProfileIsFollowing)
 
 
     useEffect(() => {
         dispatch(getAllBoards())
         dispatch(getAllPins())
         dispatch(getUserprofile(currentProfileId))
-    }, [dispatch, currentProfileId])
+    }, [dispatch, currentProfileId, user])
 
 
-    const [showMenu, setShowMenu] = useState(false);
-
-    const openMenu = () => {
-      if (showMenu) return;
-      setShowMenu(true);
+    // create pop up menu
+    const [showMenuCreate, setShowMenuCreate] = useState(false);
+    const openMenuCreate = () => {
+      if (showMenuCreate) return;
+      setShowMenuCreate(true);
     };
-
     useEffect(() => {
-      if (!showMenu) return;
+      if (!showMenuCreate) return;
+      const closeMenuCreate = () => {
+        setShowMenuCreate(false);
+      };
+      document.addEventListener('click', closeMenuCreate);
+      return () => document.removeEventListener("click", closeMenuCreate);
+    }, [showMenuCreate]);
 
-      const closeMenu = () => {
-        setShowMenu(false);
+
+    // followers pop up menu
+    const [showMenuFollowers, setShowMenuFollowers] = useState(false);
+    const openMenuFollowers = () => {
+      if (showMenuFollowers) return;
+      setShowMenuFollowers(true);
+    };
+    useEffect(() => {
+      if (!showMenuFollowers) return;
+      const closeMenuFollowers = () => {
+        setShowMenuFollowers(false);
+      };
+      document.addEventListener('click', closeMenuFollowers);
+      return () => document.removeEventListener("click", closeMenuFollowers);
+    }, [showMenuFollowers]);
+
+
+    // following pop up menu
+    const [showMenuFollowing, setShowMenuFollowing] = useState(false);
+    const openMenuFollowing = () => {
+      if (showMenuFollowing) return;
+      setShowMenuFollowing(true);
+    };
+    useEffect(() => {
+      if (!showMenuFollowing) return;
+      const closeMenuFollowing = () => {
+        setShowMenuFollowing(false);
+      };
+      document.addEventListener('click', closeMenuFollowing);
+      return () => document.removeEventListener("click", closeMenuFollowing);
+    }, [showMenuFollowing]);
+
+
+    const handleFollow = async(e) => {
+        e.preventDefault();
+        const payload = {
+            userid: user.id,
+            followingid: e.target.value
+        };
+        dispatch(followUser(payload))
       };
 
-      document.addEventListener('click', closeMenu);
 
-      return () => document.removeEventListener("click", closeMenu);
-    }, [showMenu]);
-
-
+    const handleUnfollow = async(e) => {
+        e.preventDefault();
+        const payload = {
+            userid: user.id,
+            followingid: e.target.value
+        };
+        dispatch(unfollowUser(payload))
+    };
 
 
     return(
         <>
             {user && profileUser && user.id === profileUser.id && (
             <div className="mid-button-container">
-                <button  className='big-profile-btn' onClick={openMenu}>Create</button>
-                {showMenu && (
+                <button  className='big-profile-btn' onClick={openMenuCreate}>Create</button>
+                {showMenuCreate && (
                     <>
                         <p className="creation">Create</p>
                         <Link className='pop-up-button' to={`/pin-builder`}>
@@ -99,7 +136,6 @@ export const Profile = () => {
                             <button className='create-board-btn'>Board</button>
                         </Link>
                     </>
-
                 )}
             </div>
             )}
@@ -108,8 +144,48 @@ export const Profile = () => {
                 <button className="user-info-button">{profileUser?.first_name[0]}</button>
                 <h1 className="full-name">{profileUser?.first_name} {profileUser?.last_name}</h1>
                 <p className="at-username">@{profileUser?.username}</p>
-                <p className="followers">{profileUser?.followers.length} Followers</p>
-                <p className="followers">{profileUser?.followers.length} Following</p>
+                <div className="follower-list-container">
+                    <p className="followers" onClick={openMenuFollowers}>{profileUser?.followers.length} Followers</p>
+                    {showMenuFollowers && (
+                        <>
+                            {allFollowersOfCurrentProfile.map(follower => {
+                                return (
+                                    <div className="popup-follower-row">
+                                        <p className="follower-name">{follower.username}</p>
+                                        {user?.followers?.includes(follower?.id) && (
+                                        <button className="follow-toggle-btn" onClick={handleUnfollow} value={follower?.id}>Unfollow</button>
+                                        )}
+                                        {!user?.followers?.includes(follower?.id) && (
+                                        <button className="follow-toggle-btn" onClick={handleFollow} value={follower?.id}>Follow</button>
+                                        )}
+                                    </div>
+                                )
+                            })}
+                        </>
+                    )}
+                </div>
+
+                <div className="follower-list-container">
+                    <p className="followers" onClick={openMenuFollowing}>{listOfUserObjsProfileIsFollowing?.length} Following</p>
+                    {showMenuFollowing && (
+                        <>
+                        {listOfUserObjsProfileIsFollowing.map(follower => {
+                            return (
+                                <div className="popup-follower-row">
+                                    <p className="follower-name">{follower.username}</p>
+                                    {user?.followers?.includes(follower?.id) && (
+                                    <button className="follow-toggle-btn" onClick={handleUnfollow} value={follower?.id}>Unfollow</button>
+                                    )}
+                                    {!user?.followers?.includes(follower?.id) && (
+                                    <button className="follow-toggle-btn" onClick={handleFollow} value={follower?.id}>Follow</button>
+                                    )}
+                                </div>
+                            )
+                        })}
+                    </>
+                    )}
+                </div>
+
             </div>
             <div className="boards-container">
                 {allBoardsList.map(board => {
