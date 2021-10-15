@@ -53,16 +53,18 @@ export default function Header() {
                     SafetyPinterest
                 </div>
             </div>
-            <div className="homepage_github">
-                <InputLabel>Github</InputLabel>
-                <Select>
-                    <MenuItem>Sherry</MenuItem>
-                    <MenuItem>Rawaha</MenuItem>
-                    <MenuItem>Fanny</MenuItem>
-                </Select>
-            {/* <a href=>
-
-            </a> */}
+            <div className="search_wrapper">
+                SEARCH BAR
+            </div>
+            <div className="button_wrapper">
+                <div className="homepage_github">
+                    <InputLabel>Github</InputLabel>
+                    <Select>
+                        <MenuItem>Sherry</MenuItem>
+                        <MenuItem>Rawaha</MenuItem>
+                        <MenuItem>Fanny</MenuItem>
+                    </Select>
+                </div>
             </div>
             <div className="login_button">Login
 
