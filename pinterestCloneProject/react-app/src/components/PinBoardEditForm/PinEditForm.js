@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
-import { getAllBoards, createBoard } from "../../store/boards"
+import { getAllBoards, createBoard, addPinToBoard, removeOnePinFromBoard } from "../../store/boards"
 import { pinDetail, deletePin } from "../../store/pins"
 import "./PinEditForm.css";
 
@@ -16,6 +16,8 @@ function PinEditForm({ pin }) {
     const boardsArray = Object.values(boardsObj);
     const [title, setTitle] = useState("")
     const { pinId } = useParams()
+    const [boardId, setBoardId] = useState();
+
 
 
     useEffect(() => {
@@ -38,6 +40,28 @@ function PinEditForm({ pin }) {
 
     //handle EditPinForm submit
 
+
+    const handleAddPinToBoard = async(e) => {
+        e.preventDefault();
+        const payload = {
+            boardId,
+            pinId: pin.id
+        };
+        console.log('======@@@@@@@@=====>', boardId)
+        console.log('======@@@@@@@@=====>', pin?.pin?.id)
+        dispatch(addPinToBoard(payload))
+      };
+
+
+    const handleRemovePinFromBoard = async(e) => {
+        e.preventDefault();
+        const payload = {
+            boardId,
+            pinId: pin.id
+        };
+        dispatch(removeOnePinFromBoard(payload))
+    };
+
     return (
         <>
             <div className="edit-pinform-container">
@@ -55,13 +79,16 @@ function PinEditForm({ pin }) {
                                     Board
                                     <select
                                         value={title}
-                                        onChange={e => setTitle(e.target.value)}
+                                        onChange={e => {
+                                            setTitle(e.target.value)
+                                            setBoardId(e.target.value)
+                                        }}
                                     >
                                         {boardsArray?.map(board => {
                                             return (
                                                 +board?.user_id === +currentUser?.id? (
                                                     <>
-                                                        <option value={board.id}>{board.title}</option>
+                                                        <option value={board.id} onChange={e => setBoardId(board.id)}>{board.title}</option>
                                                     </>
                                                 ) : false
                                             )
@@ -105,7 +132,7 @@ function PinEditForm({ pin }) {
                         </button>
                     </div>
                     <div className="save-button-container">
-                        <button className="save-edit-button">
+                        <button className="save-edit-button" onClick={handleAddPinToBoard}>
                             Save
                         </button>
                     </div>
