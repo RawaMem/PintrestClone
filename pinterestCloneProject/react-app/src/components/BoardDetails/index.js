@@ -1,22 +1,18 @@
 import { useEffect, useState  } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
-import boardsReducer, { getBoardDetails } from '../../store/boards';
+import boardsReducer, { getBoardDetails, removeOnePinFromBoard } from '../../store/boards';
 import { getAllPins } from '../../store/pins';
 import Card from '../PictureCard';
 import EditPinModal from '../PinBoardEditForm';
 
 
 export const BoardDetails = () => {
-
     const dispatch = useDispatch();
-
     const {boardId} = useParams()
-
     const currentBoard = useSelector(state => state.boards)
-    const allPinsObj = useSelector(state => state.pins)
-    const allPinsArray = Object.values(allPinsObj)
-
+    // const allPinsObj = useSelector(state => state.pins)
+    // const allPinsArray = Object.values(allPinsObj)
     // const pinsForThisBoard = allPinsArray?.filter(pin => currentBoard?.pins?.includes(pin.id))
     // console.log('======@@====>', currentBoard?.pins)
 
@@ -30,11 +26,21 @@ export const BoardDetails = () => {
         dispatch(getAllPins())
     }, [dispatch])
 
+
+    const handleRemovePinFromBoard = async(e) => {
+        const payload = {
+            boardId,
+            pinId: e.target.value
+        };
+        dispatch(removeOnePinFromBoard(payload))
+    };
+
     return (
         <>
             <div className="board-info-container">
                 <button className="board-title">{currentBoard?.title}</button>
                 <button className="user-info-button">{user?.first_name[0]}</button>
+                <p className="number-of-pins">{currentBoard?.pins?.length} Pins</p>
 
             </div>
             <div className="unorganized-pins-container">
@@ -46,6 +52,7 @@ export const BoardDetails = () => {
                                         <div className="pin-edit">
                                             <EditPinModal pin={pin}/>
                                         </div>
+                                        <button value={pin.id} onClick={handleRemovePinFromBoard} className="delete-pin-from-board">Delete from Board</button>
 
                                     <Link to={`/pins/${pin.id}`} className="user-pins-container">
                                         <Card
