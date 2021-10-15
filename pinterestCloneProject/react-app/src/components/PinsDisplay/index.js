@@ -17,32 +17,32 @@ const PinsDisplay = () => {
     const boardsArray = Object.values(boardsObj);
     // console.log(boardsArray);
 
-    const allPinBoard = boardsArray.filter(board => (currentUser?.id === board?.user_id && board?.title === "All Pins"))
-    const boardId = allPinBoard[0]
-    console.log("====================> all @@@@@@", boardId.id)
+    // const allPinBoard = boardsArray.filter(board => (currentUser?.id === board?.user_id && board?.title === "All Pins"))
+    // const boardId = allPinBoard[0]
+    // console.log("====================> all @@@@@@", boardId.id)
     const [ pinId, setPinId ] = useState();
 
     useEffect(() => {
         dispatch(getAllBoards())
     }, [dispatch]);
 
-    const handleAddPinToBoard = async(e) => {
-        e.preventDefault();
-        const payload = {
-            boardId:boardId.id,
-            pinId
-        };
-        setPinId(e.target.value);
-        dispatch(addPinToBoard(payload))
-    };
+    // const handleAddPinToBoard = async(e) => {
+    //     e.preventDefault();
+    //     const payload = {
+    //         boardId:boardId.id,
+    //         pinId
+    //     };
+    //     setPinId(e.target.value);
+    //     dispatch(addPinToBoard(payload))
+    // };
 
     // console.log("this is pins",pins)
     const allPins = Object.values(pins)?.map(pin => (
         <div key={pin.id} className="picture-card-display">
             <div className="pins-display-container">
-                <button value= {pin.id} className="save-button" onClick={handleAddPinToBoard}>
+                {/* <button value= {pin.id} className="save-button" onClick={handleAddPinToBoard}>
                     Save
-                </button>
+                </button> */}
                 <Link to={`/pins/${pin?.id}`}>
                     <Card
                     src={pin?.media_url}
