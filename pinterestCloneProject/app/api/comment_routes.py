@@ -3,6 +3,7 @@ from app.models import db
 from app.models.comment import Comment
 from flask_wtf.csrf import generate_csrf
 from app.forms.new_comment_form import NewCommentForm
+from app.forms.edit_comment_form import EditCommentForm
 from flask_login import current_user
 
 
@@ -15,12 +16,23 @@ def get_comments():
     return{ comment.id:comment.to_dict() for comment in comments}
 
 # edit single comment
-@comment_routes.route('/comment/edit/<int:pinId>/<int:commentId>', methods=['PATCH'])
+@comment_routes.route('/edit/<int:pinId>/<int:commentId>', methods=['PATCH'])
 def edit_one_comment(pinId,commentId):
-    comment =Comment.query.filter(Comment.pinId == pinId & comment.id == commentId)\
-    .update({comment.content: form.data['content'], comment.user_id: current_user.id})
+    form = EditCommentForm()
+    comment =Comment.query.filter(Comment.pin_id == pinId and Comment.id == commentId).first()
+    # .update({comment.content: form.data['content'], comment.user_id: current_user.id})
+    # form["csrf_token"].data = request.cookies["csrf_token"]
+    # if form.validate_on_submit():
+    comment.user_id=current_user.id,
+    comment.pin_id = form.data['pin_id']
+    comment.content=form.data['content']
 
+    db.session.commit()
     return comment.to_dict()
+
+    # else:
+    #     return form.errors
+
 
 # create a new comment
 
@@ -45,25 +57,25 @@ def create_new_comment():
 
 #edit a comment
 
-@comment_routes.route('/edit/<int:id>', methods=['PATCH'])
-def edit_comment(id):
-    form = EditCommentForm()
-    form["csrf_token"].data = request.cookies["csrf_token"]
-    if form.validate_on_submit():
-        comment = Comment.query.filter(Comment.id==id).first()
+# @comment_routes.route('/edit/<int:id>', methods=['PATCH'])
+# def edit_comment(id):
+#     form = EditCommentForm()
+#     form["csrf_token"].data = request.cookies["csrf_token"]
+#     if form.validate_on_submit():
+#         comment = Comment.query.filter(Comment.id==id).first()
         
-        comment.user_id=current_user.id,
-        comment.pin_id = form.data['pin_id']
-        comment.content=form.data['content']
-        comment.notified = form.data['notified']
+#         comment.user_id=current_user.id,
+#         comment.pin_id = form.data['pin_id']
+#         comment.content=form.data['content']
+#         comment.notified = form.data['notified']
 
-        db.session.commit()
-        #return all comments
-        comments = Comment.query.all()
-        return [comment.to_dict() for comment in comments]
+#         db.session.commit()
+#         #return all comments
+#         comments = Comment.query.all()
+#         return [comment.to_dict() for comment in comments]
 
-    else:
-        return form.errors
+#     else:
+#         return form.errors
 
 # delete a comment
 
