@@ -68,9 +68,9 @@ function App() {
         <Route exact path='/pin-builder'>
           <CreatePinForm />
         </Route>
-        <ProtectedRoute path='/board-builder' exact={true} >
+        {/* <ProtectedRoute path='/board-builder' exact={true} >
           <CreateBoard />
-        </ProtectedRoute>
+        </ProtectedRoute> */}
         <ProtectedRoute path='/board-edit/:boardId' exact={true} >
           <EditBoard />
         </ProtectedRoute>

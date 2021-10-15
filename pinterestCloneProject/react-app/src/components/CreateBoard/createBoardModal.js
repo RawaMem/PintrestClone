@@ -23,3 +23,5 @@ function CreateBoardModal() {
         </>
     )
 }
+
+export default CreateBoardModal

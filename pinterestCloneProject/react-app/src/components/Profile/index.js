@@ -7,11 +7,13 @@ import { getAllPins } from '../../store/pins';
 import Card from '../PictureCard';
 import './profile.css';
 import { followUser, getUserprofile, unfollowUser } from '../../store/session';
+import CreateBoardModal from '../CreateBoard/createBoardModal';
 // import Modal from '@mui/material/Modal';
 
 
 
 export const Profile = () => {
+
     const dispatch = useDispatch();
     const { currentProfileId } = useParams()
     const allBoardsObj = useSelector(state => state.boards)
@@ -132,9 +134,9 @@ export const Profile = () => {
                         <Link className='pop-up-button' to={`/pin-builder`}>
                             <button className='create-pin-btn'>Pin</button>
                         </Link>
-                        <Link className='pop-up-button' to={`/board-builder`}>
-                            <button className='create-board-btn'>Board</button>
-                        </Link>
+                        <div className="create-board-container">
+                            <CreateBoardModal />
+                        </div>
                     </>
                 )}
             </div>
@@ -166,6 +168,7 @@ export const Profile = () => {
                 </div>
 
                 <div className="follower-list-container">
+                    <CreateBoardModal />
                     <p className="followers" onClick={openMenuFollowing}>{listOfUserObjsProfileIsFollowing?.length} Followers</p>
                     {showMenuFollowing && (
                         <>
