@@ -15,7 +15,7 @@ const PinsDisplay = () => {
     const allPins = Object.values(pins)?.map(pin => (
         <div key={pin.id} className="picture-card-display">
             <div className="pins-display-container">
-                <Link to={`/pins/${pin.id}`}>
+                <Link to={`/pins/${pin?.id}`}>
                     <Card
                     src={pin?.media_url}
                     alt={pin?.description}
