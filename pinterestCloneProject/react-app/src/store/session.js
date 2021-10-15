@@ -182,9 +182,11 @@ export default function reducer(state = initialState, action) {
     case REMOVE_USER:
       return { user: null }
     case FOLLOW:
-      return { user: action.userObj }
+      newState.user = action.userObj
+      return newState
     case UNFOLLOW:
-      return { user: action.userObj }
+      newState.user = action.userObj
+      return newState
     default:
       return state;
   }

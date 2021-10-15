@@ -4,7 +4,7 @@ from app.models import db, Pin
 from flask_wtf.csrf import generate_csrf
 from app.forms.pin_form import PinForm
 from app.forms.edit_pin_form import EditPinForm
-from flask_login import current_user
+from flask_login import current_user, login_required
 
 
 pin_routes = Blueprint("pins", __name__, url_prefix="")
@@ -73,3 +73,17 @@ def delete_pin(id):
     db.session.commit()
 
     return deleted_pin.to_dict()
+
+
+@pin_routes.route('/pins/<int:pin_id>/likes', methods=['POST'])
+@login_required
+def like_a_pin(pin_id):
+    pin = Pin.query.filter(Pin.id == pin_id).first()
+    current_user.like(pin)
+
+
+@pin_routes.route('/pins/<int:pin_id>/likes', methods=['DELETE'])
+@login_required
+def unlike_a_pin(pin_id):
+    pin = Pin.query.filter(Pin.id == pin_id).first()
+    current_user.unlike(pin)

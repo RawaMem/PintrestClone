@@ -45,17 +45,17 @@ const deleteBoard = deletedBoardObj => {
     }
 }
 
-const pintToBoard = boardObj => {
+const pintToBoard = edittedBoardObj => {
     return {
         type: PIN_TO_BOARD,
-        boardObj
+        edittedBoardObj
     }
 }
 
-const removePinFromBoard = boardObj => {
+const removePinFromBoard = edittedBoardObj => {
     return {
         type: REMOVE_PIN_FROM_BOARD,
-        boardObj
+        edittedBoardObj
     }
 }
 
@@ -128,9 +128,9 @@ export const addPinToBoard = pinBoardIds => async (dispatch) => {
         body: JSON.stringify(pinBoardIds)
     })
     if (response.ok) {
-        const boardObj = await response.json();
-        dispatch(pintToBoard(boardObj))
-        return boardObj
+        const edittedBoardObj = await response.json();
+        dispatch(pintToBoard(edittedBoardObj))
+        return edittedBoardObj
     }
 }
 
@@ -143,9 +143,9 @@ export const removeOnePinFromBoard = pinBoardIds => async (dispatch) => {
         body: JSON.stringify(pinBoardIds)
     })
     if (response.ok) {
-        const boardObj = await response.json();
-        dispatch(removePinFromBoard(boardObj))
-        return boardObj
+        const edittedBoardObj = await response.json();
+        dispatch(removePinFromBoard(edittedBoardObj))
+        return edittedBoardObj
     }
 }
 
@@ -153,34 +153,26 @@ const initialState = {}
 
 const boardsReducer = (state = initialState, action) => {
     let newState = {...state}
-
     switch (action.type) {
         case GET_BOARDS:
             return action.boardsObj
-
         case BOARD_DETAILS:
             return action.boardDetailsObj
-
         case ADD_BOARD:
             newState[action.newBoardObj.id] = action.newBoardObj
             return newState
-
         case EDIT_BOARD:
             newState[action.edittedBoardObj.id] = action.edittedBoardObj
             return newState
-
         case DELETE_BOARD:
             delete newState[action.deletedBoardObj.id]
             return newState
-
         case PIN_TO_BOARD:
-            newState[action.boardObj.id] = action.boardObj
+            newState[action.edittedBoardObj.id] = action.edittedBoardObj
             return newState
-
         case REMOVE_PIN_FROM_BOARD:
-            newState[action.boardObj.id] = action.boardObj
+            newState[action.edittedBoardObj.id] = action.edittedBoardObj
             return newState
-
         default:
         return state
     }
