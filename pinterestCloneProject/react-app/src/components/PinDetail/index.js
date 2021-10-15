@@ -115,11 +115,7 @@ const PinDetail = () => {
                     value={comment.content}
                     onChange={updateContent}
                     required/> 
-<<<<<<< Updated upstream
                 <button value={comment.id} className='delete-Button' onClick={handleDelete}>Delete</button> <button onClick={updateComment} >Edit</button>
-=======
-                <button value={comment.id} className='delete-Button' onClick={handleDelete}>Delete</button> <div type="button" onClick={(e) => updateComment(e.target.name,comment.id)} >Edit</div>
->>>>>>> Stashed changes
                 </div>
                 )})}
                 
