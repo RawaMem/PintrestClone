@@ -37,6 +37,17 @@ class User(db.Model, UserMixin):
     # user_liked_categories = db.relationship('Category', back_populates='user', secondary=liked_categories)
     liked_categories = db.relationship('LikedCategory', back_populates='user')
 
+    def follow(self, user):
+        if user.id not in self.followers:
+            self.following.append(user.id)
+            return self
+
+
+    def unfollow(self, user):
+        if user.id in self.followers:
+            self.following.remove(user.id)
+            return self
+
 
     @property
     def password(self):
