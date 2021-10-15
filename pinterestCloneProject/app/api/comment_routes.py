@@ -16,22 +16,26 @@ def get_comments():
     return{ comment.id:comment.to_dict() for comment in comments}
 
 # edit single comment
-@comment_routes.route('/edit/<int:pinId>/<int:commentId>', methods=['PATCH'])
-def edit_one_comment(pinId,commentId):
+@comment_routes.route('/edit/<int:commentId>', methods=['PATCH'])
+def edit_one_comment(commentId):
     form = EditCommentForm()
-    comment =Comment.query.filter(Comment.pin_id == pinId and Comment.id == commentId).first()
+    comment =Comment.query.filter(Comment.id == commentId).first()
     # .update({comment.content: form.data['content'], comment.user_id: current_user.id})
-    # form["csrf_token"].data = request.cookies["csrf_token"]
-    # if form.validate_on_submit():
-    comment.user_id=current_user.id,
-    comment.pin_id = form.data['pin_id']
-    comment.content=form.data['content']
+    form["csrf_token"].data = request.cookies["csrf_token"]
+    print("--------",comment.content)
+    print("@@@@@",form.data)
+    print("--------##---",request.get_json())
+    print("----JSON---",request.json)
+    if form.validate_on_submit():
+        print("@@@@@",form.data)
+        comment.content=form.data['content']
 
-    db.session.commit()
-    return comment.to_dict()
+        db.session.commit()
+        return comment.to_dict()
 
-    # else:
-    #     return form.errors
+    else:
+        print("^^^^^^^^^^^",form.errors)
+        return form.errors
 
 
 # create a new comment

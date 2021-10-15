@@ -15,6 +15,7 @@ import { BoardDetails } from './components/BoardDetails';
 import CreatePinForm from './components/CreatePin';
 import { CreateBoard } from './components/CreateBoard';
 import { EditBoard } from './components/EditBoard';
+import Header from './components/home/Header';
 
 
 function App() {
@@ -36,8 +37,11 @@ function App() {
 
   return (
     <BrowserRouter>
-      <NavBar />
+    <NavBar />
       <Switch>
+        <Route path='/' exact={true}>
+        <Header />
+        </Route>
         <Route path='/login' exact={true}>
           <LoginForm />
         </Route>
