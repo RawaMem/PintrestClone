@@ -1,9 +1,24 @@
 import React from 'react'
 import PinterestIcon from '@material-ui/icons/Pinterest'
-import IconButton from '@material-ui/core/IconButton'
+// import IconButton from '@material-ui/core/IconButton'
 import styled from 'styled-components'
 import './Header.css'
+import {Select, MenuItem, FormControl, InputLabel} from "@material-ui/core"
 
+const Wrapper = styled.div`
+    display:flex;
+    align-items: center;
+    height: 50px;
+    padding: 12px 4px 4px 16px; 
+    background-color: white;
+    color: black`
+
+const LogoWrapper = styled.div`
+    .MuiSvgIcon-root {
+        color: #e60023;
+        font-size: 66px;
+        cursor: pointer;
+    }`
 
 export default function Header() {
     return (
@@ -39,17 +54,21 @@ export default function Header() {
                 </div>
             </div>
             <div className="homepage_github">
+                <InputLabel>Github</InputLabel>
+                <Select>
+                    <MenuItem>Sherry</MenuItem>
+                    <MenuItem>Rawaha</MenuItem>
+                    <MenuItem>Fanny</MenuItem>
+                </Select>
             {/* <a href=>
 
             </a> */}
             </div>
-            <div className="following_button">
+            <div className="login_button">Login
 
             </div>
-            <div className="search_wrapper">
-                <div className="search_bar">
-
-                </div>
+            <div className="signup_button">Signup
+            
             </div>
             <div className="icon_wrapper">
 
@@ -59,17 +78,17 @@ export default function Header() {
     )
 }
 
-const Wrapper = styled.div`
-    display:flex;
-    align-items: center;
-    height: 50px;
-    padding: 12px 4px 4px 16px; 
-    background-color: white;
-    color: black`
+// const Wrapper = styled.div`
+//     display:flex;
+//     align-items: center;
+//     height: 50px;
+//     padding: 12px 4px 4px 16px; 
+//     background-color: white;
+//     color: black`
 
-const LogoWrapper = styled.div`
-    .MuiSvgIcon-root {
-        color: #e60023;
-        font-size: 66px;
-        cursor: pointer;
-    }`
+// const LogoWrapper = styled.div`
+//     .MuiSvgIcon-root {
+//         color: #e60023;
+//         font-size: 66px;
+//         cursor: pointer;
+//     }`
