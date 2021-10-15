@@ -6,52 +6,48 @@ import { deletePin, editPin } from "../../store/pins"
 import "./editPinForm.css";
 
 
-function EditPinForm() {
+function EditPinForm({pin}) {
 
     const dispatch = useDispatch();
     const history = useHistory();
     const currentUser = useSelector( state => state.session?.user);
     const boardsObj = useSelector(state => state?.boards)
-    const pinObj = useSelector(state => state?.pins)
     const boardsArray = Object.values(boardsObj);
-    const pinsArray = Object.values(pinObj);
 
     const [title, setTitle] = useState("");
     const [boardTitle, setBoardTitle] = useState("");
     const [description, setDescription] = useState("");
     const [media_url, setMedia_url] = useState("")
-    const { pinId } = useParams()
 
     useEffect(() => {
-        const pinForEdit = pinsArray.pinId;
-        if(pinForEdit) {
-            setTitle(pinForEdit.title);
-            setDescription(pinForEdit.description);
-            setMedia_url(pinForEdit.media_url);
+        if(pin) {
+            setTitle(pin?.title);
+            setDescription(pin?.description);
+            setMedia_url(pin?.media_url);
         }
-    }, [pinForEdit])
+    }, [pin])
 
     const handleSubmit = async(e) => {
         e.preventDefault();
 
         const payload = {
-            id: pinId,
-            user_id: currentUser.id,
+            id: pin?.id,
+            user_id: currentUser?.id,
             title,
             media_url,
             description
         };
 
-        let editedPin = await dispatch(editPin(payload))
-        if (editedPin) {
-            history.push(`/pins/${editedPin?.id}`)
-        }
+        let editedPin = dispatch(editPin(payload))
+
+        return history.push(`/profile/${currentUser?.id}`);
+
     }
 
     const handleDelete = e => {
-        e.preventDefault();
+        // e.preventDefault();
         dispatch(deletePin(e.target.value));
-        history.push(`/home`)
+        history.push(`/profile/${currentUser?.id}`)
     }
 
     return (
@@ -66,7 +62,7 @@ function EditPinForm() {
 
                     <section className="content-section">
                         <div className="left-part">
-                            <div className="form-content">
+                            {/* <div className="form-content">
                                 <label className="users-board">
                                     Board
                                     <select
@@ -84,7 +80,7 @@ function EditPinForm() {
                                         })}
                                     </select>
                                 </label>
-                            </div>
+                            </div> */}
 
                             <div className="form-content">
                                 <label className="pin-title">
@@ -121,19 +117,19 @@ function EditPinForm() {
                                     />
                                 </label>
                             </div>
-
-                            <div className="right-side">
-                                <div className="pin-image-container">
-                                    <img className="pin-image" src={pin?.media_url} alt={pin?.description} />
-                                </div>
+                        </div>
+                        <div className="right-side">
+                            <div className="pin-image-container">
+                                <img className="pin-image" src={pin?.media_url} alt={pin?.description} />
                             </div>
                         </div>
+
                     </section>
 
                     <section className="button-section">
                         <div className="button-container">
                             <div className="delete-button-container">
-                                <button value={ pin.id } className="delete-button" onClick={handleDelete}>
+                                <button value={ pin?.id } className="delete-button" onClick={handleDelete}>
                                     Delete
                                 </button>
                             </div>
@@ -148,7 +144,7 @@ function EditPinForm() {
                                         Cancel
                                 </button>
 
-                                <button className="save-edit-button" type="submit">
+                                <button type="submit">
                                     Save
                                 </button>
                             </div>

@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { Link, useParams,useHistory } from 'react-router-dom';
 import { pinDetail } from '../../store/pins';
 import { thunkGetAllComments, thunkDeleteComment, thunkAddComments, thunkEditCommentDetails } from '../../store/comments';
+import EditUserPinModal from '../EditPinForm';
 
 
 const PinDetail = () => {
@@ -20,7 +21,7 @@ const PinDetail = () => {
     // const reset = () => {
     //     setCommentContent("")
     // }
-    
+
     const handleDelete = (e) => {
         e.preventDefault();
         dispatch(thunkDeleteComment(e.target.value))
@@ -36,7 +37,7 @@ const PinDetail = () => {
         'notified': 'false'
     };
 
-   
+
     let createdComment =await dispatch(thunkAddComments(newComment))
 
 //     if (createdComment) {
@@ -44,7 +45,7 @@ const PinDetail = () => {
 //     }
 //     reset()
 };
-    const updateContent = (e) => 
+    const updateContent = (e) =>
         {setCommentContent(e.target.value)
         setCommentId(parseInt(e.target.name))
         //update pin comment list
@@ -81,7 +82,7 @@ const PinDetail = () => {
     const commentsSection = Object.values(comments)
     const pinComments = commentsSection.filter(comment => comment.pin_id === pins?.pin?.id)
     console.log("PIN",pinComments)
-    
+
     // .map(comment => (
     //     {comment.user_id === sessionUser.id? && (
     //     <div key={comment.id} className='single-comment'>
@@ -97,6 +98,7 @@ const PinDetail = () => {
             <h1>PinDetail</h1>
             <div className="image-container">
                 <img className="pin-detail-image" src={pins?.pin?.media_url} alt={pins?.pin?.description} />
+                <EditUserPinModal pin={pins?.pin} />
             </div>
             <div className="title-container">
                 <h3>{pins?.pin?.title}</h3>
@@ -107,8 +109,8 @@ const PinDetail = () => {
             <form onSubmit={postComment}>
             <div>
             <label>Comment</label>
-            <textArea 
-                style={{ 'minHeight': '100px' }} 
+            <textArea
+                style={{ 'minHeight': '100px' }}
                 placeholder="Add a comment"
                 value={commentContent}
                 onChange={(e) => setCommentContent(e.target.value)} />
@@ -124,11 +126,11 @@ const PinDetail = () => {
                     placeholder="type now"
                     value={comment.content}
                     onChange={updateContent}
-                    required/> 
+                    required/>
                 <button value={comment.id} className='delete-Button' onClick={handleDelete}>Delete</button> <button onClick={(e) => updateComment(e.target.name,comment.id)} type="submit">Edit</button>
                 </div>
                 )})}
-                
+
               </div>
             </div>
             </form>

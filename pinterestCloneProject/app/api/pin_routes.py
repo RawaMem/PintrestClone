@@ -50,6 +50,9 @@ def edit_pins(id):
 
         db.session.commit()
         return pin.to_dict()
+        
+    else:
+        return form.errors
 
 
 
