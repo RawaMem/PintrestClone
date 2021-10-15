@@ -145,7 +145,7 @@ export const Profile = () => {
                 <h1 className="full-name">{profileUser?.first_name} {profileUser?.last_name}</h1>
                 <p className="at-username">@{profileUser?.username}</p>
                 <div className="follower-list-container">
-                    <p className="followers" onClick={openMenuFollowers}>{profileUser?.followers.length} Followers</p>
+                    <p className="followers" onClick={openMenuFollowers}>{profileUser?.followers.length} Following</p>
                     {showMenuFollowers && (
                         <>
                             {allFollowersOfCurrentProfile.map(follower => {
@@ -166,7 +166,7 @@ export const Profile = () => {
                 </div>
 
                 <div className="follower-list-container">
-                    <p className="followers" onClick={openMenuFollowing}>{listOfUserObjsProfileIsFollowing?.length} Following</p>
+                    <p className="followers" onClick={openMenuFollowing}>{listOfUserObjsProfileIsFollowing?.length} Followers</p>
                     {showMenuFollowing && (
                         <>
                         {listOfUserObjsProfileIsFollowing.map(follower => {
