@@ -94,9 +94,11 @@ const PinDetail = () => {
             <div className="image-container">
                 <img className="pin-detail-image" src={pins?.pin?.media_url} alt={pins?.pin?.description} />
                 <div className="edit-pin-button-container">
-                    {sessionUser?.id === pins?.user_id && (
-                        <EditUserPinModal pin={pins?.pin} />
-                    )}
+                    {sessionUser?.id === pins?.pin?.user_id ?
+                        <EditUserPinModal pin={pins?.pin} />:
+                        <EditPinModal pin={pins} />
+                    }
+
                 </div>
             </div>
             <div className="title-container">
