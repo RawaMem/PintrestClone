@@ -96,7 +96,7 @@ const PinDetail = () => {
                 <div className="edit-pin-button-container">
                     {sessionUser?.id === pins?.pin?.user_id ?
                         <EditUserPinModal pin={pins?.pin} />:
-                        <EditPinModal pin={pins} />
+                        <EditPinModal pin={pins.pin} />
                     }
 
                 </div>
