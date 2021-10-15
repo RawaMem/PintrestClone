@@ -15,31 +15,34 @@ const PinsDisplay = () => {
     const boardsObj = useSelector(state => state?.boards)
     const currentUser = useSelector( state => state.session.user);
     const boardsArray = Object.values(boardsObj);
-    console.log(boardsArray);
+    // console.log(boardsArray);
 
-    const allPinBoardId = 
-
+    const allPinBoard = boardsArray.filter(board => (currentUser?.id === board?.user_id && board?.title === "All Pins"))
+    const boardId = allPinBoard[0]
+    console.log("====================> all @@@@@@", boardId.id)
+    const [ pinId, setPinId ] = useState();
 
     useEffect(() => {
         dispatch(getAllBoards())
     }, [dispatch]);
 
-    // const handleAddPinToBoard = async(e) => {
-    //     e.preventDefault();
-    //     const payload = {
-    //         boardId,
-    //         pinId: pin.id
-    //     };
-    //     console.log('======@@@@@@@@=====>', boardId)
-    //     console.log('======@@@@@@@@=====>', pin?.pin?.id)
-    //     dispatch(addPinToBoard(payload))
-    // };
+    const handleAddPinToBoard = async(e) => {
+        e.preventDefault();
+        const payload = {
+            boardId:boardId.id,
+            pinId
+        };
+        setPinId(e.target.value);
+        dispatch(addPinToBoard(payload))
+    };
 
     // console.log("this is pins",pins)
     const allPins = Object.values(pins)?.map(pin => (
         <div key={pin.id} className="picture-card-display">
             <div className="pins-display-container">
-
+                <button value= {pin.id} className="save-button" onClick={handleAddPinToBoard}>
+                    Save
+                </button>
                 <Link to={`/pins/${pin?.id}`}>
                     <Card
                     src={pin?.media_url}
