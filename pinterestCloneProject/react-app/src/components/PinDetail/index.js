@@ -106,7 +106,7 @@ const PinDetail = () => {
             </div>
             <div className="description-container">
                 <p>{pins?.pin?.description}</p>
-            // </div>
+             </div>
             <form >
             <div>
             <label>Comment</label>
