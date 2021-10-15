@@ -4,6 +4,8 @@ import { Link, useParams,useHistory } from 'react-router-dom';
 import { pinDetail } from '../../store/pins';
 import { thunkGetAllComments, thunkDeleteComment, thunkAddComments, thunkEditCommentDetails } from '../../store/comments';
 import EditUserPinModal from '../EditPinForm';
+import EditPinModal from '../PinBoardEditForm';
+
 
 
 
@@ -21,7 +23,7 @@ const PinDetail = () => {
     const handleDelete = (e) => {
         e.preventDefault();
         dispatch(thunkDeleteComment(e.target.value))
-      }
+    }
 
     const postComment = async(e) => {
     e.preventDefault()
@@ -36,11 +38,8 @@ const PinDetail = () => {
 
     let createdComment =await dispatch(thunkAddComments(newComment))
 
-    // if (createdComment) {
-
-    // }
-
 };
+
     const updateContent = (e) =>
         {setCommentContent(e.target.value)
         setCommentId(parseInt(e.target.name))
@@ -92,10 +91,13 @@ const PinDetail = () => {
 
     return (
         <>
-            <h1>PinDetail</h1>
             <div className="image-container">
                 <img className="pin-detail-image" src={pins?.pin?.media_url} alt={pins?.pin?.description} />
-                <EditUserPinModal pin={pins?.pin} />
+                <div className="edit-pin-button-container">
+                    {sessionUser?.id === pins?.user_id && (
+                        <EditUserPinModal pin={pins?.pin} />
+                    )}
+                </div>
             </div>
             <div className="title-container">
                 <h3>{pins?.pin?.title}</h3>
@@ -127,7 +129,7 @@ const PinDetail = () => {
                 <button value={comment.id} className='delete-Button' onClick={handleDelete}>Delete</button> <button onClick={updateComment} >Edit</button>
                 </div>
                 )})}
-                
+
               </div>
             </div>
             </form>
