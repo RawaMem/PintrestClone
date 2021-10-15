@@ -3,6 +3,8 @@ import { useEffect, useState } from 'react';
 import { Link, useParams,useHistory } from 'react-router-dom';
 import { pinDetail } from '../../store/pins';
 import { thunkGetAllComments, thunkDeleteComment, thunkAddComments, thunkEditCommentDetails } from '../../store/comments';
+import EditUserPinModal from '../EditPinForm';
+
 
 
 const PinDetail = () => {
@@ -16,11 +18,6 @@ const PinDetail = () => {
     const [commentId, setCommentId] = useState(0)
     const { pinId } = useParams()
 
-
-    // const reset = () => {
-    //     setCommentContent("")
-    // }
-    
     const handleDelete = (e) => {
         e.preventDefault();
         dispatch(thunkDeleteComment(e.target.value))
@@ -36,15 +33,15 @@ const PinDetail = () => {
         'notified': 'false'
     };
 
-   
+
     let createdComment =await dispatch(thunkAddComments(newComment))
 
-//     if (createdComment) {
-//        return history.push(`/pins/${createdComment.id}`);
-//     }
-//     reset()
+    // if (createdComment) {
+
+    // }
+
 };
-    const updateContent = (e) => 
+    const updateContent = (e) =>
         {setCommentContent(e.target.value)
         setCommentId(parseInt(e.target.name))
         //update pin comment list
@@ -53,7 +50,7 @@ const PinDetail = () => {
     };
 
     const updateComment = async (e) => {
-        // e.preventDefault();
+        e.preventDefault();
         let updatedContent = {
         'id': commentId,
         'user_id': sessionUser?.id,
@@ -61,8 +58,9 @@ const PinDetail = () => {
         'content': commentContent,
         'notified': 'false'
         };
+        console.log("------",pinId)
         dispatch(thunkEditCommentDetails(updatedContent))
-        dispatch(thunkGetAllComments());
+        // dispatch(thunkGetAllComments());
     }
 
     useEffect(() => {
@@ -81,7 +79,7 @@ const PinDetail = () => {
     const commentsSection = Object.values(comments)
     const pinComments = commentsSection.filter(comment => comment.pin_id === pins?.pin?.id)
     console.log("PIN",pinComments)
-    
+
     // .map(comment => (
     //     {comment.user_id === sessionUser.id? && (
     //     <div key={comment.id} className='single-comment'>
@@ -97,6 +95,7 @@ const PinDetail = () => {
             <h1>PinDetail</h1>
             <div className="image-container">
                 <img className="pin-detail-image" src={pins?.pin?.media_url} alt={pins?.pin?.description} />
+                <EditUserPinModal pin={pins?.pin} />
             </div>
             <div className="title-container">
                 <h3>{pins?.pin?.title}</h3>
@@ -104,15 +103,15 @@ const PinDetail = () => {
             <div className="description-container">
                 <p>{pins?.pin?.description}</p>
             // </div>
-            <form onSubmit={postComment}>
+            <form >
             <div>
             <label>Comment</label>
-            <textArea 
-                style={{ 'minHeight': '100px' }} 
+            <textArea
+                style={{ 'minHeight': '100px' }}
                 placeholder="Add a comment"
                 value={commentContent}
                 onChange={(e) => setCommentContent(e.target.value)} />
-              <button className="submit-comment-button" type="submit" style={{ 'marginTop': '20px', 'height': '40px' }}>Done</button>
+              <button onClick={postComment} className="submit-comment-button" type="submit" style={{ 'marginTop': '20px', 'height': '40px' }}>Done</button>
               <div className="app">
                 {pinComments.map(comment => {
                     return(
@@ -124,18 +123,26 @@ const PinDetail = () => {
                     placeholder="type now"
                     value={comment.content}
                     onChange={updateContent}
-                    required/> 
-                <button value={comment.id} className='delete-Button' onClick={handleDelete}>Delete</button> <button onClick={(e) => updateComment(e.target.name,comment.id)} type="submit">Edit</button>
+                    required/>
+                <button value={comment.id} className='delete-Button' onClick={handleDelete}>Delete</button> <button onClick={updateComment} >Edit</button>
                 </div>
                 )})}
-                
+
               </div>
             </div>
             </form>
-
         </>
     )
 }
+ // .map(comment => (
+    //     {comment.user_id === sessionUser.id? && (
+    //     <div key={comment.id} className='single-comment'>
+    //       <div>{comment.user.username}</div>
+    //       <div>{comment.id}</div>
+    //       <button className='delete-Button' onClick={() => handleDelete(comment.id)}>Delete Me</button>
+    //       <div>{comment.content}</div>
+    //     </div>
+    //     )}))
 
 
 export default PinDetail

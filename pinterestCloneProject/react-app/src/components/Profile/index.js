@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 import { getAllBoards } from '../../store/boards';
-import EditPinModal from '../PinEditForm';
+import EditPinModal from '../PinBoardEditForm';
 import { getAllPins } from '../../store/pins';
 import Card from '../PictureCard';
 import './profile.css';

@@ -1,0 +1,34 @@
+*{
+    box-sizing: border-box;
+}
+
+.edit-user-pin-container {
+    margin:0;
+    height: 70vh;
+    width: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.edit-user-pin-form {
+    width: 100%;
+    max-width: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 1rem;
+    padding: 4rem;
+    border-radius: 10px;
+}
+
+.content-section {
+    display: grid;
+    grid-template-columns: 60% auto;
+}
+
+.pin-image {
+    height: 100%;
+    width: 100%;
+}
+
