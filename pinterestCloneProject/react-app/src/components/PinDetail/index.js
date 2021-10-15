@@ -127,7 +127,7 @@ const PinDetail = () => {
                 <button value={comment.id} className='delete-Button' onClick={handleDelete}>Delete</button> <button onClick={updateComment} >Edit</button>
                 </div>
                 )})}
-
+                
               </div>
             </div>
             </form>
