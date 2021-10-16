@@ -4,6 +4,7 @@ import { useHistory, useParams } from "react-router-dom";
 import { getAllBoards, createBoard, addPinToBoard, removeOnePinFromBoard } from "../../store/boards"
 import { pinDetail, deletePin } from "../../store/pins"
 import "./PinEditForm.css";
+import CreateBoardFormModal from "./createBoardFormModal";
 
 
 function PinEditForm({ pin }) {
@@ -17,9 +18,6 @@ function PinEditForm({ pin }) {
     const [title, setTitle] = useState("")
     const { pinId } = useParams()
     const [boardId, setBoardId] = useState();
-    const [boardTitle, setBoardTitle] = useState('');
-    const [description, setDescription] = useState('');
-
 
 
     useEffect(() => {
@@ -27,32 +25,12 @@ function PinEditForm({ pin }) {
         dispatch(pinDetail(pinId))
     }, [dispatch]);
 
-    const handleSubmit = async(e) => {
-        e.preventDefault();
-
-        const payload = {
-            user_id: currentUser.id,
-            title: boardTitle,
-            description,
-            private: null
-    };
-
-    let createdBoard = await dispatch(createBoard(payload))
 
     const handleDelete = e => {
         // e.preventDefault();
         dispatch(deletePin(e.target.value));
         history.push("/profile")
     }
-
-
-    // create new board, unfinished
-    // const createNewBoardSubmit = e => {
-    //     e.preventDefault();
-
-    // }
-
-    //handle EditPinForm submit
 
 
     const handleAddPinToBoard = async(e) => {
@@ -108,6 +86,9 @@ function PinEditForm({ pin }) {
                                         })}
                                     </select>
                                 </label>
+                                <div className="create-board-container">
+                                    <CreateBoardFormModal />
+                                </div>
                                 <label  className="form-contents">
                                     Section
                                     <select
@@ -153,7 +134,7 @@ function PinEditForm({ pin }) {
             </div>
         </>
     )
-    }
+
 }
 
 export default PinEditForm;
