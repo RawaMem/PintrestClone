@@ -17,6 +17,8 @@ function PinEditForm({ pin }) {
     const [title, setTitle] = useState("")
     const { pinId } = useParams()
     const [boardId, setBoardId] = useState();
+    const [boardTitle, setBoardTitle] = useState('');
+    const [description, setDescription] = useState('');
 
 
 
@@ -24,6 +26,18 @@ function PinEditForm({ pin }) {
         dispatch(getAllBoards())
         dispatch(pinDetail(pinId))
     }, [dispatch]);
+
+    const handleSubmit = async(e) => {
+        e.preventDefault();
+
+        const payload = {
+            user_id: currentUser.id,
+            title: boardTitle,
+            description,
+            private: null
+    };
+
+    let createdBoard = await dispatch(createBoard(payload))
 
     const handleDelete = e => {
         // e.preventDefault();
@@ -139,6 +153,7 @@ function PinEditForm({ pin }) {
             </div>
         </>
     )
+    }
 }
 
 export default PinEditForm;
