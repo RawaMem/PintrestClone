@@ -70,6 +70,21 @@ element.style{
     font-weight: 700;
     padding: 8px 12px 8px 12px;
 }
+.login_button {
+    display: flex;
+    border: 0;
+    min-height: 40px;
+    min-width: 60px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 24px;
+    cursor: pointer;
+    background-color: #e60023;
+    font-size: 16px;
+    color: white;
+    font-weight: 700;
+    padding: 2px 8px 2px 8px;
+}
 .signup_button {
     display: flex;
     justify-content: flex-end;
@@ -84,7 +99,8 @@ element.style{
     font-size: 16px;
     color: black;
     font-weight: 700;
-    padding: 8px 12px 8px 12px;
+    padding: 2px 8px 2px 8px;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 /* .icon_button {

@@ -1,24 +1,28 @@
 import React from 'react'
 import PinterestIcon from '@material-ui/icons/Pinterest'
 // import IconButton from '@material-ui/core/IconButton'
-import styled from 'styled-components'
+// import styled from 'styled-components'
 import './Header.css'
 import {Select, MenuItem, FormControl, InputLabel} from "@material-ui/core"
+import LoginFormModal from './LoginFormModal'
 
-const Wrapper = styled.div`
-    display:flex;
-    align-items: center;
-    height: 50px;
-    padding: 12px 4px 4px 16px; 
-    background-color: white;
-    color: black`
+import SignUpFormModal from './SignUpFormModal'
 
-const LogoWrapper = styled.div`
-    .MuiSvgIcon-root {
-        color: #e60023;
-        font-size: 66px;
-        cursor: pointer;
-    }`
+
+// const Wrapper = styled.div`
+//     display:flex;
+//     align-items: center;
+//     height: 50px;
+//     padding: 12px 4px 4px 16px; 
+//     background-color: white;
+//     color: black`
+
+// const LogoWrapper = styled.div`
+//     .MuiSvgIcon-root {
+//         color: #e60023;
+//         font-size: 66px;
+//         cursor: pointer;
+//     }`
 
 export default function Header() {
     return (
@@ -66,11 +70,11 @@ export default function Header() {
                     </Select>
                 </div>
             </div>
-            <div className="login_button">Login
-
+            <div className="login_button">
+                <LoginFormModal />
             </div>
-            <div className="signup_button">Signup
-            
+            <div className="signup_button">
+                <SignUpFormModal />
             </div>
             <div className="icon_wrapper">
 
