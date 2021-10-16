@@ -24,23 +24,14 @@ const PinsDisplay = () => {
 
     const allPinBoard = boardsArray.filter(board => (currentUser?.id === board?.user_id && board?.title == "All Pins"))
     const allPinBoardId = allPinBoard[0]
-    // console.log("====================> allPinBoard @@@@@@", allPinBoard)
-    // const boardId = allPinBoardId.id
-    const [ pinId, setPinId ] = useState();
-
-    useEffect(() => {
-        setPinId(pinId)
-    }, [pinId])
 
     const handleAddPinToBoard = async(e) => {
         e.preventDefault();
-        setPinId(e.target.value);
+        // setPinId(e.target.value);
         const payload = {
             boardId:allPinBoardId?.id,
-            pinId
+            pinId: e.target.value
         };
-        // console.log('======@@@@@@@@=====allPinBoardId>', allPinBoardId?.id)
-        // console.log('======@@@@@@@@=====pinId>', pinId)
         dispatch(addPinToBoard(payload))
     }
     // console.log("this is pins",pins)
