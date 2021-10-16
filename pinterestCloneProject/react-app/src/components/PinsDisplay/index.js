@@ -39,17 +39,21 @@ const PinsDisplay = () => {
             boardId:allPinBoardId?.id,
             pinId
         };
-        console.log('======@@@@@@@@=====allPinBoardId>', allPinBoardId?.id)
-        console.log('======@@@@@@@@=====pinId>', pinId)
+        // console.log('======@@@@@@@@=====allPinBoardId>', allPinBoardId?.id)
+        // console.log('======@@@@@@@@=====pinId>', pinId)
         dispatch(addPinToBoard(payload))
     }
     // console.log("this is pins",pins)
     const allPins = Object.values(pins)?.map(pin => (
         <div key={pin.id} className="picture-card-display">
             <div className="pins-display-container">
-                <button value= {pin.id} className="save-button" onClick={handleAddPinToBoard}>
-                    Save
-                </button>
+                <div className="save-pin-to-container">
+                    {currentUser?.id !== pin?.user_id ?
+                    <button value= {pin.id} className="save-button" onClick={handleAddPinToBoard}>
+                        Save
+                    </button> : false
+                    }
+                </div>
                 <Link to={`/pins/${pin?.id}`}>
                     <Card
                     src={pin?.media_url}
