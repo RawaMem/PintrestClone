@@ -16,6 +16,7 @@ const PinsDisplay = () => {
     const currentUser = useSelector( state => state?.session.user);
     const boardsArray = Object.values(boardsObj);
     // console.log(boardsArray);
+    // console.log("====================> currentUser @@@@@@", currentUser)
 
     useEffect(() => {
         dispatch(getAllBoards())
@@ -23,11 +24,13 @@ const PinsDisplay = () => {
 
     const allPinBoard = boardsArray.filter(board => (currentUser?.id === board?.user_id && board?.title == "All Pins"))
     const allPinBoardId = allPinBoard[0]
-    console.log("====================> allPinBoard @@@@@@", allPinBoard)
+    // console.log("====================> allPinBoard @@@@@@", allPinBoard)
     // const boardId = allPinBoardId.id
     const [ pinId, setPinId ] = useState();
 
-
+    useEffect(() => {
+        setPinId(pinId)
+    }, [pinId])
 
     const handleAddPinToBoard = async(e) => {
         e.preventDefault();
