@@ -11,31 +11,33 @@ import './pinsDisplay.css'
 const PinsDisplay = () => {
 
     const dispatch = useDispatch();
-    const pins = useSelector(store => store.pins)
+    const pins = useSelector(store => store?.pins)
     const boardsObj = useSelector(state => state?.boards)
-    const currentUser = useSelector( state => state.session.user);
+    const currentUser = useSelector( state => state?.session.user);
     const boardsArray = Object.values(boardsObj);
     // console.log(boardsArray);
-
-    const allPinBoard = boardsArray.filter(board => (currentUser?.id === board?.user_id && board?.title === "All Pins"))
-    const allPinBoardId = allPinBoard[0]
-    // console.log("====================> all @@@@@@", allPinBoardId?.id)
-    // const boardId = allPinBoardId.id
-    const [ pinId, setPinId ] = useState();
 
     useEffect(() => {
         dispatch(getAllBoards())
     }, [dispatch]);
 
+    const allPinBoard = boardsArray.filter(board => (currentUser?.id === board?.user_id && board?.title == "All Pins"))
+    const allPinBoardId = allPinBoard[0]
+    console.log("====================> allPinBoard @@@@@@", allPinBoard)
+    // const boardId = allPinBoardId.id
+    const [ pinId, setPinId ] = useState();
+
+
+
     const handleAddPinToBoard = async(e) => {
         e.preventDefault();
+        setPinId(e.target.value);
         const payload = {
             boardId:allPinBoardId?.id,
             pinId
         };
-        console.log('======@@@@@@@@=====>', allPinBoardId?.id)
-        setPinId(e.target.value);
-        console.log('======@@@@@@@@=====>', pinId)
+        console.log('======@@@@@@@@=====allPinBoardId>', allPinBoardId?.id)
+        console.log('======@@@@@@@@=====pinId>', pinId)
         dispatch(addPinToBoard(payload))
     }
     // console.log("this is pins",pins)

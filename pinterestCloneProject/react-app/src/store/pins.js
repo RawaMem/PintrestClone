@@ -99,7 +99,6 @@ export const deletePin = id => async(dispatch) => {
     if (response.ok) {
         const deletePinObj = await response.json();
         dispatch(deletePinAction(deletePinObj))
-        console.log("=========>dekejdjfkdsj", deletePinObj);
         return deletePinObj
     }
 }

@@ -63,7 +63,7 @@ const PinDetail = () => {
     useEffect(() => {
         dispatch(pinDetail(pinId))
         // dispatch(thunkGetAllComments())
-    }, [dispatch])
+    }, [dispatch, pinId])
 
     useEffect(() => {
         dispatch(thunkGetAllComments())
