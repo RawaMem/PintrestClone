@@ -1,0 +1,105 @@
+*{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.modal {
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+
+.modal_form_box {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+}
+.modal_form_script {
+    color: RGB(51, 51, 51);
+    font-size: 36px;
+    font-weight: 600;
+    letter-spacing: -1.2px;
+    margin-bottom: 8px;
+    font-family: Arial, Helvetica, sans-serif;
+    width: 100%;
+}
+
+.modal_form_logo {
+    display: flex;
+    justify-content: center;
+}
+
+.login_input {
+    background-color: transparent;
+    display: flex;
+    min-height: 48px;
+    width: 100%;
+    border-radius: 16px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #ddd;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 15px;
+    
+}
+.spacing {
+    padding-top: 5px;
+}
+/* .input_button {
+    background-color: red;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    width: 268px;
+    margin-top: 24px;
+} */
+
+.input_border {
+    background-color: transparent;
+    border: none;
+    width: 95%;
+    outline: none;
+    font-size: 16px;
+    margin-left: 10px;
+    padding: 1.5em;
+    
+}
+.login_form_spacing {
+    padding: 10px;
+}
+.login_button_modal {
+    display: flex;
+    border: 0;
+    min-height: 40px;
+    min-width: 60px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 24px;
+    cursor: pointer;
+    background-color: #e60023;
+    font-size: 16px;
+    color: white;
+    font-weight: 700;
+    padding: 2px 8px 2px 8px;
+    width: 23em;
+}
+.demo_user_modal {
+    display: flex;
+    border: 0;
+    min-height: 40px;
+    min-width: 60px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 24px;
+    cursor: pointer;
+    background-color: RGB(239, 239, 239);
+    font-size: 16px;
+    color: black;
+    font-weight: 700;
+    padding: 2px 8px 2px 8px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 23em;
+}
