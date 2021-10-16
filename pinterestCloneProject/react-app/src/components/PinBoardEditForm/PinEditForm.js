@@ -50,7 +50,7 @@ function PinEditForm({ pin }) {
         console.log('======@@@@@@@@=====>', boardId)
         console.log('======@@@@@@@@=====>', pin?.pin?.id)
         dispatch(addPinToBoard(payload))
-      };
+    };
 
 
     const handleRemovePinFromBoard = async(e) => {

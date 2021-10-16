@@ -67,3 +67,5 @@ export const CreateBoard = () => {
 
 
 }
+
+export default CreateBoard
