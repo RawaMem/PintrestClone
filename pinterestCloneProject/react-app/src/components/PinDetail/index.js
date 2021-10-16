@@ -5,6 +5,7 @@ import { pinDetail } from '../../store/pins';
 import { thunkGetAllComments, thunkDeleteComment, thunkAddComments, thunkEditCommentDetails } from '../../store/comments';
 import EditUserPinModal from '../EditPinForm';
 import EditPinModal from '../PinBoardEditForm';
+import { getAllBoards, addPinToBoard } from '../../store/boards';
 
 
 
@@ -16,9 +17,31 @@ const PinDetail = () => {
     const pins = useSelector(state => state.pins)
     const comments = useSelector(state => state.comments)
     const sessionUser = useSelector(state => state.session.user)
+    const boardsObj = useSelector(state => state?.boards)
+    const boardsArray = Object.values(boardsObj);
     const [commentContent, setCommentContent] = useState('')
     const [commentId, setCommentId] = useState(0)
     const { pinId } = useParams()
+
+    useEffect(() => {
+        dispatch(getAllBoards())
+    }, [dispatch]);
+
+    const allPinBoard = boardsArray.filter(board => (sessionUser?.id === board?.user_id && board?.title == "All Pins"))
+    const allPinBoardId = allPinBoard[0]
+    // console.log("====================> allPinBoard @@@@@@", allPinBoard)
+
+
+    const handleAddPinToBoard = async(e) => {
+        e.preventDefault();
+        const payload = {
+            boardId:allPinBoardId?.id,
+            pinId
+        };
+        console.log('======@@@@@@@@=====allPinBoardId>', allPinBoardId?.id)
+        console.log('======@@@@@@@@=====pinId>', pinId)
+        dispatch(addPinToBoard(payload))
+    }
 
     const handleDelete = (e) => {
         e.preventDefault();
@@ -54,8 +77,8 @@ const PinDetail = () => {
         id: e.target.value,
         content: commentContent,
         };
-        console.log("%%%%%",updatedContent)
-        console.log("------",pinId)
+        // console.log("%%%%%",updatedContent)
+        // console.log("------",pinId)
         dispatch(thunkEditCommentDetails(updatedContent))
         // dispatch(thunkGetAllComments());
     }
@@ -69,23 +92,10 @@ const PinDetail = () => {
         dispatch(thunkGetAllComments())
     }, [dispatch])
 
-    //// const commentsSection = allComments.filter(item => item.pin_id == pins?.pin.id)
-
-    // const commentsSection = pins && pins.pin && allComments?allComments.filter(item => item.pin_id == pins?.pin.id):allComments
 
     const commentsSection = Object.values(comments)
     const pinComments = commentsSection.filter(comment => comment.pin_id === pins?.pin?.id)
-    console.log("PIN",pinComments)
-
-    // .map(comment => (
-    //     {comment.user_id === sessionUser.id? && (
-    //     <div key={comment.id} className='single-comment'>
-    //       <div>{comment.user.username}</div>
-    //       <div>{comment.id}</div>
-    //       <button className='delete-Button' onClick={() => handleDelete(comment.id)}>Delete Me</button>
-    //       <div>{comment.content}</div>
-    //     </div>
-    //     )}))
+    // console.log("PIN",pinComments)
 
     return (
         <>
@@ -97,6 +107,13 @@ const PinDetail = () => {
                         <EditPinModal pin={pins.pin} />
                     }
 
+                </div>
+                <div className="add-pin-to-container-container">
+                    {sessionUser?.id !== pins?.pin?.user_id ?
+                    <button className="save-button" onClick={handleAddPinToBoard}>
+                        Save
+                    </button> : false
+                    }
                 </div>
             </div>
             <div className="title-container">
