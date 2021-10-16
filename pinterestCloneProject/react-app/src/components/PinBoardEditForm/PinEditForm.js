@@ -47,8 +47,7 @@ function PinEditForm({ pin }) {
             boardId,
             pinId: pin.id
         };
-        console.log('======@@@@@@@@=====>', boardId)
-        console.log('======@@@@@@@@=====>', pin?.pin?.id)
+
         dispatch(addPinToBoard(payload))
     };
 
