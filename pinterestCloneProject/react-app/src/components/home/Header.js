@@ -5,8 +5,8 @@ import PinterestIcon from '@material-ui/icons/Pinterest'
 import './Header.css'
 import {Select, MenuItem, FormControl, InputLabel} from "@material-ui/core"
 import LoginFormModal from './LoginFormModal'
-
 import SignUpFormModal from './SignUpFormModal'
+import GitHubIcon from '@material-ui/icons/GitHub';
 
 
 // const Wrapper = styled.div`
@@ -26,28 +26,7 @@ import SignUpFormModal from './SignUpFormModal'
 
 export default function Header() {
     return (
-        // <Wrapper>
-        //     <LogoWrapper>
-        //         <IconButton>
-        //             <PinterestIcon/>
-        //         </IconButton>
 
-        //     </LogoWrapper>
-        //     {/* <HomePageButton>
-
-        //     </HomePageButton>
-        //     <FollowingButton>
-
-        //     </FollowingButton>
-        //     <SearchWrapper>
-        //         <SearchBar>
-
-        //         </SearchBar>
-        //     </SearchWrapper>
-        //     <IconsWrapper>
-
-        //     </IconsWrapper>*/}
-        // </Wrapper> 
         <div className="wrapper">
             <div className ="logo_wrapper">
                 <div className="icon_button">
@@ -57,24 +36,27 @@ export default function Header() {
                     SafetyPinterest
                 </div>
             </div>
-            <div className="search_wrapper">
-                SEARCH BAR
+            <div className="github">
+                <GitHubIcon id="fanny"className="github_icon"style={{ fontSize: 25 }}/>
+                <a className ="git_link" href="https://github.com/fanny-chan" target="_blank">Fanny</a>
+                <a className ="git_link" href="https://github.com/RawaMem" target="_blank">Rawaha</a>
+                <a className ="git_link" href="https://github.com/sherry-debug715" target="_blank">Sherry</a>
             </div>
             <div className="button_wrapper">
-                <div className="homepage_github">
+                {/* <div className="homepage_github">
                     <InputLabel>Github</InputLabel>
                     <Select>
                         <MenuItem>Sherry</MenuItem>
                         <MenuItem>Rawaha</MenuItem>
                         <MenuItem>Fanny</MenuItem>
                     </Select>
+                </div> */}
+                <div className="login_button">
+                    <LoginFormModal />
                 </div>
-            </div>
-            <div className="login_button">
-                <LoginFormModal />
-            </div>
-            <div className="signup_button">
-                <SignUpFormModal />
+                <div className="signup_button">
+                    <SignUpFormModal />
+                </div>
             </div>
             <div className="icon_wrapper">
 

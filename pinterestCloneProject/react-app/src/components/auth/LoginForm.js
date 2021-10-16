@@ -4,6 +4,7 @@ import { Redirect } from 'react-router-dom';
 import { login } from '../../store/session';
 import './LoginForm.css'
 import PinterestIcon from '@material-ui/icons/Pinterest'
+import SignUpFormModal from '../home/SignUpFormModal';
 
 const LoginForm = () => {
   const [errors, setErrors] = useState([]);
@@ -41,11 +42,10 @@ const LoginForm = () => {
       
       </div>
       <div className="modal">
-
         
         <div className="modal_form_box">
         <div className="modal_form_logo">
-          <PinterestIcon style={{ fontSize: 40 }}/>
+          <PinterestIcon style={{ fontSize: 40}}/>
         </div>
         <div className="modal_form_script">Welcome to SafetyPinterest</div>
         <div className="close"></div>
@@ -71,11 +71,16 @@ const LoginForm = () => {
             onChange={updatePassword}
           />
           <div className="login_form_spacing"></div>
-          <button className="login_button_modal" type='submit'>Login</button>
+          <button className="button_modal" type='submit'>Login</button>
           <div className="spacing"></div>
           <button className="demo_user_modal"
           type='submit'>Demo User</button>
         </div>
+        <button className="redirect">
+        {/* <SignUpFormModal /> */}
+        Not on Safetypinterest yet? Sign up
+        </button>
+        {/* <a className="redirect-link" href= "<SignupFormModal/>">Sign up</a> */}
         </div>
 
         </div>

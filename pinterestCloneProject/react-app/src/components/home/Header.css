@@ -11,7 +11,7 @@ element.style{
     /* justify-content: flex-start; */
     height: 76px;
     padding: 0px 4px 0px 16px;
-    background-color: pink;
+    background-color: #b0c4de;
     color: black;
     place-content: space-between;
 }
@@ -41,11 +41,11 @@ element.style{
 }
 
 .button_wrapper {
-    width: 10%;
+    width: 15%;
     display: flex;
-    justify-content: flex-end;
-    align-content: space-between;
-    height: 100%;
+    justify-content: space-around;
+    /* align-content: space-between; */
+    /* height: 100%; */ 
 }
 .homepage_github {
     display: flex;
@@ -55,7 +55,7 @@ element.style{
 }
 
 
-.login_button {
+/* .login_button {
     display: flex;
     border: 0;
     min-height: 40px;
@@ -69,7 +69,7 @@ element.style{
     color: white;
     font-weight: 700;
     padding: 8px 12px 8px 12px;
-}
+} */
 .login_button {
     display: flex;
     border: 0;
@@ -116,3 +116,29 @@ element.style{
         width: 1em;
         height: 1em;
         }
+
+.git_link {
+    text-decoration: none;
+    font-weight: bold;
+    border: none;
+    background-color: transparent;;
+    padding-top: 20px;
+    color: rgb(51, 51, 51);
+    padding-left: 50px;   
+}
+.github {
+    width: 50%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    padding-bottom: 25px;
+
+}
+.github_icon {
+    display: flex;
+    justify-content: center;
+
+}
+#fanny {
+    padding-left: 1px;
+}

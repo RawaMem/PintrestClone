@@ -1,0 +1,23 @@
+.signup_input {
+    background-color: transparent;
+    display: flex;
+    min-height: 48px;
+    width: 100%;
+    border-radius: 16px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #ddd;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 15px;
+    
+}
+
+.signup_input >input {
+    background-color: red;
+}
+
+.new_ideas {
+    font-size: 16px;
+    
+}
