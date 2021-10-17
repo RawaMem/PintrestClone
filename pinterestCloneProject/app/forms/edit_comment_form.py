@@ -7,4 +7,3 @@ class EditCommentForm(FlaskForm):
     # pin_id = IntegerField('pin_id', validators=[DataRequired()])
     id = IntegerField('id', validators=[DataRequired()])
     content = StringField('content', validators=[DataRequired()])
-    
