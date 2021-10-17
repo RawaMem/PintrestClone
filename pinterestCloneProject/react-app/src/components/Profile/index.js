@@ -9,7 +9,8 @@ import './profile.css';
 import { followUser, getUserprofile, unfollowUser } from '../../store/session';
 import CreateBoardModal from '../CreateBoard/createBoardModal';
 import AddIcon from '@mui/icons-material/Add';
-
+import CreateIcon from '@mui/icons-material/Create';
+import IosShareIcon from '@mui/icons-material/IosShare';
 
 export const Profile = () => {
 
@@ -41,12 +42,10 @@ export const Profile = () => {
     }, []);
 
     const allFollowersOfCurrentProfile = allUsers?.filter(user => profileUser?.followers?.includes(user?.id))
-    console.log('========> all followers', allFollowersOfCurrentProfile)
+
 
     const listOfUserObjsProfileIsFollowing = allUsers?.filter(user => user?.followers?.includes(profileUser?.id))
-    console.log('========> all users profile is following', listOfUserObjsProfileIsFollowing)
-
-
+  
     useEffect(() => {
         dispatch(getAllBoards())
         dispatch(getAllPins())
@@ -126,34 +125,37 @@ export const Profile = () => {
         <>
             <div className="page-container">
                 <section className="section-1">
-                    {user && profileUser && user.id === profileUser.id && (
-                    <div className="mid-button-container">
-
-                        <button  className='big-profile-btn' onClick={openMenuCreate}><AddIcon /></button>
-                        {showMenuCreate && (
-                            <>
-                                <p className="creation">Create</p>
-                                <Link className='pop-up-button' to={`/pin-builder`}>
-                                    <button className='create-pin-btn'>Pin</button>
-                                </Link>
-                                <div className="create-board-container">
-                                    <CreateBoardModal />
-                                </div>
-                            </>
-                        )}
-                    </div>
-                    )}
-
-
                     <div className="user-info-container">
-                        <button className="user-info-button">{profileUser?.first_name[0]}</button>
+                        <button className="user-initial-button">{profileUser?.first_name[0]}</button>
                         <h1 className="full-name">{profileUser?.first_name} {profileUser?.last_name}</h1>
                         <p className="at-username">@{profileUser?.username}</p>
-                        <div className="follower-list-container">
-                            <p className="followers" onClick={openMenuFollowers}>{profileUser?.followers.length} Following</p>
-                            {showMenuFollowers && (
-                                <>
-                                    {allFollowersOfCurrentProfile.map(follower => {
+                        <div className="following-container">
+                            <div className="follower-list-container">
+                                <p className="followers" onClick={openMenuFollowers}>{profileUser?.followers.length} Following</p>
+                                {showMenuFollowers && (
+                                    <>
+                                        {allFollowersOfCurrentProfile.map(follower => {
+                                            return (
+                                                <div className="popup-follower-row">
+                                                    <p className="follower-name">{follower.username}</p>
+                                                    {user?.followers?.includes(follower?.id) && (
+                                                    <button className="follow-toggle-btn" onClick={handleUnfollow} value={follower?.id}>Unfollow</button>
+                                                    )}
+                                                    {!user?.followers?.includes(follower?.id) && (
+                                                    <button className="follow-toggle-btn" onClick={handleFollow} value={follower?.id}>Follow</button>
+                                                    )}
+                                                </div>
+                                            )
+                                        })}
+                                    </>
+                                )}
+                            </div>
+
+                            <div className="follower-list-container">
+                                <p className="followers" onClick={openMenuFollowing}>{listOfUserObjsProfileIsFollowing?.length} Followers</p>
+                                {showMenuFollowing && (
+                                    <>
+                                    {listOfUserObjsProfileIsFollowing.map(follower => {
                                         return (
                                             <div className="popup-follower-row">
                                                 <p className="follower-name">{follower.username}</p>
@@ -167,50 +169,66 @@ export const Profile = () => {
                                         )
                                     })}
                                 </>
-                            )}
+                                )}
+                            </div>
                         </div>
-                    </div>
-
-                    <div className="follower-list-container">
-                        <CreateBoardModal />
-                        <p className="followers" onClick={openMenuFollowing}>{listOfUserObjsProfileIsFollowing?.length} Followers</p>
-                        {showMenuFollowing && (
-                            <>
-                            {listOfUserObjsProfileIsFollowing.map(follower => {
-                                return (
-                                    <div className="popup-follower-row">
-                                        <p className="follower-name">{follower.username}</p>
-                                        {user?.followers?.includes(follower?.id) && (
-                                        <button className="follow-toggle-btn" onClick={handleUnfollow} value={follower?.id}>Unfollow</button>
-                                        )}
-                                        {!user?.followers?.includes(follower?.id) && (
-                                        <button className="follow-toggle-btn" onClick={handleFollow} value={follower?.id}>Follow</button>
-                                        )}
-                                    </div>
-                                )
-                            })}
-                        </>
-                        )}
                     </div>
                 </section>
                 <section className="section2">
+                    <div className="icon-section">
+                        <div className="button-left">
+                            <button className="edit-profile">
+                                <CreateIcon style={{ color: "#111111"}} fontSize="medium" />
+                            </button>
+                            <button className="share-board-icon">
+                                <IosShareIcon style={{ color: "#111111"}} fontSize="medium" />
+                            </button>
+                        </div>
+                        <div className="button-right">
+                            <button  className='big-profile-btn' onClick={openMenuCreate}>
+                                <AddIcon style={{ color: "#111111"}}/>
+                            </button>
+                        </div>
+                    </div>
+
                     <div className="boards-container">
-                        {allBoardsList.map(board => {
-                            return (
-                                +board?.user_id === +profileUser?.id ? (
-                                    <>
-                                        <Link className='board-card-link' to={`/boards/${board?.id}`}>
-                                        <div className="board-card">
-                                            <p className="board-title">{board?.title}</p>
-                                        </div>
-                                        </Link>
+                        <div className="boards-container1">
+                            {user && profileUser && user.id === profileUser.id && (
+                                <div className="mid-button-container">
+
+                                    {showMenuCreate && (
+                                        <>
+                                            <p className="creation">Create</p>
+                                            <Link className='pop-up-button' to={`/pin-builder`}>
+                                                <button className='create-pin-btn'>Pin</button>
+                                            </Link>
+                                            <div className="create-board-container">
+                                                <CreateBoardModal />
+                                            </div>
+                                        </>
+                                    )}
+                                </div>
+                                )}
+                        </div>
+                        <div className="boards-container2">
+                            {allBoardsList.map(board => {
+                                return (
+                                    +board?.user_id === +profileUser?.id ? (
+                                        <>
+                                            <Link className='board-card-link' to={`/boards/${board?.id}`}>
+                                            <div className="board-card">
+                                                <p className="board-title">{board?.title}</p>
+                                            </div>
+                                            </Link>
 
 
-                                    </>
-                                ) : false
+                                        </>
+                                    ) : false
 
-                            )
-                        })}
+                                )
+                            })}
+
+                        </div>
                     </div>
                 </section>
                 <section className="section-3">
