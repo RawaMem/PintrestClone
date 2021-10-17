@@ -2,7 +2,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { addPin } from '../../store/pins';
-import FileUploadRoundedIcon from '@mui/icons-material/FileUploadRounded';
 import PinterestIcon from '@material-ui/icons/Pinterest'
 import './createPinForm.css';
 
@@ -60,41 +59,46 @@ const CreatePinForm = () => {
                         </div>
                     </div>
                 </div>
-                <form className="pin-form-container" onSubmit={handleSubmit}>
-                    <div className="image-outer">
-                        <div className="image-container">
-                            <input
-                            type="text"
-                            placeholder="Drag and drop or click to upload"
-                            value={imageUrl}
-                            required
-                            onChange={e => setImageUrl(e.target.value)} />
-                            <FileUploadRoundedIcon />
-                        </div>
-                    </div>
+                <div className="input-container">
+                    <form className="pin-form-container" onSubmit={handleSubmit}>
+                        <div className="image-outer">
+                            <div className="image-container">
+                                <input
+                                type="text"
+                                placeholder="Image URL: "
+                                value={imageUrl}
+                                required
+                                className="create-input"
+                                onChange={e => setImageUrl(e.target.value)} />
 
-                    <div className="input-container">
-                        <input
-                        type="text"
-                        placeholder="Add your title"
-                        required
-                        value={title}
-                        onChange={e => setTitle(e.target.value) }
-                        / >
-                        <div className="description-container">
+                            </div>
+                        </div>
+
+                        <div className="text-container">
                             <input
                             type="text"
-                            placeholder="Tell everyone what your Pin is about"
+                            placeholder="Add your title"
                             required
-                            value={description}
-                            onChange={e => setDescription(e.target.value) }
+                            value={title}
+                            className="create-input"
+                            onChange={e => setTitle(e.target.value) }
                             / >
+                            <div className="description-container">
+                                <input
+                                type="text"
+                                placeholder="Tell everyone what your Pin is about"
+                                required
+                                value={description}
+                                className="create-input"
+                                onChange={e => setDescription(e.target.value) }
+                                / >
+                            </div>
                         </div>
-                        <div className="button-container">
-                        <button type="submit">Save</button>
-                        </div>
-                    </div>
-                </form>
+                            <div className="button-container">
+                                <button className="button" type="submit">Save</button>
+                            </div>
+                    </form>
+                </div>
             </section>
         </>
     )

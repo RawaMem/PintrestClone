@@ -1,17 +1,15 @@
-import { useSelector, useDispatch } from "react-redux";
-import { useEffect, useState } from "react";
-import { Link, useParams, useHistory } from "react-router-dom";
-import { pinDetail } from "../../store/pins";
-import {
-  thunkGetAllComments,
-  thunkDeleteComment,
-  thunkAddComments,
-  thunkEditCommentDetails,
-} from "../../store/comments";
-import EditUserPinModal from "../EditPinForm";
-import EditPinModal from "../PinBoardEditForm";
-import { getAllBoards, addPinToBoard } from "../../store/boards";
-import "./PinDetail.css";
+
+import { useSelector, useDispatch } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { Link, useParams,useHistory } from 'react-router-dom';
+import { pinDetail } from '../../store/pins';
+import { thunkGetAllComments, thunkDeleteComment, thunkAddComments, thunkEditCommentDetails } from '../../store/comments';
+import EditUserPinModal from '../EditPinForm';
+import EditPinModal from '../PinBoardEditForm';
+import { getAllBoards, addPinToBoard } from '../../store/boards';
+import "./PinDetail.css"
+import KeyboardBackspaceSharpIcon from '@mui/icons-material/KeyboardBackspaceSharp';
+
 
 const PinDetail = () => {
   const dispatch = useDispatch();
@@ -86,6 +84,7 @@ const PinDetail = () => {
       // 'pin_id': pinId,
       content: commentContent,
     };
+
     console.log("this is running", updatedContent);
     // console.log("------",pinId)
     dispatch(thunkEditCommentDetails(updatedContent));
