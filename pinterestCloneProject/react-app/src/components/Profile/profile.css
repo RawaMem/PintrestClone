@@ -12,6 +12,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-bottom: 20px
 }
 
 .user-info-container {
@@ -57,9 +58,13 @@
 }
 
 .icon-section {
+    margin-top: 50px;
     display:flex;
-    /* align-items: space-between; */
-    background-color:red;
+    /* background-color:red; */
+}
+
+.section2 {
+    margin-top: 30px;
 }
 
 .button-left {
@@ -67,7 +72,7 @@
 }
 
 .boards-container {
-    background-color: purple;
+    /* background-color: purple; */
     margin:  10px;
 }
 
@@ -110,7 +115,9 @@
     margin-top: 10px;
 }
 
-
+.pin-image {
+    cursor:zoom-in;
+}
 .image-user-container {
     box-sizing: border-box;
     margin-left: 20px;

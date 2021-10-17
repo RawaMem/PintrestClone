@@ -45,8 +45,9 @@ export const Profile = () => {
 
 
     const listOfUserObjsProfileIsFollowing = allUsers?.filter(user => user?.followers?.includes(profileUser?.id))
-  
+
     useEffect(() => {
+
         dispatch(getAllBoards())
         dispatch(getAllPins())
         dispatch(getUserprofile(currentProfileId))
@@ -250,7 +251,7 @@ export const Profile = () => {
                                                 />
                                             </Link>
                                             <Link to="#" className="pin-owner">
-                                                <div>{pin?.profileUser?.username}</div>
+                                                <div>{pin?.user?.username}</div>
                                             </Link>
                                         </div>
                                     </>
