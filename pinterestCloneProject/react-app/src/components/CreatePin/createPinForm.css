@@ -1,0 +1,58 @@
+*{
+    box-sizing: border-box;
+}
+
+.addpin-form-container {
+    display: grid;
+    grid-template-rows: 20% 80%;
+}
+
+.logo-name-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+.title {
+    margin-left: 10px;
+    font-weight: 1000px;
+}
+
+.user-name-container {
+    display: flex;
+    margin-top: 20px;
+    justify-content: space-around;
+}
+
+.name-initial-container {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: 40px;
+    background-color: #efefef;
+    border-radius: 180px;
+    font-weight: 700;
+    font-size:14px;
+}
+
+.name {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: 40px;
+    font-weight: 600;
+    font-size: 15px;
+}
+
+
+
+.modal_form_logo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
