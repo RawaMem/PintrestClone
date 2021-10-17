@@ -5,10 +5,17 @@ import { Link } from 'react-router-dom';
 import SearchIcon from '@material-ui/icons/Search';
 import PersonIcon from '@material-ui/icons/Person';
 import './LoggedInNav.css'
+import { useSelector } from 'react-redux';
+
 
 export default function LoggedInNav() {
+
+    const user = useSelector(state => {
+        return state.session?.user
+    })
+
     return (
-        <div className="wrapper">   
+        <div className="wrapper">
             <div className="icon_button">
                 <PinterestIcon style={{ fontSize: 30 }}/>
             </div>
@@ -21,11 +28,10 @@ export default function LoggedInNav() {
             </div>
             <div className="spacing_search_person"></div>
             <div className="person_icon">
-            <PersonIcon className="person_icon"/>
-            <Link to="/profile"></Link>
+            <Link to={`/profile/${user?.id}`}><PersonIcon className="person_icon"/></Link>
             </div>
-            
+
         </div>
-        
+
     )
 }
