@@ -38,10 +38,10 @@ function App() {
   if (!loaded) {
     return null;
   }
-  
+
 
   return (
-    
+
     <BrowserRouter>
     <NavBar />
       <Switch>
@@ -76,9 +76,6 @@ function App() {
         <Route exact path='/pins/:pinId'>
           <LoggedInNav />
           <PinDetail />
-        </Route>
-        <Route exact path='/pin-builder'>
-          <CreatePinForm />
         </Route>
         {/* <ProtectedRoute path='/board-builder' exact={true} >
           <CreateBoard />
