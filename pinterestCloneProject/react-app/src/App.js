@@ -16,6 +16,7 @@ import CreatePinForm from './components/CreatePin';
 import { CreateBoard } from './components/CreateBoard';
 import { EditBoard } from './components/EditBoard';
 import Header from './components/home/Header';
+import LoggedInNav from './components/Profile/LoggedInNav';
 
 
 function App() {
@@ -64,6 +65,7 @@ function App() {
           <h1>My Home Page</h1>
         </ProtectedRoute>
         <Route exact path='/home'>
+          <LoggedInNav />
           <PinsDisplay />
         </Route>
         <Route exact path='/pins/:pinId'>

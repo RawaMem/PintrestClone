@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Redirect ,useHistory} from 'react-router-dom';
 import { login } from '../../store/session';
 import './LoginForm.css'
 import PinterestIcon from '@material-ui/icons/Pinterest'
 import SignUpFormModal from '../home/SignUpFormModal';
+// import * as sessionActions from '../../store/session'
 
 const LoginForm = () => {
+  const history = useHistory();
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -20,6 +22,24 @@ const LoginForm = () => {
       setErrors(data);
     }
   };
+  // const demoUser = () => {
+  //   setErrors([]);
+  //   return dispatch(
+  //     sessionActions.login({
+  //       Email: "demo@aa.io",
+  //       password: "password",
+  //     })
+  //   ).catch(async (res) => {
+  //     const data = await res.json();
+  //     if (data && data.errors) setErrors(data.errors);
+  //   });
+  // };
+  const demoUser = (e) => {
+    e.preventDefault();
+    const demo = dispatch(login("demo@aa.com", "password"));
+    history.push("/home")
+  }
+
 
   const updateEmail = (e) => {
     setEmail(e.target.value);
@@ -74,7 +94,7 @@ const LoginForm = () => {
           <button className="button_modal" type='submit'>Login</button>
           <div className="spacing"></div>
           <button className="demo_user_modal"
-          type='submit'>Demo User</button>
+          type='submit' onClick={demoUser}>Demo User</button>
         </div>
         <button className="redirect">
         {/* <SignUpFormModal /> */}
