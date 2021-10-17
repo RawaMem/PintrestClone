@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 
 function LoginForm() {
   const dispatch = useDispatch();
+  const sessionUser = useSelector(state => state.session.user);
   const [credential, setCredential] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
@@ -18,6 +19,11 @@ function LoginForm() {
       }
     );
   };
+  if (sessionUser) return (
+    <Redirect to="/" />
+  );
+
+ 
 
   return (
     <form onSubmit={handleSubmit}>

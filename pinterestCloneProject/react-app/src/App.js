@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
 import NavBar from './components/NavBar';
@@ -16,10 +16,14 @@ import CreatePinForm from './components/CreatePin';
 import { CreateBoard } from './components/CreateBoard';
 import { EditBoard } from './components/EditBoard';
 import Header from './components/home/Header';
+import LoggedInNav from './components/Profile/LoggedInNav';
+
 
 
 function App() {
-
+  const user = useSelector(state => {
+    return state.session?.user
+})
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
 
@@ -34,8 +38,10 @@ function App() {
   if (!loaded) {
     return null;
   }
+  
 
   return (
+    
     <BrowserRouter>
     <NavBar />
       <Switch>
@@ -64,9 +70,11 @@ function App() {
           <h1>My Home Page</h1>
         </ProtectedRoute>
         <Route exact path='/home'>
+          <LoggedInNav />
           <PinsDisplay />
         </Route>
         <Route exact path='/pins/:pinId'>
+          <LoggedInNav />
           <PinDetail />
         </Route>
         <Route exact path='/pin-builder'>

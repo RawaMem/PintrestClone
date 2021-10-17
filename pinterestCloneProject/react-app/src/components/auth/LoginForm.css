@@ -90,6 +90,12 @@
     padding: 2px 8px 2px 8px;
     width: 17.30em;
 }
+.close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    cursor: pointer;
+}
 .demo_user_modal {
     display: flex;
     border: 0;

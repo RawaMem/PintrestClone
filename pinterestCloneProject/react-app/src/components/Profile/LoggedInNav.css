@@ -1,0 +1,75 @@
+.wrapper {
+    display:flex;
+    position:fixed;
+    align-items: center;
+    top: 0;
+    left: 0;
+    width: 100%;
+    justify-content: flex-start;
+    height: 80px;
+    padding: 0px 4px 0px 16px;
+    background-color: white;
+    color: black;
+    place-content: space-between;
+    z-index:10;
+}
+
+.wrapper a {
+    display: flex;
+    margin-left: 30px;
+    margin-right: 12px;
+    font-size: 16px;
+    color: black;
+    font-weight: 700;
+    text-decoration: none;
+    width: 4%;
+    z-index:10;
+}
+.search_icon {
+    display: flex;
+    align-items: center;
+    height: 40px;
+    border-radius: 50%;
+    color: #767676;
+    cursor: pointer;
+}
+.icon_button:hover {
+    background-color: #efefef;
+}
+
+.search_input {
+    background-color: transparent;
+    border: none;
+    width: 100%;
+    margin-left: 8px;
+    margin-right: 8px;
+    font-size: 16px;
+    outline: none;
+}
+.searchbar {
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+    background-color: #efefef;
+    height: 48px;
+    width: 100%;
+    border-radius: 50px;
+    border: none;
+    padding-left: 10px;
+}
+.searchbar:hover {
+    background-color:#e2e2e2;
+}
+
+.spacing_search_person {
+    width: 10%;
+}
+.person_icon {
+    color: #767676;
+    cursor: pointer;
+    width: 5%;
+}
+/* .person_icon:hover {
+    background-color: #efefef; 
+     border-radius: 100%;
+} */

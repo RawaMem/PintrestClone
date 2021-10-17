@@ -1,9 +1,6 @@
 import React from 'react'
 import PinterestIcon from '@material-ui/icons/Pinterest'
-// import IconButton from '@material-ui/core/IconButton'
-// import styled from 'styled-components'
 import './Header.css'
-import {Select, MenuItem, FormControl, InputLabel} from "@material-ui/core"
 import LoginFormModal from './LoginFormModal'
 import SignUpFormModal from './SignUpFormModal'
 import GitHubIcon from '@material-ui/icons/GitHub';
