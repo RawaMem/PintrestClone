@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { getAllPins } from '../../store/pins';
 import { getAllBoards, addPinToBoard } from '../../store/boards';
-
+import CreatePinModal from '../CreatePin/CreatePinModal';
 import Card from '../PictureCard';
 import './pinsDisplay.css'
 
@@ -71,9 +71,7 @@ const PinsDisplay = () => {
                 {allPins}
             </div>
             <div className="button-container">
-                <Link to={`/pin-builder`}>
-                    Create a Pin
-                </Link>
+                <CreatePinModal className="create-pin-icon"/>
             </div>
         </>
     )
