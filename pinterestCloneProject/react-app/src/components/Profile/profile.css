@@ -1,9 +1,109 @@
 * {
     box-sizing: border-box;
+    /* font-family: 'Roboto', sans-serif; */
+}
+
+.page-container {
+    display: grid;
+    grid-template-rows:20% auto auto;
+}
+
+.section-1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px
+}
+
+.user-info-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: -4 0;
+}
+
+.user-initial-button {
+    height:120px;
+    width:120px;
+    overflow:hidden;
+    cursor: pointer;
+    border: none;
+    font-size: 40px;
+    font-weight: 700;
+    border-radius: 180px;
+}
+
+.full-name {
+    font-weight: 700;
+    color: #111111;
+    font-size: 36px;
+    margin-top: 10px;
+
+}
+
+.at-username {
+    font-size: 16px;
+    color:rgb(33, 25, 34);
+    font-weight: 400;
+    margin-top: 10px;
+}
+
+.following-container {
+    margin-top: 10px;
+}
+
+.followers {
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.icon-section {
+    margin-top: 50px;
+    display:flex;
+    /* background-color:red; */
+}
+
+.section2 {
+    margin-top: 30px;
+}
+
+.button-left {
+    margin-left: 10px;
+}
+
+.boards-container {
+    /* background-color: purple; */
+    margin:  10px;
+}
+
+.board-card-link {
+    text-decoration: none;
+}
+
+.boards-container2 {
+    display: flex;
+    /* flex-direction: row; */
+    flex-flow: row wrap;
+    justify-content: space-between;
+    margin: 5px;
+}
+
+.board-card-link {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.board-card {
+    width: 236px;
+    height: 157px;
+    border-radius: 16px;
+    border: solid black;
+    margin-top: 10px;
 }
 
 .unorganized-pins-container {
-    display: flex;
+    display:flex;
     flex-flow: row wrap;
 }
 
@@ -15,12 +115,9 @@
     margin-top: 10px;
 }
 
-/* .pin-owner {
-    margin-left: 30px;
-    margin-top: -6px;
-    text-decoration: none;
-} */
-
+.pin-image {
+    cursor:zoom-in;
+}
 .image-user-container {
     box-sizing: border-box;
     margin-left: 20px;
