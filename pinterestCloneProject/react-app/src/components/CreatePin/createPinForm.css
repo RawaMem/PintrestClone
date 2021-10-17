@@ -82,8 +82,8 @@
     transition-duration: .3s;
 }
 
-.create-input {
-    
+.create-input:focus {
+    border-color: #4a8ad4;
 }
 
 .input-container {

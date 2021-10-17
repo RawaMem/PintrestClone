@@ -65,7 +65,7 @@ const CreatePinForm = () => {
                             <div className="image-container">
                                 <input
                                 type="text"
-                                placeholder="Drag and drop or click to upload"
+                                placeholder="Image URL: "
                                 value={imageUrl}
                                 required
                                 className="create-input"
