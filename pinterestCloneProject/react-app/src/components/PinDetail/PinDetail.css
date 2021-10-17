@@ -1,3 +1,8 @@
+*{
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
 .pin_wrapper {
     display: flex;
     position: relative;
@@ -63,4 +68,9 @@
     outline: none;
     font-size: 16px;
     padding-left: 20px;
+}
+
+.go-back-button {
+    margin-left: 10px;
+    margin-top: 20px;
 }

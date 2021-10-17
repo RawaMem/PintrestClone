@@ -7,7 +7,7 @@ import EditUserPinModal from '../EditPinForm';
 import EditPinModal from '../PinBoardEditForm';
 import { getAllBoards, addPinToBoard } from '../../store/boards';
 import "./PinDetail.css"
-
+import KeyboardBackspaceSharpIcon from '@mui/icons-material/KeyboardBackspaceSharp';
 
 
 
@@ -100,6 +100,9 @@ const PinDetail = () => {
 
     return (
         <>
+        <Link className="go-back-button" to="/home">
+            <KeyboardBackspaceSharpIcon style={{ color: "#111111"}} fontSize="medium" fontWeight="bold" />
+        </Link>
         <div className="pin_background">
             <div className="pin_wrapper">
                 <div className="pin_modal">
@@ -157,8 +160,6 @@ const PinDetail = () => {
                         </div>
                         </form>
                         </div>
-                        
-                        
                 </div>
             </div>
         </div>
