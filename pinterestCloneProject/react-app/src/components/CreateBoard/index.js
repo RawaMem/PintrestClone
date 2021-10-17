@@ -27,7 +27,7 @@ export const CreateBoard = () => {
         if (createdBoard) {
           history.push(`/boards/${createdBoard?.id}`);
         }
-      };
+    };
 
       return (
           <>
