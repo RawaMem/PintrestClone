@@ -36,7 +36,7 @@ const LoginForm = () => {
   // };
   const demoUser = (e) => {
     e.preventDefault();
-    const demo = dispatch(login("demo@aa.com", "password"));
+    dispatch(login("demo@aa.io", "password"));
     history.push("/home")
   }
 
@@ -59,10 +59,10 @@ const LoginForm = () => {
         {errors.map((error, ind) => (
           <div key={ind}>{error}</div>
         ))}
-      
+
       </div>
       <div className="modal">
-        
+
         <div className="modal_form_box">
         <div className="modal_form_logo">
           <PinterestIcon style={{ fontSize: 40}}/>
