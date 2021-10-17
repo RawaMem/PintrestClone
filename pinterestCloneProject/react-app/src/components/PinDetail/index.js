@@ -53,15 +53,13 @@ const PinDetail = () => {
 
     let newComment = {
         'user_id': sessionUser?.id,
-        'pin_id': pinId ,
+        'pin_id': pinId,
         'content': commentContent,
         'notified': 'false'
     };
 
-
     let createdComment =await dispatch(thunkAddComments(newComment))
-
-};
+    };
 
     const updateContent = (e) =>
         {setCommentContent(e.target.value)
@@ -72,12 +70,14 @@ const PinDetail = () => {
     };
 
     const updateComment = async (e) => {
+        console.log('this runs')
         e.preventDefault();
         let updatedContent = {
         id: e.target.value,
+        // 'pin_id': pinId,
         content: commentContent,
         };
-        // console.log("%%%%%",updatedContent)
+        console.log("this is running",updatedContent)
         // console.log("------",pinId)
         dispatch(thunkEditCommentDetails(updatedContent))
         // dispatch(thunkGetAllComments());
@@ -143,7 +143,8 @@ const PinDetail = () => {
                     value={comment.content}
                     onChange={updateContent}
                     required/>
-                <button value={comment.id} className='delete-Button' onClick={handleDelete}>Delete</button> <button value={comment.id} onClick={updateComment} >Edit</button>
+                <button value={comment.id} className='delete-Button' onClick={handleDelete}>Delete</button>
+                <button value={comment.id} onClick={updateComment} >Edit</button>
                 </div>
                 )})}
 
