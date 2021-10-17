@@ -25,7 +25,6 @@ export default function LoggedInNav() {
             <Link to="/profile"></Link>
             </div>
             
-    
         </div>
         
     )

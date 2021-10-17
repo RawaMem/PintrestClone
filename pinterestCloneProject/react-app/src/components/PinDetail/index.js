@@ -6,6 +6,7 @@ import { thunkGetAllComments, thunkDeleteComment, thunkAddComments, thunkEditCom
 import EditUserPinModal from '../EditPinForm';
 import EditPinModal from '../PinBoardEditForm';
 import { getAllBoards, addPinToBoard } from '../../store/boards';
+import "./PinDetail.css"
 
 
 
@@ -99,58 +100,68 @@ const PinDetail = () => {
 
     return (
         <>
-            <div className="image-container">
-                <img className="pin-detail-image" src={pins?.pin?.media_url} alt={pins?.pin?.description} />
-                <div className="edit-pin-button-container">
-                    {sessionUser?.id === pins?.pin?.user_id ?
-                        <EditUserPinModal pin={pins?.pin} />:
-                        <EditPinModal pin={pins.pin} />
-                    }
+        <div className="pin_background">
+            <div className="pin_wrapper">
+                <div className="pin_modal">
+                    <div className="image-container">
+                        <div className="pin_pic">
+                            <img className="pin-detail-image" src={pins?.pin?.media_url} alt={pins?.pin?.description} />
+                        </div>
+                    </div>
+                        <div id="pin_right_side">
+                            <div  className="edit-pin-button-container">
+                                {sessionUser?.id === pins?.pin?.user_id ?
+                                    <EditUserPinModal pin={pins?.pin} />:
+                                    <EditPinModal pin={pins.pin} />
+                                }
+                            <div className="add-pin-to-container-container">
+                                {sessionUser?.id !== pins?.pin?.user_id ?
+                                <button className="save-button" onClick={handleAddPinToBoard}>
+                                    Save
+                                </button> : false
+                                }
+                            </div>
+                            </div>
+                        <div className="title_container">
+                            <h3>{pins?.pin?.title}</h3>
+                        </div>
+                        <div className="description_container">
+                            <p>{pins?.pin?.description}</p>
+                        </div>
+                        <form >
+                        <div>
+                        <label></label>
+                        <textArea className="pin_comment"
+                            style={{ 'minHeight': '100px' }}
+                            placeholder="Add a comment"
+                            value={commentContent}
+                            onChange={(e) => setCommentContent(e.target.value)} />
+                        <button onClick={postComment} className="submit-comment-button" type="submit" style={{ 'marginTop': '10px', 'height': '30px' }}>Add comment</button>
+                        <div className="app">
+                            {pinComments.map(comment => {
+                                return(
+                            <div key={comment.id} className='single-comment'>
+                            <div>{comment.user.username}</div>
+                            <div>{comment.content}</div>
+                            <input name={comment.id}
+                                type="text"
+                                placeholder="type now"
+                                value={comment.content}
+                                onChange={updateContent}
+                                required/>
+                            <button value={comment.id} className='delete-Button' onClick={handleDelete}>Delete</button> <button value={comment.id} onClick={updateComment} >Edit</button>
+                            </div>
+                            )})}
 
-                </div>
-                <div className="add-pin-to-container-container">
-                    {sessionUser?.id !== pins?.pin?.user_id ?
-                    <button className="save-button" onClick={handleAddPinToBoard}>
-                        Save
-                    </button> : false
-                    }
+                        </div>
+                        </div>
+                        </form>
+                        </div>
+                        
+                        
                 </div>
             </div>
-            <div className="title-container">
-                <h3>{pins?.pin?.title}</h3>
-            </div>
-            <div className="description-container">
-                <p>{pins?.pin?.description}</p>
-             </div>
-            <form >
-            <div>
-            <label>Comment</label>
-            <textArea
-                style={{ 'minHeight': '100px' }}
-                placeholder="Add a comment"
-                value={commentContent}
-                onChange={(e) => setCommentContent(e.target.value)} />
-              <button onClick={postComment} className="submit-comment-button" type="submit" style={{ 'marginTop': '20px', 'height': '40px' }}>Done</button>
-              <div className="app">
-                {pinComments.map(comment => {
-                    return(
-                <div key={comment.id} className='single-comment'>
-                <div>{comment.user.username}</div>
-                <div>{comment.content}</div>
-                <input name={comment.id}
-                    type="text"
-                    placeholder="type now"
-                    value={comment.content}
-                    onChange={updateContent}
-                    required/>
-                <button value={comment.id} className='delete-Button' onClick={handleDelete}>Delete</button>
-                <button value={comment.id} onClick={updateComment} >Edit</button>
-                </div>
-                )})}
-
-              </div>
-            </div>
-            </form>
+        </div>
         </>
     )
 }

@@ -22,9 +22,9 @@ def edit_one_comment(commentId):
     print('this is request data @@@@@', request.get_json())
     requestData = request.get_data(as_text=True)
     edittedString = requestData[22:-2]
-    # print('this should be the editted string@@@@@=====>', edittedString)
+    print('this should be the editted string@@@@@=====>', edittedString)
 
-    # print('this is the saved data workaround @@@', requestData)
+    print('this is the saved data workaround @@@', requestData)
     # print('this is request cookies', form.data)
     # print('this is form in route', form.data)
     # .update({comment.content: form.data['content'], comment.user_id: current_user.id})
@@ -42,7 +42,9 @@ def edit_one_comment(commentId):
     #     return comment.to_dict()
     comment.content = edittedString
     db.session.commit()
+    print("--------%%%----",comment.content)
     return comment.to_dict()
+
 
     # else:
     #     # print("^^^^^^^^^^^",form.errors)

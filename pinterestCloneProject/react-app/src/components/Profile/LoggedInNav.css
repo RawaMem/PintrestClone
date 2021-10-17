@@ -8,9 +8,10 @@
     justify-content: flex-start;
     height: 80px;
     padding: 0px 4px 0px 16px;
-    background-color: #b0c4de;
+    background-color: white;
     color: black;
     place-content: space-between;
+    z-index:10;
 }
 
 .wrapper a {
@@ -22,6 +23,7 @@
     font-weight: 700;
     text-decoration: none;
     width: 4%;
+    z-index:10;
 }
 .search_icon {
     display: flex;
