@@ -121,6 +121,31 @@ export const Profile = () => {
         dispatch(unfollowUser(payload))
     };
 
+    const pic1 = (board) => {
+        const picObj = board.pins[0]
+        if (picObj) {
+            return picObj.media_url
+        } else {
+            return 'https://htmlcolorcodes.com/assets/images/colors/light-gray-color-solid-background-1920x1080.png'
+        }
+    }
+    const pic2 = (board) => {
+        const picObj = board.pins[1]
+        if (picObj) {
+            return picObj.media_url
+        } else {
+            return 'https://htmlcolorcodes.com/assets/images/colors/light-gray-color-solid-background-1920x1080.png'
+        }
+    }
+    const pic3 = (board) => {
+        const picObj = board.pins[2]
+        if (picObj) {
+            return picObj.media_url
+        } else {
+            return 'https://htmlcolorcodes.com/assets/images/colors/light-gray-color-solid-background-1920x1080.png'
+        }
+    }
+
 
     return(
         <>
@@ -218,8 +243,13 @@ export const Profile = () => {
                                         <>
                                             <Link className='board-card-link' to={`/boards/${board?.id}`}>
                                             <div className="board-card">
-                                                <p className="board-title">{board?.title}</p>
+                                                <div className="left-board-picture"><img src={pic1(board)} /></div>
+                                                <div className="right-pic-stack">
+                                                    <div className="upper-board-pic"><img src={pic2(board)} /></div>
+                                                    <div className="lower-board-pic"><img src={pic3(board)} /></div>
+                                                </div>
                                             </div>
+                                            <p className="board-title">{board?.title}</p>
                                             </Link>
 
 
