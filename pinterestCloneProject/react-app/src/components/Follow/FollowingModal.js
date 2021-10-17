@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Modal } from '../../context/Modal';
 import Following from './index'
 import { useDispatch, useSelector } from 'react-redux';
-import { getUserprofile } from '../../store/session';
 import { Link } from 'react-router-dom';
 
 function FollowingModal( {currentProfileId} ) {

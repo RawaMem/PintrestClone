@@ -8,12 +8,9 @@ import Card from '../PictureCard';
 import './profile.css';
 import { followUser, getUserprofile, unfollowUser } from '../../store/session';
 import CreateBoardModal from '../CreateBoard/createBoardModal';
-import FollowingModal from '../Follow/FollowingModal'
 import AddIcon from '@mui/icons-material/Add';
 import CreateIcon from '@mui/icons-material/Create';
 import IosShareIcon from '@mui/icons-material/IosShare';
-
-
 
 export const Profile = () => {
 
@@ -92,16 +89,16 @@ export const Profile = () => {
     // following pop up menu
     const [showMenuFollowing, setShowMenuFollowing] = useState(false);
     const openMenuFollowing = () => {
-      if (showMenuFollowing) return;
-      setShowMenuFollowing(true);
+        if (showMenuFollowing) return;
+        setShowMenuFollowing(true);
     };
     useEffect(() => {
-      if (!showMenuFollowing) return;
-      const closeMenuFollowing = () => {
+        if (!showMenuFollowing) return;
+        const closeMenuFollowing = () => {
         setShowMenuFollowing(false);
-      };
-      document.addEventListener('click', closeMenuFollowing);
-      return () => document.removeEventListener("click", closeMenuFollowing);
+        };
+        document.addEventListener('click', closeMenuFollowing);
+        return () => document.removeEventListener("click", closeMenuFollowing);
     }, [showMenuFollowing]);
 
 
@@ -112,7 +109,7 @@ export const Profile = () => {
             followingid: e.target.value
         };
         dispatch(followUser(payload))
-      };
+        };
 
 
     const handleUnfollow = async(e) => {
@@ -124,7 +121,6 @@ export const Profile = () => {
         dispatch(unfollowUser(payload))
     };
 
-
     return(
         <>
             <div className="page-container">
@@ -134,10 +130,9 @@ export const Profile = () => {
                         <h1 className="full-name">{profileUser?.first_name} {profileUser?.last_name}</h1>
                         <p className="at-username">@{profileUser?.username}</p>
                         <div className="following-container">
-                            <FollowingModal clssName="following" currentProfileId={currentProfileId} />
                             <div className="follower-list-container">
-                                {/* <p className="followers" onClick={openMenuFollowers}>{profileUser?.followers.length} Following</p> */}
-                                {/* {showMenuFollowers && (
+                                <p className="followers" onClick={openMenuFollowers}>{profileUser?.followers.length} Following</p>
+                                {showMenuFollowers && (
                                     <>
                                         {allFollowersOfCurrentProfile.map(follower => {
                                             return (
@@ -153,11 +148,11 @@ export const Profile = () => {
                                             )
                                         })}
                                     </>
-                                )} */}
+                                )}
                             </div>
 
                             <div className="follower-list-container">
-                                {/* <p className="followers" onClick={openMenuFollowing}>{listOfUserObjsProfileIsFollowing?.length} Followers</p>
+                                <p className="followers" onClick={openMenuFollowing}>{listOfUserObjsProfileIsFollowing?.length} Followers</p>
                                 {showMenuFollowing && (
                                     <>
                                     {listOfUserObjsProfileIsFollowing.map(follower => {
@@ -174,7 +169,7 @@ export const Profile = () => {
                                         )
                                     })}
                                 </>
-                                )} */}
+                                )}
                             </div>
                         </div>
                     </div>

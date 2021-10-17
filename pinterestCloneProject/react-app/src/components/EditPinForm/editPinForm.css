@@ -1,14 +1,17 @@
 *{
     box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .edit-user-pin-container {
-    margin:0;
+    display: grid;
+    grid-template-rows: 10% 80% 10%;
+    /* margin:0;
     height: 70vh;
     width: 80vh;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: center; */
 }
 
 .edit-user-pin-form {
@@ -31,4 +34,3 @@
     height: 100%;
     width: 100%;
 }
-
