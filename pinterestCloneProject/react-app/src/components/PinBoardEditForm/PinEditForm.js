@@ -4,7 +4,7 @@ import { useHistory, useParams } from "react-router-dom";
 import { getAllBoards, createBoard, addPinToBoard, removeOnePinFromBoard } from "../../store/boards"
 import { pinDetail, deletePin } from "../../store/pins"
 import "./PinEditForm.css";
-import CreateBoardFormModal from "./createBoardFormModal";
+
 
 
 function PinEditForm({ pin }) {
@@ -18,6 +18,23 @@ function PinEditForm({ pin }) {
     const [title, setTitle] = useState("")
     const { pinId } = useParams()
     const [boardId, setBoardId] = useState();
+    const [newBoard, setNewBoard] = useState("");
+    const [description, setDescription] = useState("");
+
+
+    const handleAddNewBoard = async(e) => {
+        e.preventDefault();
+
+        const payload = {
+            user_id: currentUser.id,
+            title: newBoard,
+            description,
+            private: null
+        };
+
+
+        let createdBoard = await dispatch(createBoard(payload))
+    };
 
 
     useEffect(() => {
@@ -39,7 +56,8 @@ function PinEditForm({ pin }) {
             boardId,
             pinId: pin.id
         };
-
+        let modal = document.getElementById('modal-background')
+        modal.click()
         dispatch(addPinToBoard(payload))
     };
 
@@ -86,21 +104,25 @@ function PinEditForm({ pin }) {
                                         })}
                                     </select>
                                 </label>
-                                <div className="create-board-container">
-                                    <CreateBoardFormModal />
-                                </div>
-                                <label  className="form-contents">
-                                    Section
-                                    <select
-                                    value="section"
-                                    >
-                                        <option selected value="1">No section</option>
-                                    </select>
-                                </label>
-                                <label  className="form-contents">
-                                    Note to self
-                                    <textarea value="notes" />
-                                </label>
+
+                                <h5>Create new Board</h5>
+                                    <div className="new-board-form">
+                                        <input
+                                        type="text"
+                                        placeholder="Add your new Board title"
+                                        value={newBoard}
+                                        onChange={e => setNewBoard(e.target.value)}
+                                        />
+                                        <textarea
+                                        type="text"
+                                        placeholder="Tell everyone what your Board is about"
+                                        value={description}
+                                        onChange={e => setDescription(e.target.value)}
+                                        />
+                                    </div>
+                                    <div className="create-new-board-button">
+                                        <button onClick={handleAddNewBoard}>Create new Board</button>
+                                    </div>
                             </div>
                         </div>
 
