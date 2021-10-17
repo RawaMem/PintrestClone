@@ -2,6 +2,17 @@
     box-sizing: border-box;
 }
 
+.page-container {
+    display: grid;
+    grid-template-rows:30% 30% 40%;
+}
+
+.section-1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .unorganized-pins-container {
     display: flex;
     flex-flow: row wrap;
@@ -15,11 +26,6 @@
     margin-top: 10px;
 }
 
-/* .pin-owner {
-    margin-left: 30px;
-    margin-top: -6px;
-    text-decoration: none;
-} */
 
 .image-user-container {
     box-sizing: border-box;
