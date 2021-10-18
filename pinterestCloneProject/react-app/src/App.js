@@ -18,6 +18,7 @@ import { EditBoard } from './components/EditBoard';
 import Header from './components/home/Header';
 import LoggedInNav from './components/Profile/LoggedInNav';
 import LandingPage from './components/home/LandingPage';
+import { CarouselCard } from './components/CarouselCard';
 
 
 function App() {

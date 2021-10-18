@@ -1,3 +1,41 @@
 .boards-details-page-container {
     margin-top: 80px;
 }
+
+.board-info-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: -4 0;
+}
+
+.user-info-button {
+    height:120px;
+    width:120px;
+    overflow:hidden;
+    cursor: pointer;
+    border: none;
+    font-size: 40px;
+    font-weight: 700;
+    border-radius: 180px;
+}
+
+.number-of-pins {
+    font-weight: 700;
+    color: #111111;
+    font-size: 20px;
+    margin-top: 10px;
+
+}
+
+.at-username {
+    font-size: 16px;
+    color:rgb(33, 25, 34);
+    font-weight: 400;
+    margin-top: 10px;
+}
+
+.board-title-details {
+    font-size: 50px;
+    margin: 20px;
+}
