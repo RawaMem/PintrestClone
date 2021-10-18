@@ -45,7 +45,7 @@ const PinsDisplay = () => {
                     </button> : false
                     }
                 </div>
-                <Link to={`/pins/${pin?.id}`}>
+                <Link className="card-image" to={`/pins/${pin?.id}`}>
                     <Card
                     src={pin?.media_url}
                     alt={pin?.description}
