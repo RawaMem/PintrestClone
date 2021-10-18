@@ -26,3 +26,8 @@
       color: black;
 
   }
+
+  .save-pin-to-container{
+    display: flex;
+    justify-content: flex-end;
+  }
