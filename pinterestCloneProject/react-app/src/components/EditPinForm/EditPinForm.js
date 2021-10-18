@@ -148,8 +148,7 @@ function EditPinForm({pin}) {
                                     className="button-grey">
                                         Cancel
                                 </button>
-
-                                <button className="button" type="submit">
+                                <button className="save-button" type="submit">
                                     Save
                                 </button>
                             </div>

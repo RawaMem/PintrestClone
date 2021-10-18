@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Carousel from 'react-bootstrap/Carousel'
+// import Carousel from 'react-bootstrap/Carousel'
 // import 'bootstrap/dist/css/bootstrap.min.css';
 import './LandingPage.css';
 
