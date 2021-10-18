@@ -104,6 +104,7 @@ export const Profile = () => {
 
     const handleFollow = async(e) => {
         e.preventDefault();
+        e.stopPropagation();
         const payload = {
             userid: user.id,
             followingid: e.target.value
@@ -114,6 +115,7 @@ export const Profile = () => {
 
     const handleUnfollow = async(e) => {
         e.preventDefault();
+        e.stopPropagation();
         const payload = {
             userid: user.id,
             followingid: e.target.value
@@ -160,19 +162,21 @@ export const Profile = () => {
                                 <p className="followers" onClick={openMenuFollowers}>{profileUser?.followers.length} Following</p>
                                 {showMenuFollowers && (
                                     <>
-                                        {allFollowersOfCurrentProfile.map(follower => {
-                                            return (
-                                                <div className="popup-follower-row">
-                                                    <p className="follower-name">{follower.username}</p>
-                                                    {user?.followers?.includes(follower?.id) && (
-                                                    <button className="follow-toggle-btn" onClick={handleUnfollow} value={follower?.id}>Unfollow</button>
-                                                    )}
-                                                    {!user?.followers?.includes(follower?.id) && (
-                                                    <button className="follow-toggle-btn" onClick={handleFollow} value={follower?.id}>Follow</button>
-                                                    )}
-                                                </div>
-                                            )
-                                        })}
+                                        <div className="popup-container-for-followers">
+                                            {allFollowersOfCurrentProfile.map(follower => {
+                                                return (
+                                                    <div className="popup-follower-row">
+                                                        <p className="follower-name">{follower.username}</p>
+                                                        {user?.followers?.includes(follower?.id) && (
+                                                        <button className="follow-toggle-btn" onClick={handleUnfollow} value={follower?.id}>Unfollow</button>
+                                                        )}
+                                                        {!user?.followers?.includes(follower?.id) && (
+                                                        <button className="follow-toggle-btn" onClick={handleFollow} value={follower?.id}>Follow</button>
+                                                        )}
+                                                    </div>
+                                                )
+                                            })}
+                                        </div>
                                     </>
                                 )}
                             </div>
@@ -181,20 +185,22 @@ export const Profile = () => {
                                 <p className="followers" onClick={openMenuFollowing}>{listOfUserObjsProfileIsFollowing?.length} Followers</p>
                                 {showMenuFollowing && (
                                     <>
-                                    {listOfUserObjsProfileIsFollowing.map(follower => {
-                                        return (
-                                            <div className="popup-follower-row">
-                                                <p className="follower-name">{follower.username}</p>
-                                                {user?.followers?.includes(follower?.id) && (
-                                                <button className="follow-toggle-btn" onClick={handleUnfollow} value={follower?.id}>Unfollow</button>
-                                                )}
-                                                {!user?.followers?.includes(follower?.id) && (
-                                                <button className="follow-toggle-btn" onClick={handleFollow} value={follower?.id}>Follow</button>
-                                                )}
-                                            </div>
-                                        )
-                                    })}
-                                </>
+                                        <div className="popup-container-for-followers">
+                                            {listOfUserObjsProfileIsFollowing.map(follower => {
+                                                return (
+                                                        <div className="popup-follower-row">
+                                                            <p className="follower-name">{follower.username}</p>
+                                                            {user?.followers?.includes(follower?.id) && (
+                                                            <button className="follow-toggle-btn" onClick={handleUnfollow} value={follower?.id}>Unfollow</button>
+                                                            )}
+                                                            {!user?.followers?.includes(follower?.id) && (
+                                                            <button className="follow-toggle-btn" onClick={handleFollow} value={follower?.id}>Follow</button>
+                                                            )}
+                                                        </div>
+                                                )
+                                            })}
+                                        </div>
+                                    </>
                                 )}
                             </div>
                         </div>
