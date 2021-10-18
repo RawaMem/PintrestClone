@@ -1,9 +1,11 @@
+import inputBaseClasses from "@mui/core/InputUnstyled/inputUnstyledClasses";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { getAllBoards } from "../../store/boards"
 import { deletePin, editPin } from "../../store/pins"
 import "./editPinForm.css";
+import PinterestIcon from '@material-ui/icons/Pinterest'
 
 
 function EditPinForm({pin}) {
@@ -55,13 +57,14 @@ function EditPinForm({pin}) {
             <div className="edit-user-pin-container">
                 <form className="edit-user-pin-form" onSubmit={handleSubmit}>
                     <section className="title-section">
-                        <div className="title">
-                            <h1>Edit this Pin</h1>
+                        <div className="title-container">
+                            <p><PinterestIcon style={{ fontSize: 40 }}/></p>
+                            <h1 className="title">Edit this Pin</h1>
                         </div>
                     </section>
 
                     <section className="content-section">
-                        <div className="left-part">
+                        <div className="left-part-container">
                             {/* <div className="form-content">
                                 <label className="users-board">
                                     Board
@@ -85,37 +88,39 @@ function EditPinForm({pin}) {
                             <div className="form-content">
                                 <label className="pin-title">
                                     Title
-                                    <input
-                                        type="text"
-                                        required
-                                        value={title}
-                                        onChange={e => setTitle(e.target.value)}
-                                    />
                                 </label>
+                                <input
+                                    type="text"
+                                    required
+                                    value={title}
+                                    onChange={e => setTitle(e.target.value)}
+                                />
                             </div>
 
                             <div className="form-content">
                                 <label className="pin-description">
                                     Description
-                                    <textarea
-                                        type="text"
-                                        required
-                                        value={description}
-                                        onChange={e => setDescription(e.target.value)}
-                                    />
                                 </label>
+                                <input
+                                    type="text"
+                                    required
+                                    value={description}
+                                    className="textarea"
+                                    onChange={e => setDescription(e.target.value)}
+                                />
                             </div>
 
                             <div className="form-content">
                                 <label className="pin-img_url">
                                     Website
-                                    <textarea
-                                        type="text"
-                                        required
-                                        value={media_url}
-                                        onChange={e => setMedia_url(e.target.value)}
-                                    />
                                 </label>
+                                <input
+                                    type="text"
+                                    required
+                                    value={media_url}
+                                    className="textarea"
+                                    onChange={e => setMedia_url(e.target.value)}
+                                />
                             </div>
                         </div>
                         <div className="right-side">

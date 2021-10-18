@@ -4,14 +4,9 @@
 }
 
 .edit-user-pin-container {
-    display: grid;
-    grid-template-rows: 10% 80% 10%;
-    /* margin:0;
+    margin: 0;
     height: 70vh;
-    width: 80vh;
-    display: flex;
-    align-items: center;
-    justify-content: center; */
+    width: 90vh;
 }
 
 .edit-user-pin-form {
@@ -25,12 +20,87 @@
     border-radius: 10px;
 }
 
+.title-section {
+    display: flex;
+    flex-direction: row;
+    height: 100px;
+    justify-content: center;
+    align-items: center;
+}
+
+.title-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.title {
+    font-weight: 800;
+}
+
 .content-section {
     display: grid;
-    grid-template-columns: 60% auto;
+    grid-template-columns: 60% 40%;
+}
+
+.right-side {
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center
 }
 
 .pin-image {
     height: 100%;
+    width: 80%;
+    border-radius: 10px;
+}
+
+.left-part-container {
+    display: flex;
+    flex-direction: column;
+    /* height: 400px; */
+    /* justify-content: space-around; */
     width: 100%;
+    /* background-color: aquamarine; */
+    margin-right: 10px
+}
+
+.form-content {
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+label {
+    box-sizing: content-box;
+    width: 180px;
+    font-size: 12px;
+    font-weight: thin;
+}
+
+input {
+    background-color: transparent;
+    display: flex;
+    min-height: 48px;
+    width: 250px;
+    border-radius: 10px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #ddd;
+    margin-top: 30px;
+    margin-bottom: 5px;
+    padding: 15px;
+    outline: none;
+    transition-duration: .3s;
+    font: 4px solid #d0d0d0;
+
+}
+
+input:focus {
+    border-color: #4a8ad4;
+}
+
+.textarea {
+    min-height: 80px;
 }
