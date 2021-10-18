@@ -45,6 +45,7 @@
     margin-right: 8px;
     font-size: 16px;
     outline: none;
+    margin-bottom: 30px;
 }
 .searchbar {
     display: flex;
@@ -70,7 +71,7 @@
     width: 5%;
 }
 /* .person_icon:hover {
-    background-color: #efefef; 
+    background-color: #efefef;
      border-radius: 100%;
 } */
 
