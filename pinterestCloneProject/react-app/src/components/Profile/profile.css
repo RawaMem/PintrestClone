@@ -125,3 +125,8 @@
     margin-right: -50px;
 }
 
+.button-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
