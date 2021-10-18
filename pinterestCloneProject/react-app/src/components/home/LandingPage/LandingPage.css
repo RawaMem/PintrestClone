@@ -1,1 +1,165 @@
 
+
+.landing-page-container {
+    margin-top: 80px;
+    border-style: none;
+    border: none;
+
+}
+
+.landing-card-container {
+    display: flex;
+    justify-content: space-between;
+    border-style: none;
+    border: none;
+
+}
+
+.card-column-1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    width: 20%;
+    /* border: 2px solid black; */
+    border-style: none;
+    border: none;
+
+    overflow: hidden;
+    object-fit: cover;
+    height: 100vh;
+    align-items: center;
+}
+
+.landing-img-card {
+    object-fit: cover;
+    /* border: 2px solid black; */
+    overflow: hidden;
+    display: block;
+    margin-top: 15px;
+    border-radius: 20px;
+    border-style: none;
+    border: none;
+    width: 95%;
+    height: 300px;
+    box-shadow: RGB(0 0 0/10%) 0px 1px 20px 0px;
+    -webkit-animation: fadein 3s;
+        animation: fadein 3s;
+}
+
+.slogan-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 55px;
+    font-weight: 700;
+    position: absolute;
+    border: none;
+
+    left: 0;
+    right: 0;
+    margin-top: 150px;
+    -webkit-animation: fadein 4s;
+        animation: fadein 4s;
+}
+
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+@-webkit-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+.move-up1 {
+    animation-duration: 1s;
+    animation-name: slidein;
+    animation-delay: 1s;
+}
+
+@keyframes slidein {
+    from {
+        margin-top: 100%;
+    }
+    to {
+        margin-top: 0%;
+    }
+}
+
+.move-up2 {
+    animation-duration: 2s;
+    animation-name: slidein;
+    animation-delay: 1s;
+}
+
+@keyframes slidein {
+    from {
+        margin-top: 100%;
+    }
+    to {
+        margin-top: 0%;
+    }
+}
+
+.move-up3 {
+    animation-duration: 2.5s;
+    animation-name: slidein;
+    animation-delay: 1s;
+}
+
+@keyframes slidein {
+    from {
+        margin-top: 100%;
+    }
+    to {
+        margin-top: 0%;
+    }
+}
+
+.move-up4 {
+    animation-duration: 3s;
+    animation-name: slidein;
+    animation-delay: 1s;
+}
+
+@keyframes slidein {
+    from {
+        margin-top: 100%;
+    }
+    to {
+        margin-top: 0%;
+    }
+}
+
+.move-up5 {
+    animation-duration: 3.5s;
+    animation-name: slidein;
+    animation-delay: 1s;
+}
+
+@keyframes slidein {
+    from {
+        margin-top: 100%;
+    }
+    to {
+        margin-top: 0%;
+    }
+}
+
+.move-up6 {
+    animation-duration: 4s;
+    animation-name: slidein;
+    animation-delay: 1s;
+}
+
+@keyframes slidein {
+    from {
+        margin-top: 100%;
+    }
+    to {
+        margin-top: 0%;
+    }
+}
+

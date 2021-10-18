@@ -40,11 +40,12 @@ const PinsDisplay = () => {
             <div className="pins-display-container">
                 <div className="save-pin-to-container">
                     {currentUser?.id !== pin?.user_id ?
-                    <button value= {pin.id} className="save-button" onClick={handleAddPinToBoard}>
+                    <button value= {pin.id} className="save-button-pin-display" onClick={handleAddPinToBoard}>
                         Save
                     </button> : false
                     }
                 </div>
+                <div className="pin-display-img-container">
                 <Link to={`/pins/${pin?.id}`}>
                     <Card
                     src={pin?.media_url}
@@ -52,8 +53,9 @@ const PinsDisplay = () => {
                     />
                 </Link>
                 <Link to={`/profile/${pin?.user?.id}`} className="pin-owner">
-                    <div>{pin?.user?.username}</div>
+                    <div className='pin-display-username'>{pin?.user?.username}</div>
                 </Link>
+                </div>
             </div>
         </div>
     ))

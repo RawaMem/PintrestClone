@@ -34,10 +34,13 @@ const LoginForm = () => {
   //     if (data && data.errors) setErrors(data.errors);
   //   });
   // };
-  const demoUser = (e) => {
+  const demoUser = async (e) => {
     e.preventDefault();
-    dispatch(login("demo@aa.io", "password"));
-    history.push("/home")
+    const weAreIn = await dispatch(login("demo@aa.io", "password"));
+    // console.log('==========> we are in')
+    if (weAreIn) {
+      history.push("/home")
+    }
   }
 
 

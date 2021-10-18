@@ -8,12 +8,14 @@
   .pins-container {
       display: flex;
       flex-flow: row wrap;
+      justify-content: space-between;
   }
 
   .pins-display-container {
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
+      /* align-items: center; */
   }
 
   .pin-owner {
@@ -30,4 +32,34 @@
   .save-pin-to-container{
     display: flex;
     justify-content: flex-end;
+  }
+
+  .save-button-pin-display{
+    position: relative;
+    top: 40px;
+    left: 20px;
+    border-radius: 10px;
+    min-height: 30px;
+    min-width: 40px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 24px;
+    cursor: pointer;
+    background-color: #e60023;
+    font-size: 12px;
+    color: white;
+    font-weight: 500;
+    padding: 2px 8px 2px 8px;
+    border: 1px solid #e60023;
+  }
+
+  .pin-display-img-container {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+  }
+
+  .pin-display-username {
+      position: relative;
+      right: 15px;
   }
