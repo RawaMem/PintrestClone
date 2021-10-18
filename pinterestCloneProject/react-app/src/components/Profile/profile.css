@@ -183,3 +183,30 @@
     height: 75px;
 
 }
+
+.popup-container-for-followers {
+    border-radius: 32px;
+    box-shadow: RGB(0 0 0/10%) 0px 1px 20px 0px;
+    width: 250px;
+    /* border: 2px solid black; */
+    padding: 20px;
+    position: absolute;
+    z-index: 11;
+    background-color: white;
+    right: 40%;
+
+}
+
+.popup-follower-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 200px;
+    margin-bottom: 5px;
+
+
+}
+
+.follower {
+    text-align: center;
+}
