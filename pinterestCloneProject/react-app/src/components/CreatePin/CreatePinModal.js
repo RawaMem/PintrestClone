@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Modal } from '../../context/Modal';
 import CreatePinForm from '.';
-import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+
 
 function CreatePinModal() {
     const [showModal, setShowModal] = useState(false);
@@ -12,7 +12,7 @@ function CreatePinModal() {
             className='edit-pin-form'
             onClick={() => setShowModal(true)}
             >
-                <AddCircleOutlineIcon />
+                Create A Pin
             </button>
         </div>
          {showModal && (

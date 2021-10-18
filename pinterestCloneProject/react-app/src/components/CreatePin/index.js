@@ -50,14 +50,14 @@ const CreatePinForm = () => {
                             <h3 className="title">Create a Pin</h3>
                         </div>
                     </div>
-                    <div className="user-name-container">
+                    {/* <div className="user-name-container">
                         <div className="name-initial-container">
                             <p className="name-initial">{currentUser?.username[0]}</p>
                         </div>
                         <div className="name">
                             <p>{currentUser?.username}</p>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
                 <div className="input-container">
                     <form className="pin-form-container" onSubmit={handleSubmit}>
