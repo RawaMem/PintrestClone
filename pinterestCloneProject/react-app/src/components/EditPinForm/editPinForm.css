@@ -76,14 +76,14 @@ label {
     box-sizing: content-box;
     width: 180px;
     font-size: 12px;
-    font-weight: thin;
+    font-weight: bold;
 }
 
 input {
     background-color: transparent;
     display: flex;
     min-height: 48px;
-    width: 250px;
+    width: 180px;
     border-radius: 10px;
     border-style: solid;
     border-width: 2px;
@@ -134,11 +134,34 @@ input:focus {
     font-family: Arial, Helvetica, sans-serif;
 }
 
-.save-button {
+
+.cancel-save-button-container {
+    display: flex;
+}
+
+.new-board-form {
+    display:flex;
+    flex-direction: column;
+}
+textArea {
+    background-color: transparent;
+    display: flex;
+    min-height: 48px;
+    width: 180px;
+    border-radius: 10px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #ddd;
+    margin-bottom: 10px;
+    padding: 15px;
+    outline: none;
+    transition-duration: .3s;
+}
+.create-new-board-button {
     display: flex;
     border: 0;
-    height: 40px;
-    min-width: 60px;
+    min-height: 40px;
+    min-width: 160px;
     align-items: center;
     justify-content: center;
     border-radius: 24px;
@@ -148,9 +171,80 @@ input:focus {
     color: white;
     font-weight: 700;
     padding: 2px 8px 2px 8px;
-    margin-left: 10px;
+    margin-left: 20em;
+}
+.create-new-board-button-div {
+    margin-bottom: 10px;
 }
 
-.cancel-save-button-container {
+.delete-button {
     display: flex;
+    border: 0;
+    min-height: 40px;
+    min-width: 100px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 24px;
+    cursor: pointer;
+    background-color: #e60023;
+    font-size: 16px;
+    color: white;
+    font-weight: 700;
+    padding: 2px 8px 2px 8px;
+    margin-left: 20em;
+}
+.delete-button-container {
+    margin-bottom: 10px;
+}
+
+.cancel-button {
+    display: flex;
+    border: 0;
+    min-height: 40px;
+    min-width: 100px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 24px;
+    cursor: pointer;
+    background-color: #e60023;
+    font-size: 16px;
+    color: white;
+    font-weight: 700;
+    padding: 2px 8px 2px 8px;
+    margin-bottom: 10px;
+    margin-left: 20em;
+}
+.cancel-edit-button {
+    display: flex;
+    border: 0;
+    min-height: 40px;
+    min-width: 100px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 24px;
+    cursor: pointer;
+    background-color: #e60023;
+    font-size: 16px;
+    color: white;
+    font-weight: 700;
+    padding: 2px 8px 2px 8px;
+    margin-left: 20em;
+    margin-bottom: 10px;
+
+}
+.save-edit-button {
+    display: flex;
+    border: 0;
+    min-height: 40px;
+    min-width: 100px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 24px;
+    cursor: pointer;
+    background-color: #e60023;
+    font-size: 16px;
+    color: white;
+    font-weight: 700;
+    padding: 2px 8px 2px 8px;
+    margin-left: 20em;
 }

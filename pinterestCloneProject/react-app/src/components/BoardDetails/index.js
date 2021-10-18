@@ -40,7 +40,7 @@ export const BoardDetails = () => {
         <>
             <div className="boards-details-page-container">
                 <div className="board-info-container">
-                    <button className="board-title">{currentBoard?.title}</button>
+                    <h2 className="board-title-details">{currentBoard?.title}</h2>
                     <button className="user-info-button">{user?.first_name[0]}</button>
                     <p className="number-of-pins">{currentBoard?.pins?.length} Pins</p>
 

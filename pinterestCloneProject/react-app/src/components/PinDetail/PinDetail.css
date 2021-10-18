@@ -36,7 +36,7 @@
     box-sizing: border-box;
     width: 450px;
     border-radius: 16px;
-    margin: 20px;
+    margin: 90px;
     object-fit: cover;
     /* z-index: 1; */
 }
@@ -54,7 +54,7 @@
     display: flex;
     align-items: center;
     justify-content: left;
-    padding-top: 32px;
+    padding-top: 12px;
     font-size: 32px;
     font-weight: 700;
     overflow-wrap: break-word;
@@ -63,7 +63,7 @@
 .description_container {
     font-size: 14px;
     color: #333;
-    margin-top: 25px;
+    margin-top: 10px;
     margin-bottom: 25px;
     font-weight: 400;
     overflow-wrap: break-word;
@@ -99,7 +99,7 @@
     outline: none;
     font-size: 16px;
     padding-left: 20px;
-    margin-bottom: 25px;
+    
 }
 .submit_comment_button {
     display: flex;
@@ -127,6 +127,36 @@
     border-width: 1px;
     margin-top: 12px;
 }
+.delete-Button {
+    /* display: flex; */
+    border: 0;
+    min-height: 40px;
+    min-width: 60px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 24px;
+    cursor: pointer;
+    background-color: #e60023;
+    font-size: 16px;
+    color: white;
+    font-weight: 700;
+    padding: 2px 8px 2px 8px;
+}
+.edit-button {
+    /* display: flex; */
+    border: 0;
+    min-height: 40px;
+    min-width: 60px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 24px;
+    cursor: pointer;
+    background-color: #e60023;
+    font-size: 16px;
+    color: white;
+    font-weight: 700;
+    padding: 2px 8px 2px 8px;
+}
 
 .comment_username {
     font-size: 14px;
@@ -153,3 +183,20 @@
     margin-top: 15px;
     margin-bottom: 15px;
 }
+
+/* .save-button {
+    display: flex;
+    border: 0;
+    height: 40px;
+    min-width: 60px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 24px;
+    cursor: pointer;
+    background-color: #e60023;
+    font-size: 16px;
+    color: white;
+    font-weight: 700;
+    padding: 2px 8px 2px 8px;
+    margin-left: 20em;
+} */
