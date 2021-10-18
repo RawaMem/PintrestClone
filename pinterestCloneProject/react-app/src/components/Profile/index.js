@@ -121,6 +121,31 @@ export const Profile = () => {
         dispatch(unfollowUser(payload))
     };
 
+    const pic1 = (board) => {
+        const picObj = board.pins[0]
+        if (picObj) {
+            return picObj.media_url
+        } else {
+            return 'https://htmlcolorcodes.com/assets/images/colors/light-gray-color-solid-background-1920x1080.png'
+        }
+    }
+    const pic2 = (board) => {
+        const picObj = board.pins[1]
+        if (picObj) {
+            return picObj.media_url
+        } else {
+            return 'https://htmlcolorcodes.com/assets/images/colors/light-gray-color-solid-background-1920x1080.png'
+        }
+    }
+    const pic3 = (board) => {
+        const picObj = board.pins[2]
+        if (picObj) {
+            return picObj.media_url
+        } else {
+            return 'https://htmlcolorcodes.com/assets/images/colors/light-gray-color-solid-background-1920x1080.png'
+        }
+    }
+
 
     return(
         <>
@@ -218,8 +243,13 @@ export const Profile = () => {
                                         <>
                                             <Link className='board-card-link' to={`/boards/${board?.id}`}>
                                             <div className="board-card">
-                                                <p className="board-title">{board?.title}</p>
+                                                <div className="left-board-container"><img className="left-board-pic" src={pic1(board)} alt='pic1'/></div>
+                                                <div className="right-pic-stack">
+                                                    <div className="upper-board-container"><img className="upper-board-pic" src={pic2(board)} alt='pic2'/></div>
+                                                    <div className="lower-board-container"><img className="lower-board-pic" src={pic3(board)} alt='pic3'/></div>
+                                                </div>
                                             </div>
+                                            <p className="board-title">{board?.title}</p>
                                             </Link>
 
 

@@ -38,12 +38,12 @@ function App() {
   if (!loaded) {
     return null;
   }
-  
+
 
   return (
-    
+
     <BrowserRouter>
-    <NavBar />
+    {/* <NavBar /> */}
       <Switch>
         <Route path='/' exact={true}>
         <Header />
@@ -61,25 +61,24 @@ function App() {
           <User />
         </ProtectedRoute>
         <ProtectedRoute path='/profile/:currentProfileId' exact={true} >
+          <LoggedInNav />
           <Profile />
         </ProtectedRoute>
         <ProtectedRoute path='/boards/:boardId' exact={true} >
+          <LoggedInNav />
           <BoardDetails />
         </ProtectedRoute>
         <ProtectedRoute path='/' exact={true} >
           <h1>My Home Page</h1>
         </ProtectedRoute>
-        <Route exact path='/home'>
+        <ProtectedRoute path='/home' exact={true}>
           <LoggedInNav />
           <PinsDisplay />
-        </Route>
-        <Route exact path='/pins/:pinId'>
+        </ProtectedRoute>
+        <ProtectedRoute path='/pins/:pinId' exact={true}>
           <LoggedInNav />
           <PinDetail />
-        </Route>
-        <Route exact path='/pin-builder'>
-          <CreatePinForm />
-        </Route>
+        </ProtectedRoute>
         {/* <ProtectedRoute path='/board-builder' exact={true} >
           <CreateBoard />
         </ProtectedRoute> */}

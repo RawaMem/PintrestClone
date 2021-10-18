@@ -6,13 +6,17 @@
 .page-container {
     display: grid;
     grid-template-rows:20% auto auto;
+    margin-top: 80px;
 }
 
 .section-1 {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 20px
+    margin-bottom: 20px;
+    height: 100%;
+    z-index: 9;
+
 }
 
 .user-info-container {
@@ -64,7 +68,9 @@
 }
 
 .section2 {
+    /* background-color: purple; */
     margin-top: 30px;
+
 }
 
 .button-left {
@@ -100,6 +106,9 @@
     border-radius: 16px;
     border: solid black;
     margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
 }
 
 .unorganized-pins-container {
@@ -125,4 +134,52 @@
 
 .pin-edit {
     margin-right: -50px;
+}
+
+.right-pic-stack {
+    display: flex;
+    flex-direction: column;
+    width:100px;
+    overflow: hidden;
+}
+
+
+.left-board-container {
+    object-fit: cover;
+    overflow: hidden;
+    border-right: 2px solid white;
+    width: 130px;
+
+}
+.upper-board-container {
+    object-fit: cover;
+    overflow: hidden;
+    border-bottom: 2px solid white;
+
+}
+.lower-board-container {
+    object-fit: cover;
+    overflow: hidden;
+
+}
+
+
+
+.left-board-pic {
+    object-fit: cover;
+    width: 130px;
+    height: 151px;
+
+}
+.upper-board-pic {
+    object-fit: cover;
+    width:100px;
+    height: 75px;
+
+}
+.lower-board-pic {
+    object-fit: cover;
+    width:100px;
+    height: 75px;
+
 }

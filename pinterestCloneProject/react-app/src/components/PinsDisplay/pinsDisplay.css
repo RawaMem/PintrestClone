@@ -1,6 +1,9 @@
 * {
   box-sizing: border-box;
 }
+.pins-display-page-container {
+    margin-top: 80px;
+}
 
 .pins-container {
     display: flex;
@@ -17,4 +20,9 @@
     margin-left: 30px;
     margin-top: -6px;
     text-decoration: none;
+}
+
+.create-pin-icon {
+    color: black;
+
 }

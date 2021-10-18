@@ -2,6 +2,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { addPin } from '../../store/pins';
+import PinterestIcon from '@material-ui/icons/Pinterest'
+import './createPinForm.css';
 
 
 const CreatePinForm = () => {
@@ -39,41 +41,64 @@ const CreatePinForm = () => {
     return (
         <>
             <section className="addpin-form-container">
-                <form onSubmit={handleSubmit}>
-                    <div className="button-container">
-                        <button type="submit">Save</button>
+                <div className="modal_form_logo">
+                    <div className="logo-name-container">
+                        <div className="icon-container">
+                            <PinterestIcon style={{ fontSize: 40 }}/>
+                        </div>
+                        <div className="create-pin-container">
+                            <h3 className="title">Create a Pin</h3>
+                        </div>
                     </div>
-                    <div className="image-container">
-                        <input
-                        type="text"
-                        placeholder="Drag and drop or click to upload"
-                        value={imageUrl}
-                        required
-                        onChange={e => setImageUrl(e.target.value)} />
-                    </div>
-                    <div className="input-container">
-                        <input
-                          type="text"
-                          placeholder="Add your title"
-                          required
-                          value={title}
-                          onChange={e => setTitle(e.target.value) }
-                        / >
-
-                        <div className="user-name-container">
+                    <div className="user-name-container">
+                        <div className="name-initial-container">
+                            <p className="name-initial">{currentUser?.username[0]}</p>
+                        </div>
+                        <div className="name">
                             <p>{currentUser?.username}</p>
                         </div>
-                        <div className="description-container">
-                            <input
-                              type="text"
-                              placeholder="Tell everyone what your Pin is about"
-                              required
-                              value={description}
-                              onChange={e => setDescription(e.target.value) }
-                              / >
-                        </div>
                     </div>
-                </form>
+                </div>
+                <div className="input-container">
+                    <form className="pin-form-container" onSubmit={handleSubmit}>
+                        <div className="image-outer">
+                            <div className="image-container">
+                                <input
+                                type="text"
+                                placeholder="Image URL: "
+                                value={imageUrl}
+                                required
+                                className="create-input"
+                                onChange={e => setImageUrl(e.target.value)} />
+
+                            </div>
+                        </div>
+
+                        <div className="text-container">
+                            <input
+                            type="text"
+                            placeholder="Add your title"
+                            required
+                            value={title}
+                            className="create-input"
+                            onChange={e => setTitle(e.target.value) }
+                            / >
+                            <div className="description-container">
+                                <input
+                                type="text"
+                                placeholder="Tell everyone what your Pin is about"
+                                required
+                                value={description}
+                                className="create-input"
+                                onChange={e => setDescription(e.target.value) }
+                                / >
+                            </div>
+                        </div>
+                            <div className="button-container">
+                                <button className="button" type="submit">Save</button>
+                            </div>
+                    </form>
+                </div>
             </section>
         </>
     )
