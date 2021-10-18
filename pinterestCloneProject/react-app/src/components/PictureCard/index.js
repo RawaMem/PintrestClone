@@ -5,7 +5,7 @@ import './Card.css'
 function Card({ src, alt }) {
     return (
         <div className="card">
-            <img src={src} />
+            <img className='image-in-card' src={src} alt='card'/>
         </div>
     )
 }

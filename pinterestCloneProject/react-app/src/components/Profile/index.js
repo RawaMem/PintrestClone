@@ -243,10 +243,10 @@ export const Profile = () => {
                                         <>
                                             <Link className='board-card-link' to={`/boards/${board?.id}`}>
                                             <div className="board-card">
-                                                <div className="left-board-picture"><img src={pic1(board)} /></div>
+                                                <div className="left-board-container"><img className="left-board-pic" src={pic1(board)} alt='pic1'/></div>
                                                 <div className="right-pic-stack">
-                                                    <div className="upper-board-pic"><img src={pic2(board)} /></div>
-                                                    <div className="lower-board-pic"><img src={pic3(board)} /></div>
+                                                    <div className="upper-board-container"><img className="upper-board-pic" src={pic2(board)} alt='pic2'/></div>
+                                                    <div className="lower-board-container"><img className="lower-board-pic" src={pic3(board)} alt='pic3'/></div>
                                                 </div>
                                             </div>
                                             <p className="board-title">{board?.title}</p>
