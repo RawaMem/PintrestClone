@@ -13,6 +13,7 @@
 
 .edit-pinform {
     width: 100%;
+    height:100%;
     max-width: auto;
     display: flex;
     flex-direction: column;
@@ -36,11 +37,14 @@
     grid-template-columns: 60% auto;
 
 }
+.edit-pinform-title {
+    margin-bottom: 20px;
+}
 
-.pin-image {
+/* .pin-image {
     height: 100%;
     width: 100%;
-}
+} */
 
 .form-contents-container {
     /* display: grid;
@@ -50,4 +54,17 @@
     /* justify-content: space-around; */
     align-items: center;
 
+}
+.dropdown{
+    background-color: transparent;
+    display: flex;
+    min-height: 48px;
+    width: 250px;
+    border-radius: 10px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #ddd;
+    margin-bottom: 5px;
+    padding: 15px;
+    outline: none;
 }

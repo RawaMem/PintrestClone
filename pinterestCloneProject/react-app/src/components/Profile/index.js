@@ -162,10 +162,13 @@ export const Profile = () => {
                                 <p className="followers" onClick={openMenuFollowers}>{profileUser?.followers.length} Following</p>
                                 {showMenuFollowers && (
                                     <>
+
                                         <div className="popup-container-for-followers">
+                                
                                             {allFollowersOfCurrentProfile.map(follower => {
                                                 return (
                                                     <div className="popup-follower-row">
+                                                
                                                         <p className="follower-name">{follower.username}</p>
                                                         {user?.followers?.includes(follower?.id) && (
                                                         <button className="follow-toggle-btn" onClick={handleUnfollow} value={follower?.id}>Unfollow</button>
@@ -230,9 +233,9 @@ export const Profile = () => {
 
                                     {showMenuCreate && (
                                         <>
-                                            <p className="creation">Create</p>
+                                            <p className="creation"></p>
                                             <Link className='pop-up-button' to={`/pin-builder`}>
-                                                <button className='create-pin-btn'>Pin</button>
+                                                <button className='create-pin-btn'>Create Pin</button>
                                             </Link>
                                             <div className="create-board-container">
                                                 <CreateBoardModal />

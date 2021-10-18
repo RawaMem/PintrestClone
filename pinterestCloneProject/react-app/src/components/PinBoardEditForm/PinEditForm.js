@@ -86,7 +86,7 @@ function PinEditForm({ pin }) {
                             <div className="form-contents-container">
                                 <label className="form-contents">
                                     Board
-                                    <select
+                                    <select className="dropdown"
                                         value={title}
                                         onChange={e => {
                                             setTitle(e.target.value)
@@ -120,32 +120,32 @@ function PinEditForm({ pin }) {
                                         onChange={e => setDescription(e.target.value)}
                                         />
                                     </div>
-                                    <div className="create-new-board-button">
-                                        <button onClick={handleAddNewBoard}>Create new Board</button>
+                                    <div className="create-new-board-button-div">
+                                        <button className="create-new-board-button"onClick={handleAddNewBoard}>Create new Board</button>
                                     </div>
                             </div>
                         </div>
 
-                        <div className="container">
-                            <div className="pin-image-container">
-                                <img className="pin-image" src={pin?.media_url} alt={pin?.description} />
-                            </div>
-                        </div>
+                        {/* <div className="container"> */}
+                {/* <div className="pin-image-container">
+                    <img className="pin-image" src={pin?.media_url} alt={pin?.description} />
+                </div> */}
+                        {/* </div> */}
                     </div>
                     <div className="delete-button-container">
-                        <button value={ pin.id } className="delete-button" onClick={handleDelete}>
+                        <button value={ pin?.id } className="delete-button" onClick={handleDelete}>
                             Delete
                         </button>
                     </div>
                     <div className="cancel-button-container">
-                        <button
+                        <button className="cancel-button"
                          onClick={() =>{
-                            let modal = document.getElementById('modal-background')
-                            modal.click()
-                          }}
-                         className="cancel-edit-button">
+                             let modal = document.getElementById('modal-background')
+                             modal.click()
+                            }}
+                            className="cancel-edit-button">
                             Cancel
-                        </button>
+                        </button >
                     </div>
                     <div className="save-button-container">
                         <button className="save-edit-button" onClick={handleAddPinToBoard}>
