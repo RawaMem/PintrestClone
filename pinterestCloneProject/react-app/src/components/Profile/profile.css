@@ -1,12 +1,6 @@
-* {
-    box-sizing: border-box;
-    /* font-family: 'Roboto', sans-serif; */
-}
-
 .page-container {
     display: grid;
     grid-template-rows:20% auto auto;
-    margin-top: 80px;
 }
 
 .section-1 {
@@ -15,8 +9,6 @@
     align-items: center;
     margin-bottom: 20px;
     height: 100%;
-    z-index: 9;
-
 }
 
 .user-info-container {
@@ -106,9 +98,6 @@
     border-radius: 16px;
     border: solid black;
     margin-top: 10px;
-    display: flex;
-    flex-direction: row;
-    overflow: hidden;
 }
 
 .unorganized-pins-container {
@@ -136,50 +125,48 @@
     margin-right: -50px;
 }
 
-.right-pic-stack {
+.button-section {
+    width: 100%;
+}
+
+.button-container {
     display: flex;
-    flex-direction: column;
-    width:100px;
-    overflow: hidden;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-top: 20px;
 }
 
-
-.left-board-container {
-    object-fit: cover;
-    overflow: hidden;
-    border-right: 2px solid white;
-    width: 130px;
-
-}
-.upper-board-container {
-    object-fit: cover;
-    overflow: hidden;
-    border-bottom: 2px solid white;
-
-}
-.lower-board-container {
-    object-fit: cover;
-    overflow: hidden;
-
+.cancel-save-button-container {
+    display:flex;
 }
 
-
-
-.left-board-pic {
-    object-fit: cover;
-    width: 130px;
-    height: 151px;
-
+.button {
+    border: 0;
+    min-height: 40px;
+    min-width: 30px;
+    border-radius: 24px;
+    cursor: pointer;
+    background-color: #e60023;
+    font-size: 12px;
+    color: white;
+    font-weight: 700;
+    padding: 2px 8px 2px 8px;
+    width: 6em;
+    margin-top: 30px;
+    margin-left: 10px
 }
-.upper-board-pic {
-    object-fit: cover;
-    width:100px;
-    height: 75px;
 
-}
-.lower-board-pic {
-    object-fit: cover;
-    width:100px;
-    height: 75px;
-
+.button-grey {
+    border: 0;
+    min-height: 40px;
+    min-width: 30px;
+    border-radius: 24px;
+    cursor: pointer;
+    background-color: #ddd;;
+    font-size: 12px;
+    color: black;
+    font-weight: 700;
+    padding: 2px 8px 2px 8px;
+    width: 6em;
+    margin-top: 30px
 }

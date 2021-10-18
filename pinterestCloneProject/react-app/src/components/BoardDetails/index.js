@@ -4,8 +4,7 @@ import { Link, useParams } from 'react-router-dom';
 import boardsReducer, { getBoardDetails, removeOnePinFromBoard } from '../../store/boards';
 import { getAllPins } from '../../store/pins';
 import Card from '../PictureCard';
-import EditPinModal from '../PinBoardEditForm'
-import './index.css'
+import EditPinModal from '../PinBoardEditForm';
 
 
 export const BoardDetails = () => {
@@ -38,38 +37,36 @@ export const BoardDetails = () => {
 
     return (
         <>
-            <div className="boards-details-page-container">
-                <div className="board-info-container">
-                    <button className="board-title">{currentBoard?.title}</button>
-                    <button className="user-info-button">{user?.first_name[0]}</button>
-                    <p className="number-of-pins">{currentBoard?.pins?.length} Pins</p>
+            <div className="board-info-container">
+                <button className="board-title">{currentBoard?.title}</button>
+                <button className="user-info-button">{user?.first_name[0]}</button>
+                <p className="number-of-pins">{currentBoard?.pins?.length} Pins</p>
 
-                </div>
-                <div className="unorganized-pins-container">
-                    {currentBoard?.pins?.map(pin => {
-                        return (
-                                <>
-                                    <div className="image-user-container">
+            </div>
+            <div className="unorganized-pins-container">
+                {currentBoard?.pins?.map(pin => {
+                    return (
+                            <>
+                                <div className="image-user-container">
 
-                                            <div className="pin-edit">
-                                                <EditPinModal pin={pin}/>
-                                            </div>
-                                            <button value={pin.id} onClick={handleRemovePinFromBoard} className="delete-pin-from-board">Delete from Board</button>
+                                        <div className="pin-edit">
+                                            <EditPinModal pin={pin}/>
+                                        </div>
+                                        <button value={pin.id} onClick={handleRemovePinFromBoard} className="delete-pin-from-board">Delete from Board</button>
 
-                                        <Link to={`/pins/${pin.id}`} className="user-pins-container">
-                                            <Card
-                                            src={pin?.media_url}
-                                            alt={pin?.description}
-                                            />
-                                        </Link>
-                                        <Link to="#" className="pin-owner">
-                                            <div>{pin?.profileUser?.username}</div>
-                                        </Link>
-                                    </div>
-                                </>
-                        )
-                    })}
-                </div>
+                                    <Link to={`/pins/${pin.id}`} className="user-pins-container">
+                                        <Card
+                                        src={pin?.media_url}
+                                        alt={pin?.description}
+                                        />
+                                    </Link>
+                                    <Link to="#" className="pin-owner">
+                                        <div>{pin?.profileUser?.username}</div>
+                                    </Link>
+                                </div>
+                            </>
+                    )
+                })}
             </div>
 
 
