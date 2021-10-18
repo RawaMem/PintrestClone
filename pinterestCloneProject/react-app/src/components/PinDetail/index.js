@@ -43,8 +43,6 @@ const PinDetail = () => {
       boardId: allPinBoardId?.id,
       pinId,
     };
-    console.log("======@@@@@@@@=====allPinBoardId>", allPinBoardId?.id);
-    console.log("======@@@@@@@@=====pinId>", pinId);
     dispatch(addPinToBoard(payload));
   };
 
@@ -162,17 +160,19 @@ const PinDetail = () => {
               </div>
               <form>
                 <div>
-                  <label></label>
+                    <div className="pin_comment_phrase">
+                        Share feedback, ask a question or give a high five
+                    </div>
                   <textArea
                     className="pin_comment"
-                    style={{ minHeight: "100px" }}
+                    style={{ minHeight: "50px" }}
                     placeholder="Add a comment"
                     value={commentContent}
                     onChange={(e) => setCommentContent(e.target.value)}
                   />
                   <button
                     onClick={postComment}
-                    className="submit-comment-button"
+                    className="submit_comment_button"
                     type="submit"
                     style={{ marginTop: "10px", height: "30px" }}
                   >
@@ -182,59 +182,67 @@ const PinDetail = () => {
                     {pinComments.map((comment) => {
                       return (
                         <div key={comment.id} className="single-comment">
-                          <div>{comment.user.username}</div>
+                        <div className="comment">
+                          <div className="comment_username">{comment.user.username}</div>
                           <div>{comment.content}</div>
+                          </div>
                           {user?.id === comment?.user_id && (
-                            <>
+                              <>
                               {/* <div className="follower-list-container">
                                 <button className="followers" onClick={openMenuComment}>Edit</button>
                                 {showMenuComment && (
-                                  <> */}
-                                          <div className="popup-follower-row">
-                                            <input
-                                              name={comment.id}
-                                              type="text"
-                                              placeholder="type now"
-                                              // value={comment.content}
-                                              onChange={updateContent}
-                                              required
-                                            />
-                                            <button
-                                              value={comment.id}
-                                              className="delete-Button"
-                                              onClick={handleDelete}
-                                            >
-                                              Delete
-                                            </button>{" "}
-                                            <button
-                                              value={comment.id}
-                                              onClick={updateComment}
-                                            >
-                                              Edit
-                                            </button>
-                                          </div>
+                                <> */}
+                                    {/* <div className="pin_comment_phrase">
+                                    Share feedback, ask a question or give a high five
+                                    </div> */}
+                                    <div className="pin_comment_avatar">
+                                        <img className="pin-avatar" src='https://spng.pngfind.com/pngs/s/538-5384052_harry-potter-harry-potter-cartoon-characters-hd-png.png' alt="user" />
+                                    <div className="popup-follower-row">
+                                    <input className="comment_input"
+                                        name={comment.id}
+                                        type="text"
+                                        placeholder="edit your comment"
+                                        // value={comment.content}
+                                        onChange={updateContent}
+                                        required
+                                    />
+                                    </div>
+                                    </div>
+                                    <button
+                                        value={comment.id}
+                                        className="delete-Button"
+                                        onClick={handleDelete}
+                                        >
+                                        Delete
+                                    </button>{" "}
+                                    <button
+                                        value={comment.id}
+                                        onClick={updateComment}
+                                        >
+                                        Edit
+                                    </button>
                                   {/* </>
                                 )}
-                              </div> */}
+                            </div> */}
                             </>
                           )}
-                        </div>
+                    </div>
                       );
                     })}
                   </div>
                 </div>
-              </form>
-            </div>
+                </form>
+                </div>
           </div>
-        </div>
-      </div>
-    </>
+          </div>
+          </div>
+          </>
   );
 };
 // .map(comment => (
-//     {comment.user_id === sessionUser.id? && (
-//     <div key={comment.id} className='single-comment'>
-//       <div>{comment.user.username}</div>
+    //     {comment.user_id === sessionUser.id? && (
+        //     <div key={comment.id} className='single-comment'>
+        //       <div>{comment.user.username}</div>
 //       <div>{comment.id}</div>
 //       <button className='delete-Button' onClick={() => handleDelete(comment.id)}>Delete Me</button>
 //       <div>{comment.content}</div>
