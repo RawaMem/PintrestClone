@@ -1,6 +1,8 @@
 .page-container {
     display: grid;
     grid-template-rows:20% auto auto;
+    margin-top: 80px; /* hi */
+
 }
 
 .section-1 {

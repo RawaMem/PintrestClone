@@ -3,6 +3,10 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
+.pin_background {
+    margin-top: 80px; /* hi */
+}
+
 .pin_wrapper {
     display: flex;
     position: relative;
