@@ -203,10 +203,16 @@
     align-items: center;
     width: 200px;
     margin-bottom: 5px;
-
-
 }
 
 .follower {
     text-align: center;
+}
+
+.unfollow-toggle-btn {
+
+}
+
+.follow-toggle-btn {
+    
 }

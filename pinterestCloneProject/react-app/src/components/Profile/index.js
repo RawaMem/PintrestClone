@@ -191,7 +191,7 @@ export const Profile = () => {
                                                         <div className="popup-follower-row">
                                                             <p className="follower-name">{follower.username}</p>
                                                             {user?.followers?.includes(follower?.id) && (
-                                                            <button className="follow-toggle-btn" onClick={handleUnfollow} value={follower?.id}>Unfollow</button>
+                                                            <button className="unfollow-toggle-btn" onClick={handleUnfollow} value={follower?.id}>Unfollow</button>
                                                             )}
                                                             {!user?.followers?.includes(follower?.id) && (
                                                             <button className="follow-toggle-btn" onClick={handleFollow} value={follower?.id}>Follow</button>
