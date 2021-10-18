@@ -4,9 +4,10 @@ import PinterestIcon from '@material-ui/icons/Pinterest'
 import { Link } from 'react-router-dom';
 import SearchIcon from '@material-ui/icons/Search';
 import PersonIcon from '@material-ui/icons/Person';
+import LogoutButton from '../auth/LogoutButton';
 import './LoggedInNav.css'
 import { useSelector } from 'react-redux';
-import LogoutButton from '../auth/LogoutButton';
+
 
 
 export default function LoggedInNav() {
@@ -27,8 +28,12 @@ export default function LoggedInNav() {
                 </div>
                 <input className="search_input" placeholder="Search" type="text" />
             </div>
-            <div className="logout-btn-for-logged-in-nav-bar"><LogoutButton /></div>
+            {/* <div className="logout-btn-for-logged-in-nav-bar"><LogoutButton /></div> */}
             <div className="spacing_search_person"></div>
+            <div className="logout_button">
+                <LogoutButton />
+            </div>
+            <div className="spacing_logout_person"></div>
             <div className="person_icon">
             <Link to={`/profile/${user?.id}`}><PersonIcon className="person_icon"/></Link>
             </div>
