@@ -215,7 +215,7 @@ const PinDetail = () => {
                                         >
                                         Delete
                                     </button>{" "}
-                                    <button
+                                    <button className="edit-button"
                                         value={comment.id}
                                         onClick={updateComment}
                                         >
