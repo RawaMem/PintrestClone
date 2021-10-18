@@ -223,10 +223,11 @@ export const Profile = () => {
 
                     <div className="boards-container">
                         <div className="boards-container1">
+
                             {/* {user && profileUser && user.id === profileUser.id && (
                                 <div className="mid-button-container">
 
-                                    {showMenuCreate && (
+
                                         <>
                                             <p className="creation"></p>
                                             <Link className='pop-up-button' to={`/pin-builder`}>
@@ -234,7 +235,7 @@ export const Profile = () => {
                                             </Link>
 
                                         </>
-                                    )}
+
                                 </div>
                             )} */}
 
