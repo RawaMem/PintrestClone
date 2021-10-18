@@ -11,6 +11,7 @@ import CreateBoardModal from '../CreateBoard/createBoardModal';
 import AddIcon from '@mui/icons-material/Add';
 import CreateIcon from '@mui/icons-material/Create';
 import IosShareIcon from '@mui/icons-material/IosShare'
+import CreatePinModal from '../CreatePin/CreatePinModal';
 
 
 
@@ -212,17 +213,18 @@ export const Profile = () => {
                     </div>
                 </section>
                 <section className="section2">
-                    <div className="icon-section">
+                    {/* <div className="icon-section">
                         <div className="button-right">
                             <button  className='big-profile-btn' onClick={openMenuCreate}>
                                 <AddIcon style={{ color: "#111111"}}/>
                             </button>
                         </div>
-                    </div>
+                    </div> */}
 
                     <div className="boards-container">
                         <div className="boards-container1">
-                        {user && profileUser && user.id === profileUser.id && (
+
+                            {/* {user && profileUser && user.id === profileUser.id && (
                                 <div className="mid-button-container">
 
 
@@ -231,13 +233,16 @@ export const Profile = () => {
                                             <Link className='pop-up-button' to={`/pin-builder`}>
                                                 <button className='create-pin-btn'>Create Pin</button>
                                             </Link>
-                                            <div className="create-board-container">
-                                                <CreateBoardModal />
-                                            </div>
+
                                         </>
 
                                 </div>
-                                )}
+                            )} */}
+
+                            <div className="create-board-container">
+                                <CreateBoardModal />
+                                <CreatePinModal />
+                            </div>
                         </div>
                         <div className="boards-container2">
                             {allBoardsList.map(board => {

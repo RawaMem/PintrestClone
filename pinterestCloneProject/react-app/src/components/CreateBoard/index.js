@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { createBoard } from '../../store/boards';
+import PinterestIcon from '@material-ui/icons/Pinterest'
 
 
 export const CreateBoard = () => {
@@ -32,10 +33,19 @@ export const CreateBoard = () => {
       return (
           <>
             <section className="addboard-form-container">
+                    <section className="title-section">
+                        <div className="title-container">
+                            <p><PinterestIcon style={{ fontSize: 40 }}/></p>
+                            <h1 className="title">Create a New Board</h1>
+                        </div>
+                    </section>
                 <form onSubmit={handleSubmit}>
-                    <div className="button-container">
-                        <button type="submit">Save</button>
-                    </div>
+                    {/* <div className="owner-display">
+                        <div className="user-name-container">
+                            <p>{currentUser?.username}</p>
+                        </div>
+                    </div> */}
+                    <div className="create-board-container">
                     <div className="input-container">
                         <input
                           type="text"
@@ -45,9 +55,8 @@ export const CreateBoard = () => {
                           onChange={e => setTitle(e.target.value)}
                         />
 
-                        <div className="user-name-container">
-                            <p>{currentUser?.username}</p>
-                        </div>
+
+
                         <div className="description-container">
                             <input
                               type="text"
@@ -57,6 +66,10 @@ export const CreateBoard = () => {
                               onChange={e => setDescription(e.target.value)}
                               />
                         </div>
+                    </div>
+                        <div className="button-container">
+                            <button type="submit">Save</button>
+                         </div>
                     </div>
                 </form>
             </section>
