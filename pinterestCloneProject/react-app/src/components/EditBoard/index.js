@@ -35,7 +35,7 @@ export const EditBoard = () => {
       const deleteBoard = e => {
         e.preventDefault();
         dispatch(deleteOneBoard(boardId));
-        history.push("/profile")
+        history.push(`/profile/${currentUser?.id}`)
     }
 
       return (
