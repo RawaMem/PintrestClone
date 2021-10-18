@@ -17,7 +17,7 @@ import { CreateBoard } from './components/CreateBoard';
 import { EditBoard } from './components/EditBoard';
 import Header from './components/home/Header';
 import LoggedInNav from './components/Profile/LoggedInNav';
-
+import LandingPage from './components/home/LandingPage';
 
 
 function App() {
@@ -47,6 +47,7 @@ function App() {
       <Switch>
         <Route path='/' exact={true}>
         <Header />
+        <LandingPage />
         </Route>
         <Route path='/login' exact={true}>
           <LoginForm />
