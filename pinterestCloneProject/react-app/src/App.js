@@ -84,9 +84,9 @@ function App() {
         {/* <ProtectedRoute path='/board-builder' exact={true} >
           <CreateBoard />
         </ProtectedRoute> */}
-        <ProtectedRoute path='/board-edit/:boardId' exact={true} >
+        {/* <ProtectedRoute path='/board-edit/:boardId' exact={true} >
           <EditBoard />
-        </ProtectedRoute>
+        </ProtectedRoute> */}
       </Switch>
     </BrowserRouter>
   );

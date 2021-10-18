@@ -10,7 +10,9 @@ import { followUser, getUserprofile, unfollowUser } from '../../store/session';
 import CreateBoardModal from '../CreateBoard/createBoardModal';
 import AddIcon from '@mui/icons-material/Add';
 import CreateIcon from '@mui/icons-material/Create';
-import IosShareIcon from '@mui/icons-material/IosShare';
+import IosShareIcon from '@mui/icons-material/IosShare'
+
+
 
 export const Profile = () => {
 
@@ -164,11 +166,11 @@ export const Profile = () => {
                                     <>
 
                                         <div className="popup-container-for-followers">
-                                
+
                                             {allFollowersOfCurrentProfile.map(follower => {
                                                 return (
                                                     <div className="popup-follower-row">
-                                                
+
                                                         <p className="follower-name">{follower.username}</p>
                                                         {user?.followers?.includes(follower?.id) && (
                                                         <button className="follow-toggle-btn" onClick={handleUnfollow} value={follower?.id}>Unfollow</button>
@@ -211,14 +213,6 @@ export const Profile = () => {
                 </section>
                 <section className="section2">
                     <div className="icon-section">
-                        <div className="button-left">
-                            <button className="edit-profile">
-                                <CreateIcon style={{ color: "#111111"}} fontSize="medium" />
-                            </button>
-                            <button className="share-board-icon">
-                                <IosShareIcon style={{ color: "#111111"}} fontSize="medium" />
-                            </button>
-                        </div>
                         <div className="button-right">
                             <button  className='big-profile-btn' onClick={openMenuCreate}>
                                 <AddIcon style={{ color: "#111111"}}/>
@@ -250,6 +244,7 @@ export const Profile = () => {
                                 return (
                                     +board?.user_id === +profileUser?.id ? (
                                         <>
+
                                             <Link className='board-card-link' to={`/boards/${board?.id}`}>
                                             <div className="board-card">
                                                 <div className="left-board-container"><img className="left-board-pic" src={pic1(board)} alt='pic1'/></div>

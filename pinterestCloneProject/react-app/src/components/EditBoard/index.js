@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import { deleteOneBoard, editBoardDetails } from '../../store/boards';
+import PinterestIcon from '@material-ui/icons/Pinterest'
+import './EditBoardForm.css';
 
 
 
@@ -38,8 +40,19 @@ export const EditBoard = () => {
 
       return (
           <>
-            <section className="addboard-form-container">
+            <section className="editboard-form-container">
                 <form onSubmit={handleSubmit}>
+                    <section className="title-section">
+                        <div className="title-container">
+                            <p><PinterestIcon style={{ fontSize: 40 }}/></p>
+                            <h1 className="title">Edit this Board</h1>
+                        </div>
+                    </section>
+                    <div className="name-container">
+                      <div className="user-name-container">
+                        <p>{currentUser?.username}</p>
+                      </div>
+                    </div>
                     <div className="input-container">
                         <input
                           type="text"
@@ -49,9 +62,6 @@ export const EditBoard = () => {
                           onChange={e => setTitle(e.target.value)}
                         />
 
-                        <div className="user-name-container">
-                            <p>{currentUser?.username}</p>
-                        </div>
                         <div className="description-container">
                             <input
                               type="text"
@@ -63,15 +73,15 @@ export const EditBoard = () => {
                         </div>
                     </div>
                     <div className="button-container">
-                        <button type="submit">Save Edit</button>
-                        <button className="board-delete-btn" onClick={deleteBoard}>Delete Board</button>
+                        <button className="edit-board-buttons" type="submit">Save Edit</button>
+                        <button className="edit-board-buttons" onClick={deleteBoard}>Delete Board</button>
                     </div>
                 </form>
             </section>
-
-
           </>
       )
 
 
 }
+
+export default EditBoard
