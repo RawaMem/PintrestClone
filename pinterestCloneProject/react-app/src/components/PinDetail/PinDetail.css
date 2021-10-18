@@ -11,7 +11,6 @@
     display: flex;
     position: relative;
     justify-content: center;
-    z-index: 1;
 }
 .pin_modal {
     background-color:rgb(255,255,255);
@@ -22,14 +21,12 @@
     margin-top: 16px;
     border-radius: 32px;
     box-shadow: RGB(0 0 0/10%) 0px 1px 20px 0px;
-    z-index: 1;
 }
 .pin_pic {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 490px;
-    z-index: 1;
 
 }
 .pin_pic img {
@@ -38,7 +35,6 @@
     border-radius: 16px;
     margin: 20px;
     object-fit: cover;
-    z-index: 1;
 }
 #pin_right_side {
     display: flex;
