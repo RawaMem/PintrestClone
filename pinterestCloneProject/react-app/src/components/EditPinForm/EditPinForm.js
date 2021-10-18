@@ -134,7 +134,7 @@ function EditPinForm({pin}) {
                     <section className="button-section">
                         <div className="button-container">
                             <div className="delete-button-container">
-                                <button value={ pin?.id } className="delete-button" onClick={handleDelete}>
+                                <button value={ pin?.id } className="button-grey" onClick={handleDelete}>
                                     Delete
                                 </button>
                             </div>
@@ -145,11 +145,11 @@ function EditPinForm({pin}) {
                                         let modal = document.getElementById('modal-background')
                                         modal.click()
                                     }}
-                                    className="cancel-edit-button">
+                                    className="button-grey">
                                         Cancel
                                 </button>
 
-                                <button type="submit">
+                                <button className="button" type="submit">
                                     Save
                                 </button>
                             </div>
