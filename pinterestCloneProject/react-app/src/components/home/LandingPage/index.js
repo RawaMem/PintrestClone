@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
-import Carousel from 'react-bootstrap/Carousel'
-import 'bootstrap/dist/css/bootstrap.min.css';
+// import Carousel from 'react-bootstrap/Carousel'
+// import 'bootstrap/dist/css/bootstrap.min.css';
 import './LandingPage.css';
 
 
 function LandingPage() {
+    // return null
     return (
         <>
-        <div className="landing-page-container">
+        {/* <div className="landing-page-container">
                 <Carousel fade>
                     <Carousel.Item>
                         <img
@@ -45,7 +46,7 @@ function LandingPage() {
                         </Carousel.Caption>
                     </Carousel.Item>
                 </Carousel>
-            </div>
+            </div> */}
         </>
     )
 }
