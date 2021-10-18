@@ -5,6 +5,7 @@ import boardsReducer, { getBoardDetails, removeOnePinFromBoard } from '../../sto
 import { getAllPins } from '../../store/pins';
 import Card from '../PictureCard';
 import EditPinModal from '../PinBoardEditForm'
+import EditBoardModal from '../EditBoard/EditBoardModal';
 import './index.css'
 
 
@@ -51,9 +52,7 @@ export const BoardDetails = () => {
                                 <>
                                     <div className="image-user-container">
 
-                                            <div className="pin-edit">
-                                                <EditPinModal pin={pin}/>
-                                            </div>
+                                            <EditBoardModal />
                                             <button value={pin.id} onClick={handleRemovePinFromBoard} className="delete-pin-from-board">Delete from Board</button>
 
                                         <Link to={`/pins/${pin.id}`} className="user-pins-container">

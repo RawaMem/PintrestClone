@@ -11,7 +11,7 @@ import CreateBoardModal from '../CreateBoard/createBoardModal';
 import AddIcon from '@mui/icons-material/Add';
 import CreateIcon from '@mui/icons-material/Create';
 import IosShareIcon from '@mui/icons-material/IosShare'
-import EditBoardModal from '../EditBoard/EditBoardModal';
+
 
 
 export const Profile = () => {
@@ -166,11 +166,11 @@ export const Profile = () => {
                                     <>
 
                                         <div className="popup-container-for-followers">
-                                
+
                                             {allFollowersOfCurrentProfile.map(follower => {
                                                 return (
                                                     <div className="popup-follower-row">
-                                                
+
                                                         <p className="follower-name">{follower.username}</p>
                                                         {user?.followers?.includes(follower?.id) && (
                                                         <button className="follow-toggle-btn" onClick={handleUnfollow} value={follower?.id}>Unfollow</button>
@@ -244,7 +244,7 @@ export const Profile = () => {
                                 return (
                                     +board?.user_id === +profileUser?.id ? (
                                         <>
-                                            <EditBoardModal />
+
                                             <Link className='board-card-link' to={`/boards/${board?.id}`}>
                                             <div className="board-card">
                                                 <div className="left-board-container"><img className="left-board-pic" src={pic1(board)} alt='pic1'/></div>

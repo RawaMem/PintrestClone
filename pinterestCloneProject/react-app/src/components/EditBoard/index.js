@@ -78,8 +78,6 @@ export const EditBoard = () => {
                     </div>
                 </form>
             </section>
-
-
           </>
       )
 
