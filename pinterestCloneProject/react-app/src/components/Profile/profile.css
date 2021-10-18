@@ -4,8 +4,8 @@
 }
 
 .page-container {
-    display: grid;
-    grid-template-rows:20% auto auto;
+    /* display: grid;
+    grid-template-rows:20% auto auto; */
     margin-top: 80px;
 }
 
@@ -14,8 +14,8 @@
     flex-direction: column;
     align-items: center;
     margin-bottom: 20px;
-    height: 100%;
-    z-index: 9;
+    /* height: 50px; */
+    /* z-index: 9; */
 
 }
 
