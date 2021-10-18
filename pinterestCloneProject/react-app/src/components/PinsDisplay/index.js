@@ -67,11 +67,13 @@ const PinsDisplay = () => {
 
     return (
         <>
-            <div className="pins-container">
-                {allPins}
-            </div>
-            <div className="button-container">
-                <CreatePinModal className="create-pin-icon"/>
+            <div className="pins-display-page-container">
+                <div className="pins-container">
+                    {allPins}
+                </div>
+                <div className="button-container">
+                    <CreatePinModal className="create-pin-icon"/>
+                </div>
             </div>
         </>
     )
