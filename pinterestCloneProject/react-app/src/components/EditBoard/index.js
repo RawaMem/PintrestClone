@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import { deleteOneBoard, editBoardDetails } from '../../store/boards';
+import PinterestIcon from '@material-ui/icons/Pinterest'
 
 
 
@@ -38,8 +39,14 @@ export const EditBoard = () => {
 
       return (
           <>
-            <section className="addboard-form-container">
+            <section className="editboard-form-container">
                 <form onSubmit={handleSubmit}>
+                    <section className="title-section">
+                        <div className="title-container">
+                            <p><PinterestIcon style={{ fontSize: 40 }}/></p>
+                            <h1 className="title">Edit this Board</h1>
+                        </div>
+                    </section>
                     <div className="input-container">
                         <input
                           type="text"
@@ -75,3 +82,5 @@ export const EditBoard = () => {
 
 
 }
+
+export default EditBoard

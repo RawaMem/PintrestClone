@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Modal } from '../../context/Modal';
-import EditPinForm from './EditPinForm';
+import EditBoard from './index';
+import CreateIcon from '@mui/icons-material/Create';
 
-
-function EditUserPinModal({ pin }) {
+function EditBoardModal() {
     const [showModal, setShowModal] = useState(false);
     return (
         <>
@@ -12,16 +12,16 @@ function EditUserPinModal({ pin }) {
             className='edit-pin-form'
             onClick={() => setShowModal(true)}
             >
-                Edit Pin
+                <CreateIcon style={{ color: "#111111"}}/>
             </button>
         </div>
          {showModal && (
             <Modal onClose={() => setShowModal(false)}>
-              <EditPinForm pin={pin}/>
+              <EditBoard />
             </Modal>
           )}
         </>
     )
 }
 
-export default EditUserPinModal
+export default EditBoardModal

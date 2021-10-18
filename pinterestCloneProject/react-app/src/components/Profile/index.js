@@ -10,7 +10,9 @@ import { followUser, getUserprofile, unfollowUser } from '../../store/session';
 import CreateBoardModal from '../CreateBoard/createBoardModal';
 import AddIcon from '@mui/icons-material/Add';
 import CreateIcon from '@mui/icons-material/Create';
-import IosShareIcon from '@mui/icons-material/IosShare';
+import IosShareIcon from '@mui/icons-material/IosShare'
+import EditBoardModal from '../EditBoard/EditBoardModal';
+
 
 export const Profile = () => {
 
@@ -208,14 +210,6 @@ export const Profile = () => {
                 </section>
                 <section className="section2">
                     <div className="icon-section">
-                        <div className="button-left">
-                            <button className="edit-profile">
-                                <CreateIcon style={{ color: "#111111"}} fontSize="medium" />
-                            </button>
-                            <button className="share-board-icon">
-                                <IosShareIcon style={{ color: "#111111"}} fontSize="medium" />
-                            </button>
-                        </div>
                         <div className="button-right">
                             <button  className='big-profile-btn' onClick={openMenuCreate}>
                                 <AddIcon style={{ color: "#111111"}}/>
@@ -247,6 +241,7 @@ export const Profile = () => {
                                 return (
                                     +board?.user_id === +profileUser?.id ? (
                                         <>
+                                            <EditBoardModal />
                                             <Link className='board-card-link' to={`/boards/${board?.id}`}>
                                             <div className="board-card">
                                                 <div className="left-board-container"><img className="left-board-pic" src={pic1(board)} alt='pic1'/></div>
