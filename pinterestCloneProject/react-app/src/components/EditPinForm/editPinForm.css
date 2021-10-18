@@ -3,6 +3,12 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
+:root{
+    -red-btn: red;
+    -red-btn-hover:rgb(197, 22, 22);
+
+}
+
 .edit-user-pin-container {
     margin: 0;
     height: 70vh;
@@ -248,3 +254,25 @@ textArea {
     padding: 2px 8px 2px 8px;
     margin-left: 20em;
 }
+.save-button {
+    display: flex;
+    border: 0;
+    height: 40px;
+    min-width: 60px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 24px;
+    cursor: pointer;
+    background-color: transparent;
+    font-size: 16px;
+    color: white;
+    font-weight: 700;
+    padding: 2px 8px 2px 8px;
+
+}
+.save-button:hover {
+    background-color: rgb(197, 22, 22);
+  }
+.save-button-div {
+    margin-left: 10px;
+  }

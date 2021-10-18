@@ -142,7 +142,7 @@ const PinDetail = () => {
                 <div className="add-pin-to-container-container">
                   {sessionUser?.id !== pins?.pin?.user_id ? (
                     <button
-                      className="save-button"
+                      className="save-button-detail"
                       onClick={handleAddPinToBoard}
                     >
                       Save

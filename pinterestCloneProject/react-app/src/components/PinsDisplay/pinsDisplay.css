@@ -29,25 +29,30 @@
 
   }
 
-  .save-button-pin-display {
-        position: relative;
-        top: 40px;
-        left: 20px;
-        border-radius: 10px;
-        min-height: 30px;
-        min-width: 40px;
-        align-items: center;
-        justify-content: center;
-        border-radius: 24px;
-        cursor: pointer;
-        background-color: #e60023;
-        font-size: 12px;
-        color: white;
-        font-weight: 500;
-        padding: 2px 8px 2px 8px;
-        border: 1px solid #e60023;
-
+  .save-pin-to-container{
+    display: flex;
+    justify-content: flex-end;
   }
+
+  /* .save-button-pin-display{
+    position: relative;
+    top: 40px;
+    left: 20px;
+    border-radius: 10px;
+    min-height: 30px;
+    min-width: 40px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 24px;
+    cursor: pointer;
+    background-color: transparent;
+    font-size: 16px;
+    font-size: 12px;
+    color: white;
+    font-weight: 500;
+    padding: 2px 8px 2px 8px;
+    /* border: 1px solid #e60023; */
+  /* } */ */
 
   .pin-display-img-container {
       display: flex;
@@ -58,4 +63,32 @@
   .pin-display-username {
       position: relative;
       right: 15px;
+          display: flex;
+    justify-content: center;
+  }
+
+.save-button-pin-display {
+    position: relative;
+    top: 50px;
+    right: 10px;
+    display: flex;
+    border: 0;
+    height: 40px;
+    min-width: 60px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 24px;
+    cursor: pointer;
+    background-color: transparent;
+    font-size: 16px;
+    color: white;
+    font-weight: 700;
+    padding: 2px 8px 2px 8px;
+
+}
+.save-button-pin-display:hover {
+    background-color: rgb(197, 22, 22);
+  }
+.save-button-div {
+    margin-left: 10px;
   }
